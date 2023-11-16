@@ -9,5 +9,6 @@ public class Main {
 		System.out.println("Hallo, wir sind BuySmart Enterprise!");
 		System.out.println("Hallo, Justin war halbe st. vor seinem geburtstag hier :(");
 		System.out.println("Das tut mir sehr leid für dich");
+		System.out.println("GG");
 	}
 }
