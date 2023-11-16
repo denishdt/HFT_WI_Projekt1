@@ -14,6 +14,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.BoxLayout;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+
 import java.awt.BorderLayout;
 import javax.swing.SwingConstants;
 import java.awt.Color;
@@ -78,7 +79,7 @@ public class GUI_standard_supplier {
 	 */
 	private void initialize() {
 		frm = new JFrame();
-		frm.setTitle("BuySmartEnterprise");
+		frm.setTitle("HighSpeed Procurement");
 		frm.setBounds(100, 100, 700, 300);
 		frm.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		

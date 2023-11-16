@@ -56,7 +56,7 @@ public class GUI_new_supplier {
 	 */
 	private void initialize() {
 		frm = new JFrame();
-		frm.setTitle("BuySmart Enterprise");
+		frm.setTitle("HighSpeed Procurement");
 		frm.setBounds(100, 100, 700, 394);
 		frm.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		

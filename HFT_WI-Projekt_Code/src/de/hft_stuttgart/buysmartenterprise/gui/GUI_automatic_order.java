@@ -58,7 +58,7 @@ public class GUI_automatic_order {
 	 */
 	private void initialize() {
 		frmBuysmartEnterprise = new JFrame();
-		frmBuysmartEnterprise.setTitle("BuySmart Enterprise");
+		frmBuysmartEnterprise.setTitle("HighSpeed Procurement");
 		frmBuysmartEnterprise.setBounds(100, 100, 700, 300);
 		frmBuysmartEnterprise.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		

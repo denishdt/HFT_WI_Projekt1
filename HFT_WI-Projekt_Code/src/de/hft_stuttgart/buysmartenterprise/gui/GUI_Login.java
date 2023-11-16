@@ -56,7 +56,7 @@ public class GUI_Login {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		frame = new JFrame();
+		frame = new JFrame("HighSpeed Procurement");
 		frame.setResizable(false);
 		frame.getContentPane().setBackground(UIManager.getColor("CheckBox.interiorBackground"));
 		frame.setBackground(UIManager.getColor("CheckBox.interiorBackground"));

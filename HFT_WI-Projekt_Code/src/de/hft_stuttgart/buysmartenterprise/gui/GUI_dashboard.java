@@ -6,7 +6,6 @@ import javax.swing.JFrame;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JLabel;
-//import com.jgoodies.forms.factories.DefaultComponentFactory;
 import javax.swing.JPanel;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JMenuBar;
@@ -56,7 +55,7 @@ public class GUI_dashboard {
 	 */
 	private void initialize() {
 		frmBuysmartEnterprises = new JFrame();
-		frmBuysmartEnterprises.setTitle("BuySmart Enterprise");
+		frmBuysmartEnterprises.setTitle("HighSpeed Procurement");
 		frmBuysmartEnterprises.setBounds(100, 100, 700, 300);
 		frmBuysmartEnterprises.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		

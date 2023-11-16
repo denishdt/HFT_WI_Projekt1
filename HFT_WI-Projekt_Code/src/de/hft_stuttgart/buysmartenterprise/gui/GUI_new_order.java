@@ -45,7 +45,7 @@ public class GUI_new_order {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		frame = new JFrame();
+		frame = new JFrame("HighSpeed Procurement");
 		frame.getContentPane().setBackground(new Color(255, 255, 255));
 		frame.setBounds(100, 100, 800, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

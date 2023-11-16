@@ -68,7 +68,7 @@ public class GUI_min_quantity {
 	 */
 	private void initialize() {
 		frm = new JFrame();
-		frm.setTitle("BuySmartEnterprise");
+		frm.setTitle("HighSpeed Procurement");
 		frm.setBounds(100, 100, 700, 300);
 		frm.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
