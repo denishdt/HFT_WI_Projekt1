@@ -12,11 +12,14 @@ import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JSeparator;
+import javax.swing.JComboBox;
 
 public class GUI_new_order {
 
 	private JFrame frame;
 	private JTextField textField;
+	private JTextField textField_1;
 
 	/**
 	 * Launch the application.
@@ -45,7 +48,7 @@ public class GUI_new_order {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		frame = new JFrame("HighSpeed Procurement");
+		frame = new JFrame("Highspeed Procurement");
 		frame.getContentPane().setBackground(new Color(255, 255, 255));
 		frame.setBounds(100, 100, 800, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -53,7 +56,7 @@ public class GUI_new_order {
 		
 		JPanel panel = new JPanel();
 		panel.setBackground(new Color(255, 255, 255));
-		panel.setBounds(10, 10, 766, 243);
+		panel.setBounds(10, 23, 766, 230);
 		frame.getContentPane().add(panel);
 		panel.setLayout(null);
 		
@@ -105,11 +108,19 @@ public class GUI_new_order {
 		panel_3.add(lblNewLabel_5);
 		
 		JPanel panel_4 = new JPanel();
+		panel_4.setBackground(new Color(255, 255, 255));
 		panel_4.setBounds(10, 66, 221, 32);
 		panel.add(panel_4);
 		panel_4.setLayout(null);
 		
+		JLabel lblNewLabel_9 = new JLabel("Teile auswählen");
+		lblNewLabel_9.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_9.setFont(new Font("Tahoma", Font.PLAIN, 17));
+		lblNewLabel_9.setBounds(0, 0, 221, 32);
+		panel_4.add(lblNewLabel_9);
+		
 		JPanel panel_5 = new JPanel();
+		panel_5.setBackground(new Color(255, 255, 255));
 		panel_5.setBounds(325, 66, 143, 32);
 		panel.add(panel_5);
 		panel_5.setLayout(null);
@@ -122,6 +133,7 @@ public class GUI_new_order {
 		panel_5.add(lblNewLabel_8);
 		
 		JPanel panel_6 = new JPanel();
+		panel_6.setBackground(new Color(255, 255, 255));
 		panel_6.setBounds(511, 66, 162, 32);
 		panel.add(panel_6);
 		panel_6.setLayout(null);
@@ -134,6 +146,7 @@ public class GUI_new_order {
 		panel_6.add(lblNewLabel_7);
 		
 		JPanel panel_7 = new JPanel();
+		panel_7.setBackground(new Color(255, 255, 255));
 		panel_7.setBounds(700, 66, 56, 32);
 		panel.add(panel_7);
 		panel_7.setLayout(null);
@@ -158,19 +171,40 @@ public class GUI_new_order {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		btnNewButton.setBounds(554, 201, 96, 32);
+		btnNewButton.setBounds(554, 188, 96, 32);
 		panel.add(btnNewButton);
 		
 		JButton btnNewButton_1 = new JButton("Bestellung abschließen");
 		btnNewButton_1.setBackground(new Color(0, 0, 128));
 		btnNewButton_1.setForeground(new Color(255, 255, 255));
-		btnNewButton_1.setBounds(660, 201, 96, 32);
+		btnNewButton_1.setBounds(660, 188, 96, 32);
 		panel.add(btnNewButton_1);
 		
+		textField_1 = new JTextField();
+		textField_1.setEditable(false);
+		textField_1.setBounds(700, 108, 56, 32);
+		panel.add(textField_1);
+		textField_1.setColumns(10);
+		
+		JComboBox comboBox = new JComboBox();
+		comboBox.setBounds(10, 107, 221, 21);
+		panel.add(comboBox);
+		comboBox.setMaximumRowCount(8);
+		comboBox.setForeground(new Color(255, 255, 255));
+		comboBox.setBackground(new Color(255, 255, 255));
+		
+		JComboBox comboBox_1 = new JComboBox();
+		comboBox_1.setBounds(511, 108, 162, 20);
+		panel.add(comboBox_1);
+		
 		JLabel lblNewLabel = new JLabel("BuySmart Enterprise");
-		lblNewLabel.setBounds(0, 0, 97, 13);
+		lblNewLabel.setBounds(0, 0, 129, 13);
 		frame.getContentPane().add(lblNewLabel);
 		
+		JSeparator separator = new JSeparator();
+		separator.setBounds(10, 11, 808, 13);
+		frame.getContentPane().add(separator);
+		
 		frame.setVisible(true);
-	}
+		}
 }
