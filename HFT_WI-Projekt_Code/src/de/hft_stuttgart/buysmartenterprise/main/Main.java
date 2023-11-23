@@ -17,9 +17,7 @@ public class Main {
 	public static void main(String [] args) {
 		DBAccess.dbAccess();
 		System.out.println("HighSpeed Procurement by BuySmart Enterprise");
-//		Kellek
-//		yarak2
-		//yarak
+
 		GUI_dashboard guiOne = new GUI_dashboard();
 		GUI_automatic_order guiTwo = new GUI_automatic_order();
 		GUI_order_status guiTree = new GUI_order_status();
@@ -29,7 +27,6 @@ public class Main {
 		GUI_min_quantity quiSeven = new GUI_min_quantity();
 		GUI_Login quiEight = new GUI_Login();
 		GUI_new_order quiNine = new GUI_new_order();
-		//ARSCHu
-//		ya wisikh
+		
 	}
 }
