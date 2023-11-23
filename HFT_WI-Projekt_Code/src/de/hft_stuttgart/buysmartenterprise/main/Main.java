@@ -27,6 +27,6 @@ public class Main {
 		GUI_min_quantity quiSeven = new GUI_min_quantity();
 		GUI_Login quiEight = new GUI_Login();
 		GUI_new_order quiNine = new GUI_new_order();
-		// cr7
+		
 	}
 }
