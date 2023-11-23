@@ -17,6 +17,7 @@ public class Main {
 	public static void main(String [] args) {
 		DBAccess.dbAccess();
 		System.out.println("HighSpeed Procurement by BuySmart Enterprise");
+//		yarak2
 		//yarak
 		GUI_dashboard guiOne = new GUI_dashboard();
 		GUI_automatic_order guiTwo = new GUI_automatic_order();
