@@ -115,7 +115,7 @@ public class GUI_Login {
 		
 		JButton btnNewButton_1 = new JButton("Forgot Password?");
 		btnNewButton_1.setBackground(UIManager.getColor("CheckBoxMenuItem.selectionBackground"));
-		btnNewButton_1.setForeground(UIManager.getColor("CheckBoxMenuItem.selectionBackground"));
+		btnNewButton_1.setForeground(new Color(0, 0, 0));
 		btnNewButton_1.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		GroupLayout gl_panel = new GroupLayout(panel);
 		gl_panel.setHorizontalGroup(
