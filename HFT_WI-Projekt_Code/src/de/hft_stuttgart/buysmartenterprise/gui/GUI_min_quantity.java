@@ -67,6 +67,7 @@ public class GUI_min_quantity {
 	 */
 	public GUI_min_quantity() {
 		initialize();
+		dbAccess.connect();
 	}
 
 	/**

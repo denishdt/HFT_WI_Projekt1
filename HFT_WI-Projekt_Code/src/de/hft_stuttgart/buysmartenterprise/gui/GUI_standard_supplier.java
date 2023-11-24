@@ -77,6 +77,7 @@ public class GUI_standard_supplier {
 	 */
 	public GUI_standard_supplier() {
 		initialize();
+		dbAccess.connect();
 	}
 
 	/**

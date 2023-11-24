@@ -54,6 +54,7 @@ public class GUI_dashboard {
 	 */
 	public GUI_dashboard() {
 		initialize();
+		dbAccess.connect();
 	}
 
 	/**

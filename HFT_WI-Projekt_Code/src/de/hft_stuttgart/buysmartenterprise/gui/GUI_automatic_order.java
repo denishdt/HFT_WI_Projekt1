@@ -10,6 +10,7 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.sql.Connection;
 import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
 import java.awt.Color;
@@ -57,6 +58,7 @@ public class GUI_automatic_order {
 	 */
 	public GUI_automatic_order() {
 		initialize();
+		dbAccess.connect();
 	}
 
 	/**

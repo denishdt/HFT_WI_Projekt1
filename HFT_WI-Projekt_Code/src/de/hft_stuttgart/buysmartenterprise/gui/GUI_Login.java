@@ -57,6 +57,7 @@ public class GUI_Login {
 	 */
 	public GUI_Login() {
 		initialize();
+		dbAccess.connect();
 	}
 
 	/**

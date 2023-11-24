@@ -58,6 +58,7 @@ public class GUI_new_supplier {
 	 */
 	public GUI_new_supplier() {
 		initialize();
+		dbAccess.connect();
 	}
 
 	/**

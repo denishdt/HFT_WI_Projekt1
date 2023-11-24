@@ -12,28 +12,23 @@ public class DBAccess {
 	private static final String USERNAME = "db5";
 	private static final String PASSWORD = "!db5.pgm23?WS2";
 	
-	private Connection con = null;
+	private Connection connection;
 	
 	public void connect() {
 		try {
-			
 			Class.forName(DRIVER);
-			con = DriverManager.getConnection(URL + DBNAME, USERNAME, PASSWORD);
-			System.out.println("Connected to the database");	
-			
+			connection = DriverManager.getConnection(URL + DBNAME, USERNAME, PASSWORD);
+			System.out.println("Connected to the database");
 		} catch (Exception e) {
 			e.printStackTrace();
+			System.err.println("Error connecting to the database: " + e.getMessage());
 		}
 	}
 
 	public void disconnect() {
 		try {
-			if(con != null && !con.isClosed()) {
-				System.out.println("Disconnected from Database");
-				con.close();
-			} else {
-				System.out.println("Disconnected from Database");
-			}
+			connection.close();
+			System.out.println("Disconnected from Database");
 		} catch (Exception e) {
 			System.err.println("Error disconnecting from database: " + e.getMessage());
 		}

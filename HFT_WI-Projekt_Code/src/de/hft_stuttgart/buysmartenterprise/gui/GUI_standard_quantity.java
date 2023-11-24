@@ -67,6 +67,7 @@ public class GUI_standard_quantity {
 	 */
 	public GUI_standard_quantity() {
 		initialize();
+		dbAccess.connect();
 	}
 
 	/**
