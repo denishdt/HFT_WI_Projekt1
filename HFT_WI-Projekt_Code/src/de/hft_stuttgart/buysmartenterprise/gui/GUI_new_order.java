@@ -200,7 +200,7 @@ public class GUI_new_order {
 		panel_1.add(btnNewButton_3);
 		
 		//Log Out: It just leads to the Login, real Log Out TBD
-		btnNewButton_2.addActionListener(new ActionListener() {
+		btnNewButton_3.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				frame.setVisible(false);
