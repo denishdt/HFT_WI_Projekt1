@@ -175,6 +175,14 @@ public class GUI_new_order {
 		btnNewButton_2.setForeground(Color.WHITE);
 		btnNewButton_2.setBackground(Color.BLACK);
 		panel_1.add(btnNewButton_2);
+		btnNewButton_2.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				frame.setVisible(false);
+				GUI_dashboard openDashboard = new GUI_dashboard();
+			}
+		});
 		
 		JButton btnNewButton_1_1 = new JButton("Settings");
 		btnNewButton_1_1.setForeground(Color.WHITE);
@@ -190,6 +198,15 @@ public class GUI_new_order {
 		btnNewButton_3.setForeground(Color.WHITE);
 		btnNewButton_3.setBackground(Color.BLACK);
 		panel_1.add(btnNewButton_3);
+		
+		//Log Out: It just leads to the Login, real Log Out TBD
+		btnNewButton_2.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				frame.setVisible(false);
+				GUI_Login openLogin = new GUI_Login();			
+			}
+		});
 		
 		frame.addWindowListener(new WindowAdapter() {
 			@Override
