@@ -18,6 +18,16 @@ public class DBAccess {
 		try {
 			Class.forName(DRIVER);
 			connection = DriverManager.getConnection(URL + DBNAME, USERNAME, PASSWORD);
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.err.println("Error connecting to the database: " + e.getMessage());
+		}
+	}
+	
+	public void firstConnect() {
+		try {
+			Class.forName(DRIVER);
+			connection = DriverManager.getConnection(URL + DBNAME, USERNAME, PASSWORD);
 			System.out.println("Connected to the database");
 		} catch (Exception e) {
 			e.printStackTrace();

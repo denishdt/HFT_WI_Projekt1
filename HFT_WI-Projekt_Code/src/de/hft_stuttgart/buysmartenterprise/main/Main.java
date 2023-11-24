@@ -4,10 +4,13 @@ import de.hft_stuttgart.buysmartenterprise.gui.GUI_Login;
 
 
 public class Main {
+	
+	boolean cnctn = false;
 
 	public static void main(String [] args) {
 		System.out.println("HighSpeed Procurement by BuySmart Enterprise");
 		
 		GUI_Login openLogin = new GUI_Login();	
 	}
+	
 }

@@ -11,6 +11,7 @@ import javax.swing.JSeparator;
 import javax.swing.border.MatteBorder;
 
 import de.hft_stuttgart.buysmartenterprise.dbaccess.DBAccess;
+import de.hft_stuttgart.buysmartenterprise.main.Main;
 
 import java.awt.Color;
 import javax.swing.JTextField;
@@ -57,7 +58,7 @@ public class GUI_Login {
 	 */
 	public GUI_Login() {
 		initialize();
-		dbAccess.connect();
+		dbAccess.firstConnect();
 	}
 
 	/**
