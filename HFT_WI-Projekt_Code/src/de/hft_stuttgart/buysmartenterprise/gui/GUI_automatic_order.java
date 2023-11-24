@@ -182,6 +182,14 @@ public class GUI_automatic_order {
 		btnNewButton.setForeground(new Color(255, 255, 255));
 		btnNewButton.setBackground(new Color(0, 0, 0));
 		panel.add(btnNewButton);
+		btnNewButton.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				frmBuysmartEnterprise.setVisible(false);
+				GUI_dashboard openDashboard = new GUI_dashboard();
+			}
+		});
 		
 		JButton btnNewButton_1 = new JButton("Settings");
 		btnNewButton_1.setForeground(new Color(255, 255, 255));
@@ -202,6 +210,15 @@ public class GUI_automatic_order {
 		btnNewButton_3.setForeground(new Color(255, 255, 255));
 		panel.add(btnNewButton_3);
 		frmBuysmartEnterprise.getContentPane().setLayout(groupLayout);
+		
+		//Log Out: It just leads to the Login, real Log Out TBD
+		btnNewButton_3.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				frmBuysmartEnterprise.setVisible(false);
+				GUI_Login openLogin = new GUI_Login();			
+			}
+		});
 		
 		frmBuysmartEnterprise.setVisible(true);
 	}

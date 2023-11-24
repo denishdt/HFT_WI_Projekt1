@@ -111,6 +111,14 @@ public class GUI_standard_supplier {
 		btnNewButton.setForeground(Color.WHITE);
 		btnNewButton.setBackground(Color.BLACK);
 		panel.add(btnNewButton);
+		btnNewButton.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				frm.setVisible(false);
+				GUI_dashboard openDashboard = new GUI_dashboard();
+			}
+		});
 		
 		btnNewButton_1 = new JButton("Settings");
 		btnNewButton_1.setForeground(Color.WHITE);
@@ -128,6 +136,17 @@ public class GUI_standard_supplier {
 		panel.add(btnNewButton_3);
 		frm.getContentPane().add(panel);
 		frm.getContentPane().add(lblNewLabel_3);
+		
+		//Log Out: It just leads to the Login, real Log Out TBD
+		btnNewButton_3.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				frm.setVisible(false);
+				GUI_Login openLogin = new GUI_Login();
+						
+			}
+		});
+		
 		
 		lblNewLabel_4 = new JLabel("Als Standardlieferant festlegen f\u00FCr:");
 		springLayout.putConstraint(SpringLayout.NORTH, lblNewLabel_4, 0, SpringLayout.NORTH, lblNewLabel_3);

@@ -23,21 +23,6 @@ public class DBAccess {
 			Class.forName(driver);
 			con = DriverManager.getConnection(url + dbName, userName, password);
 			System.out.println("Connected to the database");
-			
-			/**
-			Statement stmt = con.createStatement();
-			ResultSet rs;
-			
-			rs = stmt.executeQuery("SELECT MANR, Vorname, Nachname, Rolle FROM mitarbeiter");
-			
-			while(rs.next()) {
-				int manr = rs.getInt("MANr");
-				String nachname = rs.getString("Nachname");
-				String vorname = rs.getString("Vorname");
-				String rolle = rs.getString("Rolle");
-				System.out.println("MA-Nr: " + manr + " | " + vorname + " " + nachname + " | Rolle: " + rolle);
-			}
-			**/
 			con.close();
 			System.out.println("Disconnected from Database");
 			

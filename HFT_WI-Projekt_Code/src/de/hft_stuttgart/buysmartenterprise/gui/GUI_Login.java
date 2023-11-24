@@ -87,9 +87,13 @@ public class GUI_Login {
 		textField_1 = new JTextField();
 		textField_1.setColumns(10);
 		
+		//Succesfull Login leads to the dashboard
 		JButton btnNewButton = new JButton("Log In");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				/*!!Username and Password check TBD!!*/
+				GUI_dashboard openDashboard = new GUI_dashboard();
+				frame.setVisible(false);
 			}
 		});
 		btnNewButton.setBackground(UIManager.getColor("CheckBoxMenuItem.selectionBackground"));

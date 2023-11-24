@@ -7,6 +7,9 @@ import javax.swing.JMenuBar;
 import java.awt.Color;
 import javax.swing.JLabel;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.JCheckBox;
 import java.awt.FlowLayout;
 import javax.swing.JTable;
@@ -178,6 +181,14 @@ public class GUI_order_status {
 		btnNewButton.setForeground(new Color(255, 255, 255));
 		btnNewButton.setBackground(Color.BLACK);
 		panel.add(btnNewButton);
+		btnNewButton.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				frmBuysmartEnterprise.setVisible(false);
+				GUI_dashboard openDashboard = new GUI_dashboard();
+			}
+		});
 		
 		JButton btnNewButton_1 = new JButton("Settings");
 		btnNewButton_1.setForeground(Color.WHITE);
@@ -194,6 +205,15 @@ public class GUI_order_status {
 		btnNewButton_3.setBackground(Color.BLACK);
 		panel.add(btnNewButton_3);
 		frmBuysmartEnterprise.getContentPane().setLayout(groupLayout);
+		
+		//Log Out: It just leads to the Login, real Log Out TBD
+		btnNewButton_3.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				frmBuysmartEnterprise.setVisible(false);
+				GUI_Login openLogin = new GUI_Login();	
+			}
+		});
 		
 		frmBuysmartEnterprise.setVisible(true);
 	}

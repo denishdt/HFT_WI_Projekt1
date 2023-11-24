@@ -104,6 +104,14 @@ public class GUI_dashboard {
 		gbc_btnNewButton_5.gridx = 2;
 		gbc_btnNewButton_5.gridy = 0;
 		panel_1.add(btnNewButton_5, gbc_btnNewButton_5);
+		btnNewButton_5.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				frmBuysmartEnterprises.setVisible(false);
+				GUI_new_supplier openNewSupplier = new GUI_new_supplier();
+			}
+		});
 		
 		JButton btnNewButton_6 = new JButton("Standartlieferanten festlegen");
 		btnNewButton_6.setForeground(new Color(255, 255, 255));
@@ -113,6 +121,14 @@ public class GUI_dashboard {
 		gbc_btnNewButton_6.gridx = 5;
 		gbc_btnNewButton_6.gridy = 0;
 		panel_1.add(btnNewButton_6, gbc_btnNewButton_6);
+		btnNewButton_6.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				frmBuysmartEnterprises.setVisible(false);
+				GUI_standard_supplier openStandardSupplier = new GUI_standard_supplier();
+			}
+		});
 		
 		JLabel lblNewLabel_2 = new JLabel("                       ");
 		GridBagConstraints gbc_lblNewLabel_2 = new GridBagConstraints();
@@ -145,6 +161,14 @@ public class GUI_dashboard {
 		gbc_btnNewButton_8.gridx = 2;
 		gbc_btnNewButton_8.gridy = 3;
 		panel_1.add(btnNewButton_8, gbc_btnNewButton_8);
+		btnNewButton_8.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				frmBuysmartEnterprises.setVisible(false);
+				GUI_standard_quantity openStandardQuantity = new GUI_standard_quantity();
+			}
+		});
 		
 		JButton btnNewButton_9 = new JButton("Bestellstatus einsehen");
 		btnNewButton_9.setForeground(new Color(255, 255, 255));
@@ -154,6 +178,14 @@ public class GUI_dashboard {
 		gbc_btnNewButton_9.gridx = 5;
 		gbc_btnNewButton_9.gridy = 3;
 		panel_1.add(btnNewButton_9, gbc_btnNewButton_9);
+		btnNewButton_9.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				frmBuysmartEnterprises.setVisible(false);
+				GUI_order_status openOrderStatus = new GUI_order_status();
+			}
+		});
 		
 		JLabel lblNewLabel_4 = new JLabel("                    ");
 		GridBagConstraints gbc_lblNewLabel_4 = new GridBagConstraints();
@@ -177,6 +209,14 @@ public class GUI_dashboard {
 		gbc_btnNewButton_10.gridx = 0;
 		gbc_btnNewButton_10.gridy = 6;
 		panel_1.add(btnNewButton_10, gbc_btnNewButton_10);
+		btnNewButton_10.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				frmBuysmartEnterprises.setVisible(false);
+				GUI_min_quantity openMinQuantity = new GUI_min_quantity();
+			}
+		});
 		
 		JButton btnNewButton_11 = new JButton("Bestellung erstellen");
 		btnNewButton_11.setForeground(new Color(255, 255, 255));
@@ -186,6 +226,14 @@ public class GUI_dashboard {
 		gbc_btnNewButton_11.gridx = 2;
 		gbc_btnNewButton_11.gridy = 6;
 		panel_1.add(btnNewButton_11, gbc_btnNewButton_11);
+		btnNewButton_11.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				frmBuysmartEnterprises.setVisible(false);
+				GUI_new_order openNewOrder = new GUI_new_order();
+			}
+		});
 		
 		JButton btnNewButton_12 = new JButton("Automatische Bestellung");
 		btnNewButton_12.setForeground(new Color(255, 255, 255));
@@ -194,6 +242,14 @@ public class GUI_dashboard {
 		gbc_btnNewButton_12.gridx = 5;
 		gbc_btnNewButton_12.gridy = 6;
 		panel_1.add(btnNewButton_12, gbc_btnNewButton_12);
+		btnNewButton_12.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				frmBuysmartEnterprises.setVisible(false);
+				GUI_automatic_order openAutomaticOrder = new GUI_automatic_order();
+			}
+		});
 		
 		JLabel lblNewLabel_1 = new JLabel("BuySmart Enterprise");
 		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 14));
@@ -203,10 +259,6 @@ public class GUI_dashboard {
 		JButton btnNewButton_3 = new JButton("Shop");
 		btnNewButton_3.setForeground(new Color(255, 255, 255));
 		btnNewButton_3.setBackground(new Color(0, 0, 0));
-		btnNewButton_3.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
 		
 		JLabel lblNewLabel = new JLabel("                                                                           ");
 		panel.add(lblNewLabel);
@@ -231,6 +283,16 @@ public class GUI_dashboard {
 		btnNewButton_2.setBackground(new Color(0, 0, 0));
 		panel.add(btnNewButton_2);
 		frmBuysmartEnterprises.getContentPane().setLayout(groupLayout);
+		
+		//Log Out: It just leads to the Login, real Log Out TBD
+		btnNewButton_2.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				frmBuysmartEnterprises.setVisible(false);
+				GUI_Login openLogin = new GUI_Login();
+				
+			}
+		});
 		
 		frmBuysmartEnterprises.setVisible(true);
 	}

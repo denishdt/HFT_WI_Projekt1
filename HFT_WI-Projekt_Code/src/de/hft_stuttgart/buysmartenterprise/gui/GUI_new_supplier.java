@@ -8,6 +8,9 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import javax.swing.JLabel;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.JButton;
 import javax.swing.SwingConstants;
 import javax.swing.GroupLayout;
@@ -83,6 +86,14 @@ public class GUI_new_supplier {
 		btnNewButton.setForeground(Color.WHITE);
 		btnNewButton.setBackground(Color.BLACK);
 		panel.add(btnNewButton);
+		btnNewButton.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				frm.setVisible(false);
+				GUI_dashboard openDashboard = new GUI_dashboard();
+			}
+		});
 		
 		JButton btnNewButton_1 = new JButton("Settings");
 		btnNewButton_1.setForeground(Color.WHITE);
@@ -98,6 +109,17 @@ public class GUI_new_supplier {
 		btnNewButton_3.setForeground(Color.WHITE);
 		btnNewButton_3.setBackground(Color.BLACK);
 		panel.add(btnNewButton_3);
+		
+		//Log Out: It just leads to the Login, real Log Out TBD
+		btnNewButton_3.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				frm.setVisible(false);
+				GUI_Login openLogin = new GUI_Login();
+						
+			}
+		});
+		
 		
 		JLabel lblNewLabel_3 = new JLabel("Lieferant für:");
 		lblNewLabel_3.setFont(new Font("Tahoma", Font.PLAIN, 11));

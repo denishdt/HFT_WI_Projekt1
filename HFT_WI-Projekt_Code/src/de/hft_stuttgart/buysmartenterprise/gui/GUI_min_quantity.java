@@ -144,6 +144,14 @@ public class GUI_min_quantity {
 		btnNewButton.setForeground(Color.WHITE);
 		btnNewButton.setBackground(Color.BLACK);
 		panel.add(btnNewButton);
+		btnNewButton.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				frm.setVisible(false);
+				GUI_dashboard openDashboard = new GUI_dashboard();
+			}
+		});
 		
 		btnNewButton_1 = new JButton("Settings");
 		btnNewButton_1.setForeground(Color.WHITE);
@@ -160,6 +168,15 @@ public class GUI_min_quantity {
 		btnNewButton_3.setBackground(Color.BLACK);
 		panel.add(btnNewButton_3);
 		frm.getContentPane().setLayout(groupLayout);
+		
+		//Log Out: It just leads to the Login, real Log Out TBD
+		btnNewButton_3.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				frm.setVisible(false);
+				GUI_Login openLogin = new GUI_Login();				
+			}
+		});
 		
 		frm.setVisible(true);
 	}
