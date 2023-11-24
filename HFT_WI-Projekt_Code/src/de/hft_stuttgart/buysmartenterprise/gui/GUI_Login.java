@@ -9,10 +9,15 @@ import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.JSeparator;
 import javax.swing.border.MatteBorder;
+
+import de.hft_stuttgart.buysmartenterprise.dbaccess.DBAccess;
+
 import java.awt.Color;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.awt.event.ActionEvent;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
@@ -25,6 +30,7 @@ public class GUI_Login {
 	private JFrame frame;
 	private JTextField textField;
 	private JTextField textField_1;
+	DBAccess dbAccess = new DBAccess();
 	/**
 	 */
 
@@ -43,6 +49,7 @@ public class GUI_Login {
 				}
 			}
 		});
+		
 	}
 
 	/**
@@ -206,6 +213,14 @@ public class GUI_Login {
 					.addGap(10))
 		);
 		frame.getContentPane().setLayout(groupLayout);
+		
+		frame.addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowClosing(WindowEvent e) {
+				dbAccess.disconnect();
+				System.exit(0);
+			}
+		});
 		
 		frame.setVisible(true);
 	}

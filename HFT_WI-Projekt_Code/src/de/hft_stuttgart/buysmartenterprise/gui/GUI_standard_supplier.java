@@ -10,10 +10,14 @@ import javax.swing.JTextField;
 import java.awt.FlowLayout;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.awt.event.ActionEvent;
 import javax.swing.BoxLayout;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+
+import de.hft_stuttgart.buysmartenterprise.dbaccess.DBAccess;
 
 import java.awt.BorderLayout;
 import javax.swing.SwingConstants;
@@ -50,6 +54,7 @@ public class GUI_standard_supplier {
 	private JCheckBox chckbxNewCheckBox_7;
 	private JCheckBox chckbxNewCheckBox_8;
 	private JCheckBox chckbxNewCheckBox_9;
+	DBAccess dbAccess = new DBAccess();
 
 	/**
 	 * Launch the application.
@@ -208,6 +213,14 @@ public class GUI_standard_supplier {
 		springLayout.putConstraint(SpringLayout.NORTH, chckbxNewCheckBox_9, 7, SpringLayout.SOUTH, chckbxNewCheckBox_2);
 		springLayout.putConstraint(SpringLayout.WEST, chckbxNewCheckBox_9, 0, SpringLayout.WEST, lblNewLabel_4);
 		frm.getContentPane().add(chckbxNewCheckBox_9);
+		
+		frm.addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowClosing(WindowEvent e) {
+				dbAccess.disconnect();
+				System.exit(0);
+			}
+		});
 		
 		frm.setVisible(true);
 	}

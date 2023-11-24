@@ -9,6 +9,8 @@ import javax.swing.JLabel;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 import javax.swing.JCheckBox;
 import java.awt.FlowLayout;
@@ -16,6 +18,9 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.SpringLayout;
 import javax.swing.table.DefaultTableModel;
+
+import de.hft_stuttgart.buysmartenterprise.dbaccess.DBAccess;
+
 import javax.swing.JScrollPane;
 import javax.swing.JButton;
 import javax.swing.SwingConstants;
@@ -29,6 +34,7 @@ public class GUI_order_status {
 
 	private JFrame frmBuysmartEnterprise;
 	private JTable table;
+	DBAccess dbAccess = new DBAccess();
 
 	/**
 	 * Launch the application.
@@ -212,6 +218,14 @@ public class GUI_order_status {
 			public void actionPerformed(ActionEvent e) {
 				frmBuysmartEnterprise.setVisible(false);
 				GUI_Login openLogin = new GUI_Login();	
+			}
+		});
+		
+		frmBuysmartEnterprise.addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowClosing(WindowEvent e) {
+				dbAccess.disconnect();
+				System.exit(0);
 			}
 		});
 		

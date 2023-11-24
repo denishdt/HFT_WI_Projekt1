@@ -11,12 +11,17 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JMenuBar;
 import javax.swing.JButton;
 import javax.swing.SwingConstants;
+
+import de.hft_stuttgart.buysmartenterprise.dbaccess.DBAccess;
+
 import javax.swing.JRadioButton;
 import javax.swing.JToggleButton;
 import javax.swing.JToolBar;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.awt.event.ActionEvent;
 import java.awt.GridLayout;
 import java.awt.GridBagLayout;
@@ -26,6 +31,7 @@ import java.awt.Insets;
 public class GUI_dashboard {
 
 	private JFrame frmBuysmartEnterprises;
+	DBAccess dbAccess = new DBAccess();
 
 	/**
 	 * Launch the application.
@@ -291,6 +297,14 @@ public class GUI_dashboard {
 				frmBuysmartEnterprises.setVisible(false);
 				GUI_Login openLogin = new GUI_Login();
 				
+			}
+		});
+		
+		frmBuysmartEnterprises.addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowClosing(WindowEvent e) {
+				dbAccess.disconnect();
+				System.exit(0);
 			}
 		});
 		

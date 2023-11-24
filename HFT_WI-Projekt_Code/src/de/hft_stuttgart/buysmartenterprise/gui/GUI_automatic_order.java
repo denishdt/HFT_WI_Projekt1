@@ -8,6 +8,8 @@ import javax.swing.GroupLayout.Alignment;
 import javax.swing.JPanel;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
 import java.awt.Color;
@@ -15,6 +17,9 @@ import java.awt.Font;
 import javax.swing.JSlider;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+
+import de.hft_stuttgart.buysmartenterprise.dbaccess.DBAccess;
+
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
@@ -29,6 +34,7 @@ public class GUI_automatic_order {
 	private JTextField txtLieferantB;
 	private JTextField txtPreis;
 	private JTextField textField_1;
+	DBAccess dbAccess = new DBAccess();
 
 	/**
 	 * Launch the application.
@@ -217,6 +223,14 @@ public class GUI_automatic_order {
 			public void actionPerformed(ActionEvent e) {
 				frmBuysmartEnterprise.setVisible(false);
 				GUI_Login openLogin = new GUI_Login();			
+			}
+		});
+		
+		frmBuysmartEnterprise.addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowClosing(WindowEvent e) {
+				dbAccess.disconnect();
+				System.exit(0);
 			}
 		});
 		

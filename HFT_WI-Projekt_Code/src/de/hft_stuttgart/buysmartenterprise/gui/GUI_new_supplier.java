@@ -10,9 +10,14 @@ import javax.swing.JLabel;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 import javax.swing.JButton;
 import javax.swing.SwingConstants;
+
+import de.hft_stuttgart.buysmartenterprise.dbaccess.DBAccess;
+
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JCheckBox;
@@ -30,6 +35,7 @@ public class GUI_new_supplier {
 	private JTextField tfFax;
 	private JTextField tfZahlungsfrist;
 	private JTextField tfPreis;
+	DBAccess dbAccess = new DBAccess();
 
 	/**
 	 * Launch the application.
@@ -343,6 +349,14 @@ public class GUI_new_supplier {
 					.addGap(29))
 		);
 		frm.getContentPane().setLayout(groupLayout);
+		
+		frm.addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowClosing(WindowEvent e) {
+				dbAccess.disconnect();
+				System.exit(0);
+			}
+		});
 		
 		frm.setVisible(true);
 	}

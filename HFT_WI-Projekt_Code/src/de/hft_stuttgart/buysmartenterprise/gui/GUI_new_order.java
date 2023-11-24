@@ -8,9 +8,14 @@ import java.awt.Color;
 import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.SwingConstants;
+
+import de.hft_stuttgart.buysmartenterprise.dbaccess.DBAccess;
+
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.awt.event.ActionEvent;
 import javax.swing.JSeparator;
 import javax.swing.JComboBox;
@@ -20,6 +25,7 @@ public class GUI_new_order {
 	private JFrame frame;
 	private JTextField textField;
 	private JTextField textField_1;
+	DBAccess dbAccess = new DBAccess();
 
 	/**
 	 * Launch the application.
@@ -205,6 +211,15 @@ public class GUI_new_order {
 		separator.setBounds(10, 11, 808, 13);
 		frame.getContentPane().add(separator);
 		
+		frame.addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowClosing(WindowEvent e) {
+				dbAccess.disconnect();
+				System.exit(0);
+			}
+		});
+		
 		frame.setVisible(true);
+		
 		}
 }

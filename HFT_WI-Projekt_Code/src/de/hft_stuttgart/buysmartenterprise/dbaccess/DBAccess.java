@@ -2,32 +2,40 @@ package de.hft_stuttgart.buysmartenterprise.dbaccess;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.Statement;
+
 
 public class DBAccess {
 
-	public static void dbAccess() {
-		System.out.println("MySQL Connect Example V2 AWS");
-		
-		Connection con = null;
-		
-		String url = "jdbc:mysql://3.69.96.96:80/";
-		String dbName = "db5";
-		String driver = "com.mysql.cj.jdbc.Driver";
-		String userName = "db5";
-		String password = "!db5.pgm23?WS2";
-		
+	private static final String URL = "jdbc:mysql://3.69.96.96:80/";
+	private static final String DBNAME = "db5";
+	private static final String DRIVER = "com.mysql.cj.jdbc.Driver";
+	private static final String USERNAME = "db5";
+	private static final String PASSWORD = "!db5.pgm23?WS2";
+	
+	private Connection con = null;
+	
+	public void connect() {
 		try {
 			
-			Class.forName(driver);
-			con = DriverManager.getConnection(url + dbName, userName, password);
-			System.out.println("Connected to the database");
-			con.close();
-			System.out.println("Disconnected from Database");
+			Class.forName(DRIVER);
+			con = DriverManager.getConnection(URL + DBNAME, USERNAME, PASSWORD);
+			System.out.println("Connected to the database");	
 			
 		} catch (Exception e) {
 			e.printStackTrace();
+		}
+	}
+
+	public void disconnect() {
+		try {
+			if(con != null && !con.isClosed()) {
+				System.out.println("Disconnected from Database");
+				con.close();
+			} else {
+				System.out.println("Disconnected from Database");
+			}
+		} catch (Exception e) {
+			System.err.println("Error disconnecting from database: " + e.getMessage());
 		}
 	}
 }

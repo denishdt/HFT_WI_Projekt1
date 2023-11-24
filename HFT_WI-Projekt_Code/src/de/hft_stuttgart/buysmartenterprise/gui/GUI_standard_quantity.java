@@ -10,10 +10,15 @@ import javax.swing.JTextField;
 import java.awt.FlowLayout;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.awt.event.ActionEvent;
 import javax.swing.BoxLayout;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+
+import de.hft_stuttgart.buysmartenterprise.dbaccess.DBAccess;
+
 import java.awt.BorderLayout;
 import javax.swing.SwingConstants;
 import java.awt.Color;
@@ -39,6 +44,7 @@ public class GUI_standard_quantity {
 	private JButton btnNewButton_3;
 	private JLabel lblNewLabel_3;
 	private JTextField textField;
+	DBAccess dbAccess = new DBAccess();
 
 	/**
 	 * Launch the application.
@@ -176,6 +182,14 @@ public class GUI_standard_quantity {
 		btnNewButton_3.setBackground(Color.BLACK);
 		panel.add(btnNewButton_3);
 		frm.getContentPane().setLayout(groupLayout);
+		
+		frm.addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowClosing(WindowEvent e) {
+				dbAccess.disconnect();
+				System.exit(0);
+			}
+		});
 		
 		frm.setVisible(true);
 	}
