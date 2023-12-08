@@ -5,7 +5,10 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.UIManager;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import javax.swing.JSeparator;
 import javax.swing.border.MatteBorder;
@@ -93,16 +96,22 @@ public class GUI_Login {
 		JLabel lblNewLabel_3 = new JLabel("Password:");
 		lblNewLabel_3.setFont(new Font("Tahoma", Font.BOLD, 15));
 		
-		textField_1 = new JTextField();
+		textField_1 = new JPasswordField();
 		textField_1.setColumns(10);
 		
 		//Succesfull Login leads to the dashboard
 		JButton btnNewButton = new JButton("Log In");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				String username1 = "Kaufmann";
+				String password1 = "Passwort1";
 				/*!!Username and Password check TBD!!*/
+				if(textField_1.getText().equals(password1) & textField.getText().equals(username1)) {
 				GUI_dashboard openDashboard = new GUI_dashboard();
 				frame.setVisible(false);
+			}else if(textField_1.getText().equals("") | textField.getText().equals("")) {
+				JOptionPane.showMessageDialog(frame, "Alle Felder ausfüllen!");
+			}else JOptionPane.showMessageDialog(frame, "Falsches Passwort oder User Name!");
 			}
 		});
 		btnNewButton.setBackground(UIManager.getColor("CheckBoxMenuItem.selectionBackground"));
