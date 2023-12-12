@@ -7,11 +7,16 @@ import javax.swing.JPanel;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.sql.Statement;
 
 import javax.swing.JButton;
 import javax.swing.SwingConstants;
@@ -64,6 +69,20 @@ public class GUI_new_supplier {
 	/**
 	 * Initialize the contents of the frame.
 	 */
+	public static String getLieferantenart(JCheckBox...checkBoxes) {
+		StringBuilder selectedItem = new StringBuilder();
+		for (JCheckBox checkBox : checkBoxes) {
+            if (checkBox.isSelected()) {
+                if (selectedItem.length() > 0) {
+                    selectedItem.append(", ");
+                }
+                selectedItem.append(checkBox.getText());
+            }
+        }
+
+        return selectedItem.toString();
+	}
+	
 	private void initialize() {
 		frm = new JFrame();
 		frm.setTitle("HighSpeed Procurement");
@@ -194,10 +213,50 @@ public class GUI_new_supplier {
 		
 		tfPreis = new JTextField();
 		tfPreis.setColumns(10);
+		
+		JButton btnNewButton_4 = new JButton("Hinzufügen");
+		btnNewButton_4.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				try {
+					String name = tfName.getText();
+					String adress = tfAdresse.getText();
+					String email = tfEmail.getText();
+					String phone = tfTelefon.getText();
+					String fax = tfFax.getText();
+					String iban = tfIban.getText();
+					String zahlungsfrist = tfZahlungsfrist.getText();
+					String preis = tfPreis.getText();
+					String lieferantenart = getLieferantenart(cbCache, cbRam, cbSsd, cbCpu, cbNetzteil, cbAkku, cbMotherboard, cbGrafikkarte, cbNetzwerkkarte, cbSonstiges);
+					String newSuplier = "INSERT INTO db5.lieferanten(name, adress, email, phone, fax, iban, zahlungsfrist, preis, lieferantenart) VALUES('" + name + "', '" + adress + "', '" + email + "', '" + phone + "', '" + fax + "', '" + iban + "', '" + zahlungsfrist + "', '" + preis + "', '" + lieferantenart + "')";
+					
+					if (name.isEmpty() || adress.isEmpty() || email.isEmpty() || phone.isEmpty() || fax.isEmpty() || iban.isEmpty() || zahlungsfrist.isEmpty() || preis.isEmpty() || lieferantenart.isEmpty()) {
+						JOptionPane.showMessageDialog(frm, "Bitte fülle alle Felder aus!");
+						return;
+					}
+					Connection con = dbAccess.getConnection();
+					Statement stm = con.createStatement();
+					stm.execute(newSuplier);
+				} catch (Exception e1) {
+					System.out.println("Unbekannter Fehler: " + e1.getMessage());
+				}
+				tfName.setText("");
+				tfAdresse.setText("");
+				tfEmail.setText("");
+				tfTelefon.setText("");
+				tfFax.setText("");
+				tfIban.setText("");
+				tfZahlungsfrist.setText("");
+				tfPreis.setText("");
+				JOptionPane.showMessageDialog(frm, "Neuer Lieferant hinzugefügt!");
+			}
+		});
+		
 		GroupLayout groupLayout = new GroupLayout(frm.getContentPane());
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
-				.addComponent(panel, GroupLayout.DEFAULT_SIZE, 686, Short.MAX_VALUE)
+				.addComponent(panel, GroupLayout.DEFAULT_SIZE, 685, Short.MAX_VALUE)
 				.addGroup(groupLayout.createSequentialGroup()
 					.addContainerGap()
 					.addComponent(lblNewLabel_3, GroupLayout.DEFAULT_SIZE, 74, Short.MAX_VALUE)
@@ -206,7 +265,7 @@ public class GUI_new_supplier {
 						.addGroup(groupLayout.createSequentialGroup()
 							.addComponent(cbCache, GroupLayout.DEFAULT_SIZE, 66, Short.MAX_VALUE)
 							.addGap(23))
-						.addComponent(cbMotherboard, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+						.addComponent(cbMotherboard, GroupLayout.DEFAULT_SIZE, 89, Short.MAX_VALUE))
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 						.addGroup(groupLayout.createSequentialGroup()
@@ -227,9 +286,9 @@ public class GUI_new_supplier {
 						.addGroup(groupLayout.createSequentialGroup()
 							.addComponent(cbNetzteil, GroupLayout.DEFAULT_SIZE, 63, Short.MAX_VALUE)
 							.addGap(18)
-							.addComponent(cbAkku, GroupLayout.DEFAULT_SIZE, 99, Short.MAX_VALUE))
+							.addComponent(cbAkku, GroupLayout.DEFAULT_SIZE, 98, Short.MAX_VALUE))
 						.addGroup(groupLayout.createSequentialGroup()
-							.addComponent(cbSonstiges, GroupLayout.DEFAULT_SIZE, 99, Short.MAX_VALUE)
+							.addComponent(cbSonstiges, GroupLayout.DEFAULT_SIZE, 98, Short.MAX_VALUE)
 							.addGap(81)))
 					.addGap(78))
 				.addGroup(groupLayout.createSequentialGroup()
@@ -240,7 +299,7 @@ public class GUI_new_supplier {
 					.addContainerGap()
 					.addComponent(lblName, GroupLayout.DEFAULT_SIZE, 61, Short.MAX_VALUE)
 					.addGap(217)
-					.addComponent(lblEmail, GroupLayout.DEFAULT_SIZE, 81, Short.MAX_VALUE)
+					.addComponent(lblEmail, GroupLayout.DEFAULT_SIZE, 80, Short.MAX_VALUE)
 					.addGap(317))
 				.addGroup(groupLayout.createSequentialGroup()
 					.addContainerGap()
@@ -252,11 +311,11 @@ public class GUI_new_supplier {
 					.addGap(18)
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 						.addGroup(groupLayout.createSequentialGroup()
-							.addComponent(lblTelefon, GroupLayout.DEFAULT_SIZE, 61, Short.MAX_VALUE)
+							.addComponent(lblTelefon, GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE)
 							.addPreferredGap(ComponentPlacement.RELATED)
 							.addComponent(label, GroupLayout.PREFERRED_SIZE, 5, GroupLayout.PREFERRED_SIZE)
 							.addGap(186))
-						.addComponent(tfEmail, GroupLayout.DEFAULT_SIZE, 258, Short.MAX_VALUE))
+						.addComponent(tfEmail, GroupLayout.DEFAULT_SIZE, 257, Short.MAX_VALUE))
 					.addGap(142))
 				.addGroup(groupLayout.createSequentialGroup()
 					.addContainerGap()
@@ -267,23 +326,25 @@ public class GUI_new_supplier {
 							.addGap(179)))
 					.addGap(18)
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addComponent(tfTelefon, GroupLayout.DEFAULT_SIZE, 258, Short.MAX_VALUE)
+						.addComponent(tfTelefon, GroupLayout.DEFAULT_SIZE, 257, Short.MAX_VALUE)
 						.addGroup(groupLayout.createSequentialGroup()
-							.addComponent(lblFax, GroupLayout.DEFAULT_SIZE, 89, Short.MAX_VALUE)
+							.addComponent(lblFax, GroupLayout.DEFAULT_SIZE, 88, Short.MAX_VALUE)
 							.addGap(169)))
 					.addGap(142))
 				.addGroup(groupLayout.createSequentialGroup()
 					.addContainerGap()
 					.addComponent(tfZahlungsfrist, GroupLayout.DEFAULT_SIZE, 258, Short.MAX_VALUE)
 					.addGap(18)
-					.addComponent(tfPreis, GroupLayout.DEFAULT_SIZE, 258, Short.MAX_VALUE)
-					.addGap(142))
+					.addComponent(tfPreis, GroupLayout.DEFAULT_SIZE, 257, Short.MAX_VALUE)
+					.addGap(28)
+					.addComponent(btnNewButton_4)
+					.addGap(25))
 				.addGroup(groupLayout.createSequentialGroup()
 					.addContainerGap()
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addComponent(tfIban, GroupLayout.DEFAULT_SIZE, 258, Short.MAX_VALUE)
+						.addComponent(tfIban, GroupLayout.DEFAULT_SIZE, 257, Short.MAX_VALUE)
 						.addGroup(groupLayout.createSequentialGroup()
-							.addComponent(lblZahlungsfrist, GroupLayout.DEFAULT_SIZE, 99, Short.MAX_VALUE)
+							.addComponent(lblZahlungsfrist, GroupLayout.DEFAULT_SIZE, 98, Short.MAX_VALUE)
 							.addGap(159)))
 					.addGap(18)
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
@@ -346,7 +407,8 @@ public class GUI_new_supplier {
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
 						.addComponent(tfZahlungsfrist, GroupLayout.PREFERRED_SIZE, 18, Short.MAX_VALUE)
-						.addComponent(tfPreis, GroupLayout.PREFERRED_SIZE, 18, Short.MAX_VALUE))
+						.addComponent(tfPreis, GroupLayout.PREFERRED_SIZE, 18, Short.MAX_VALUE)
+						.addComponent(btnNewButton_4))
 					.addGap(29))
 		);
 		frm.getContentPane().setLayout(groupLayout);
@@ -361,5 +423,5 @@ public class GUI_new_supplier {
 		
 		frm.setVisible(true);
 	}
-
+	
 }

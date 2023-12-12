@@ -85,18 +85,18 @@ public class GUI_Login {
 		panel_1.setBackground(UIManager.getColor("CheckBox.interiorBackground"));
 		panel_1.setBorder(new MatteBorder(1, 1, 1, 1, (Color) new Color(0, 0, 0)));
 		
-		JLabel lblNewLabel_1 = new JLabel("Log In");
+		JLabel lblNewLabel_1 = new JLabel("Willkommen");
 		lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 14));
 		
 		JSeparator separator_1 = new JSeparator();
 		
-		JLabel lblNewLabel_2 = new JLabel("User Name:");
+		JLabel lblNewLabel_2 = new JLabel("Benutzername:");
 		lblNewLabel_2.setFont(new Font("Tahoma", Font.BOLD, 15));
 		
 		textField = new JTextField();
 		textField.setColumns(10);
 		
-		JLabel lblNewLabel_3 = new JLabel("Password:");
+		JLabel lblNewLabel_3 = new JLabel("Passwort");
 		lblNewLabel_3.setFont(new Font("Tahoma", Font.BOLD, 15));
 		
 		textField_1 = new JPasswordField();
@@ -104,20 +104,6 @@ public class GUI_Login {
 		
 		//Succesfull Login leads to the dashboard
 		JButton btnNewButton = new JButton("Log In");
-		/**
-		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				String username1 = "Kaufmann";
-				String password1 = "Passwort1";
-				if(textField_1.getText().equals(password1) & textField.getText().equals(username1)) {
-				GUI_dashboard openDashboard = new GUI_dashboard();
-				frame.setVisible(false);
-			}else if(textField_1.getText().equals("") | textField.getText().equals("")) {
-				JOptionPane.showMessageDialog(frame, "Alle Felder ausfüllen!");
-			}else JOptionPane.showMessageDialog(frame, "Falsches Passwort oder User Name!");
-			}
-		});
-		**/
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
@@ -125,7 +111,7 @@ public class GUI_Login {
 					String password = textField_1.getText();
 					Connection con = dbAccess.getConnection();
 					Statement stm = con.createStatement();
-					String sql = "select * from login where username='"+ username + "' and password='"+ password + "'";
+					String sql = "select * from login where binary username='"+ username + "' and binary password='"+ password + "'";
 					ResultSet rs = stm.executeQuery(sql);
 					if(rs.next()) {
 						frame.setVisible(false);
@@ -149,7 +135,7 @@ public class GUI_Login {
 		
 		JSeparator separator = new JSeparator();
 		
-		JButton btnNewButton_1 = new JButton("Forgot Password?");
+		JButton btnNewButton_1 = new JButton("Passwort vergessen?");
 		btnNewButton_1.setBackground(UIManager.getColor("CheckBoxMenuItem.selectionBackground"));
 		btnNewButton_1.setForeground(new Color(0, 0, 0));
 		btnNewButton_1.setFont(new Font("Tahoma", Font.PLAIN, 15));
@@ -239,15 +225,15 @@ public class GUI_Login {
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
-					.addGap(10)
-					.addComponent(panel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-					.addGap(10))
+					.addContainerGap()
+					.addComponent(panel, GroupLayout.PREFERRED_SIZE, 694, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(21, Short.MAX_VALUE))
 		);
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
 					.addGap(10)
-					.addComponent(panel, GroupLayout.DEFAULT_SIZE, 453, Short.MAX_VALUE)
+					.addComponent(panel, GroupLayout.DEFAULT_SIZE, 451, Short.MAX_VALUE)
 					.addGap(10))
 		);
 		frame.getContentPane().setLayout(groupLayout);
