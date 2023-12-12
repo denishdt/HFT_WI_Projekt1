@@ -43,4 +43,8 @@ public class DBAccess {
 			System.err.println("Error disconnecting from database: " + e.getMessage());
 		}
 	}
+	
+	public Connection getConnection() {
+		return connection;
+	}
 }

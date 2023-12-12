@@ -22,6 +22,9 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import java.awt.event.ActionEvent;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
@@ -101,17 +104,41 @@ public class GUI_Login {
 		
 		//Succesfull Login leads to the dashboard
 		JButton btnNewButton = new JButton("Log In");
+		/**
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String username1 = "Kaufmann";
 				String password1 = "Passwort1";
-				/*!!Username and Password check TBD!!*/
 				if(textField_1.getText().equals(password1) & textField.getText().equals(username1)) {
 				GUI_dashboard openDashboard = new GUI_dashboard();
 				frame.setVisible(false);
 			}else if(textField_1.getText().equals("") | textField.getText().equals("")) {
 				JOptionPane.showMessageDialog(frame, "Alle Felder ausfüllen!");
 			}else JOptionPane.showMessageDialog(frame, "Falsches Passwort oder User Name!");
+			}
+		});
+		**/
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					String username = textField.getText();
+					String password = textField_1.getText();
+					Connection con = dbAccess.getConnection();
+					Statement stm = con.createStatement();
+					String sql = "select * from login where username='"+ username + "' and password='"+ password + "'";
+					ResultSet rs = stm.executeQuery(sql);
+					if(rs.next()) {
+						frame.setVisible(false);
+						GUI_dashboard openDashboard = new GUI_dashboard();
+					} else {
+						JOptionPane.showMessageDialog(frame, "Benutzername oder Passwort falsch!");
+						textField.setText("");
+						textField_1.setText("");
+					}
+					
+				} catch (Exception ex) {
+					System.out.println("Unbekannter Fehler: " + ex.getMessage());
+				}
 			}
 		});
 		btnNewButton.setBackground(UIManager.getColor("CheckBoxMenuItem.selectionBackground"));
