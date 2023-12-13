@@ -191,7 +191,6 @@ public class GUI_profile {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				String user = main.getUser();
-				System.out.println(user);
 				try {
 					Connection con = dbAccess.getConnection();
 					Statement stm = con.createStatement();
@@ -234,15 +233,15 @@ public class GUI_profile {
 							.addGap(71)
 							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 								.addComponent(fieldChangeUsernameNew, GroupLayout.PREFERRED_SIZE, 176, GroupLayout.PREFERRED_SIZE)
-								.addComponent(lblNewLabel_2_1, GroupLayout.PREFERRED_SIZE, 112, GroupLayout.PREFERRED_SIZE)
 								.addComponent(fieldChangeUsernameOld, GroupLayout.PREFERRED_SIZE, 176, GroupLayout.PREFERRED_SIZE)
-								.addComponent(lblNewLabel_2))))
-					.addPreferredGap(ComponentPlacement.RELATED, 136, Short.MAX_VALUE)
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()
+								.addComponent(lblNewLabel_2)
+								.addComponent(lblNewLabel_2_1, GroupLayout.PREFERRED_SIZE, 135, GroupLayout.PREFERRED_SIZE))))
+					.addPreferredGap(ComponentPlacement.RELATED, 144, Short.MAX_VALUE)
+					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
+						.addGroup(groupLayout.createSequentialGroup()
 							.addComponent(lblChangePassword, GroupLayout.PREFERRED_SIZE, 126, GroupLayout.PREFERRED_SIZE)
 							.addGap(100))
-						.addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()
+						.addGroup(groupLayout.createSequentialGroup()
 							.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING, false)
 								.addComponent(fieldChangePasswordNew, Alignment.LEADING)
 								.addComponent(lblNewLabel_2_2, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 95, GroupLayout.PREFERRED_SIZE)
