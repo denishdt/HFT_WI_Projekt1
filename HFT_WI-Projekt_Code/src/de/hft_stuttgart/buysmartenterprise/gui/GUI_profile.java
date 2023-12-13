@@ -24,6 +24,7 @@ import de.hft_stuttgart.buysmartenterprise.dbaccess.DBAccess;
 import de.hft_stuttgart.buysmartenterprise.main.Main;
 
 import javax.swing.JTextField;
+import javax.swing.JPasswordField;
 
 public class GUI_profile {
 
@@ -31,9 +32,9 @@ public class GUI_profile {
 	private JTextField fieldChangeUsernameOld;
 	private JTextField fieldChangeUsernameNew;
 	DBAccess dbAccess = new DBAccess();
-	private JTextField fieldChangePasswordOld;
-	private JTextField fieldChangePasswordNew;
 	Main main = new Main();
+	private JPasswordField fieldChangePasswordOld;
+	private JPasswordField fieldChangePasswordNew;
 
 	/**
 	 * Launch the application.
@@ -123,13 +124,7 @@ public class GUI_profile {
 		
 		JLabel lblNewLabel_2_2 = new JLabel("Altes Passwort:");
 		
-		fieldChangePasswordOld = new JTextField();
-		fieldChangePasswordOld.setColumns(10);
-		
 		JLabel lblNewLabel_2_1_1 = new JLabel("Neues Passwort:");
-		
-		fieldChangePasswordNew = new JTextField();
-		fieldChangePasswordNew.setColumns(10);
 		
 		JButton btnSave = new JButton("Speichern");
 		btnSave.addActionListener(new ActionListener() {
@@ -216,36 +211,44 @@ public class GUI_profile {
 			}
 		});
 		
+		fieldChangePasswordOld = new JPasswordField();
+		
+		fieldChangePasswordNew = new JPasswordField();
+		
 		GroupLayout groupLayout = new GroupLayout(frame.getContentPane());
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.TRAILING)
 				.addComponent(panel, GroupLayout.DEFAULT_SIZE, 631, Short.MAX_VALUE)
-				.addGroup(groupLayout.createSequentialGroup()
-					.addGap(86)
-					.addComponent(lblChangeUsername)
-					.addPreferredGap(ComponentPlacement.RELATED, 175, Short.MAX_VALUE)
-					.addComponent(lblChangePassword, GroupLayout.PREFERRED_SIZE, 126, GroupLayout.PREFERRED_SIZE)
-					.addGap(100))
 				.addGroup(groupLayout.createSequentialGroup()
 					.addGap(36)
 					.addComponent(btnNewUser)
 					.addPreferredGap(ComponentPlacement.RELATED, 371, Short.MAX_VALUE)
 					.addComponent(btnSave)
 					.addGap(38))
-				.addGroup(Alignment.LEADING, groupLayout.createSequentialGroup()
-					.addGap(71)
+				.addGroup(groupLayout.createSequentialGroup()
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addComponent(fieldChangeUsernameNew, GroupLayout.PREFERRED_SIZE, 176, GroupLayout.PREFERRED_SIZE)
-						.addComponent(lblNewLabel_2_1, GroupLayout.PREFERRED_SIZE, 112, GroupLayout.PREFERRED_SIZE)
-						.addComponent(fieldChangeUsernameOld, GroupLayout.PREFERRED_SIZE, 176, GroupLayout.PREFERRED_SIZE)
-						.addComponent(lblNewLabel_2))
-					.addPreferredGap(ComponentPlacement.RELATED, 133, Short.MAX_VALUE)
+						.addGroup(groupLayout.createSequentialGroup()
+							.addGap(86)
+							.addComponent(lblChangeUsername))
+						.addGroup(groupLayout.createSequentialGroup()
+							.addGap(71)
+							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+								.addComponent(fieldChangeUsernameNew, GroupLayout.PREFERRED_SIZE, 176, GroupLayout.PREFERRED_SIZE)
+								.addComponent(lblNewLabel_2_1, GroupLayout.PREFERRED_SIZE, 112, GroupLayout.PREFERRED_SIZE)
+								.addComponent(fieldChangeUsernameOld, GroupLayout.PREFERRED_SIZE, 176, GroupLayout.PREFERRED_SIZE)
+								.addComponent(lblNewLabel_2))))
+					.addPreferredGap(ComponentPlacement.RELATED, 136, Short.MAX_VALUE)
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addComponent(lblNewLabel_2_2, GroupLayout.PREFERRED_SIZE, 95, GroupLayout.PREFERRED_SIZE)
-						.addComponent(fieldChangePasswordOld, GroupLayout.PREFERRED_SIZE, 176, GroupLayout.PREFERRED_SIZE)
-						.addComponent(lblNewLabel_2_1_1, GroupLayout.PREFERRED_SIZE, 112, GroupLayout.PREFERRED_SIZE)
-						.addComponent(fieldChangePasswordNew, GroupLayout.PREFERRED_SIZE, 176, GroupLayout.PREFERRED_SIZE))
-					.addGap(75))
+						.addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()
+							.addComponent(lblChangePassword, GroupLayout.PREFERRED_SIZE, 126, GroupLayout.PREFERRED_SIZE)
+							.addGap(100))
+						.addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()
+							.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING, false)
+								.addComponent(fieldChangePasswordNew, Alignment.LEADING)
+								.addComponent(lblNewLabel_2_2, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 95, GroupLayout.PREFERRED_SIZE)
+								.addComponent(lblNewLabel_2_1_1, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 112, GroupLayout.PREFERRED_SIZE)
+								.addComponent(fieldChangePasswordOld, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 169, GroupLayout.PREFERRED_SIZE))
+							.addGap(71))))
 		);
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
@@ -256,7 +259,7 @@ public class GUI_profile {
 						.addComponent(lblChangePassword)
 						.addComponent(lblChangeUsername))
 					.addGap(24)
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
 						.addGroup(groupLayout.createSequentialGroup()
 							.addComponent(lblNewLabel_2)
 							.addPreferredGap(ComponentPlacement.RELATED)
@@ -267,11 +270,11 @@ public class GUI_profile {
 							.addComponent(fieldChangeUsernameNew, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 						.addGroup(groupLayout.createSequentialGroup()
 							.addComponent(lblNewLabel_2_2)
-							.addGap(6)
-							.addComponent(fieldChangePasswordOld, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(fieldChangePasswordOld, GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE)
 							.addGap(18)
 							.addComponent(lblNewLabel_2_1_1)
-							.addGap(6)
+							.addPreferredGap(ComponentPlacement.RELATED)
 							.addComponent(fieldChangePasswordNew, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
 					.addGap(37)
 					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
