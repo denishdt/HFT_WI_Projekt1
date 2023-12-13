@@ -183,7 +183,7 @@ public class GUI_order_status {
 		JLabel lblNewLabel_2 = new JLabel("                 ");
 		panel.add(lblNewLabel_2);
 		
-		JButton btnNewButton = new JButton("Shop");
+		JButton btnNewButton = new JButton("Home");
 		btnNewButton.setHorizontalAlignment(SwingConstants.LEFT);
 		btnNewButton.setForeground(new Color(255, 255, 255));
 		btnNewButton.setBackground(Color.BLACK);

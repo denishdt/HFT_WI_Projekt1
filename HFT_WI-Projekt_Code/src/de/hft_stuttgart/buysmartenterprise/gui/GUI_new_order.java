@@ -171,7 +171,7 @@ public class GUI_new_order {
 		JLabel lblNewLabel_2 = new JLabel("                                                   ");
 		panel_1.add(lblNewLabel_2);
 		
-		JButton btnNewButton_2 = new JButton("Shop");
+		JButton btnNewButton_2 = new JButton("Home");
 		btnNewButton_2.setForeground(Color.WHITE);
 		btnNewButton_2.setBackground(Color.BLACK);
 		panel_1.add(btnNewButton_2);
