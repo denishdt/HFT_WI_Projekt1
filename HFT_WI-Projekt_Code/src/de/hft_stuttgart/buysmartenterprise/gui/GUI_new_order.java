@@ -16,6 +16,9 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import java.awt.event.ActionEvent;
 import javax.swing.JSeparator;
 import javax.swing.JComboBox;
@@ -133,16 +136,44 @@ public class GUI_new_order {
 		panel.add(textField_1);
 		textField_1.setColumns(10);
 		
-		JComboBox comboBox = new JComboBox();
-		comboBox.setBounds(10, 107, 221, 21);
-		panel.add(comboBox);
-		comboBox.setMaximumRowCount(8);
-		comboBox.setForeground(new Color(255, 255, 255));
-		comboBox.setBackground(new Color(255, 255, 255));
+		JComboBox<String> teilecomboBox = new JComboBox<>();
+		teilecomboBox.setBounds(10, 107, 221, 21);
+		panel.add(teilecomboBox);
+		teilecomboBox.setMaximumRowCount(8);
+		teilecomboBox.setForeground(new Color(0, 0, 0));
+		teilecomboBox.setBackground(new Color(255, 255, 255));
+		teilecomboBox.addItem("Cache");
+		teilecomboBox.addItem("RAM");
+		teilecomboBox.addItem("SSD");
+		teilecomboBox.addItem("CPU");
+		teilecomboBox.addItem("Netzteil");
+		teilecomboBox.addItem("Akku");
+		teilecomboBox.addItem("Motherboard");
+		teilecomboBox.addItem("Grafikkarte");
+		teilecomboBox.addItem("Netzwerkkarte");
+		teilecomboBox.addItem("Sonstiges");
 		
-		JComboBox comboBox_1 = new JComboBox();
-		comboBox_1.setBounds(427, 109, 162, 20);
-		panel.add(comboBox_1);
+		
+		JComboBox<String> lieferantComboBox = new JComboBox<>();
+		lieferantComboBox.setBounds(427, 109, 162, 20);
+		panel.add(lieferantComboBox);
+		try {
+			Connection con = dbAccess.getConnection();
+			Statement stm = con.createStatement();
+			String sql = "SELECT name from db5.lieferanten";
+			ResultSet rs = stm.executeQuery(sql);
+			
+			while(rs.next()) {
+				String data = rs.getString("name");
+				lieferantComboBox.addItem(data);
+			}
+			frame.getContentPane().revalidate();
+			frame.getContentPane().repaint();
+			
+		} catch (Exception e1) {
+			System.out.println("Unbekannter Fehler: " + e1.getMessage());
+		}
+		
 		
 		JLabel lblNewLabel_8 = new JLabel("Menge festlegen");
 		lblNewLabel_8.setBounds(248, 66, 143, 32);
