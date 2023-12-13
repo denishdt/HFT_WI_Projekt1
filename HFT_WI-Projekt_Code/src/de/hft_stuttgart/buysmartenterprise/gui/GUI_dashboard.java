@@ -29,7 +29,6 @@ import java.awt.GridBagConstraints;
 import java.awt.Insets;
 
 public class GUI_dashboard {
- //yarrak
 	
 	private JFrame frmBuysmartEnterprises;
 	DBAccess dbAccess = new DBAccess();
@@ -96,6 +95,8 @@ public class GUI_dashboard {
 		btnNewButton_4.setBackground(new Color(128, 128, 128));
 		btnNewButton_4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				frmBuysmartEnterprises.setVisible(false);
+				GUI_show_supplier openShowSupplier = new GUI_show_supplier();
 			}
 		});
 		GridBagConstraints gbc_btnNewButton_4 = new GridBagConstraints();

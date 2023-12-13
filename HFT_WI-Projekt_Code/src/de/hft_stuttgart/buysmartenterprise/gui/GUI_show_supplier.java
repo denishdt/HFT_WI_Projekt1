@@ -64,7 +64,7 @@ public class GUI_show_supplier {
 		lblNewLabel_1.setBackground(Color.GRAY);
 		panel.add(lblNewLabel_1);
 		
-		JLabel lblNewLabel_2 = new JLabel("                                                       ");
+		JLabel lblNewLabel_2 = new JLabel("                                             ");
 		panel.add(lblNewLabel_2);
 		
 		JButton btnNewButton = new JButton("Home");
@@ -112,5 +112,6 @@ public class GUI_show_supplier {
 					.addContainerGap(166, Short.MAX_VALUE))
 		);
 		frmHighspeedProcurement.getContentPane().setLayout(groupLayout);
+		frmHighspeedProcurement.setVisible(true);
 	}
 }
