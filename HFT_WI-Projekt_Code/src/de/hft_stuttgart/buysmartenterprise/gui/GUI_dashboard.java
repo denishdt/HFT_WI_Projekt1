@@ -29,7 +29,8 @@ import java.awt.GridBagConstraints;
 import java.awt.Insets;
 
 public class GUI_dashboard {
-
+ //yarrak
+	
 	private JFrame frmBuysmartEnterprises;
 	DBAccess dbAccess = new DBAccess();
 
@@ -153,7 +154,7 @@ public class GUI_dashboard {
 		
 		JButton btnNewButton_7 = new JButton("Bestand der Einzelteile anzeigen");
 		btnNewButton_7.setForeground(new Color(255, 255, 255));
-		btnNewButton_7.setBackground(new Color(0, 128, 192));
+		btnNewButton_7.setBackground(new Color(128, 128, 128));
 		GridBagConstraints gbc_btnNewButton_7 = new GridBagConstraints();
 		gbc_btnNewButton_7.insets = new Insets(0, 0, 5, 5);
 		gbc_btnNewButton_7.gridx = 0;
@@ -162,7 +163,7 @@ public class GUI_dashboard {
 		
 		JButton btnNewButton_8 = new JButton("Standardmenge für Einzelteile festlegen");
 		btnNewButton_8.setForeground(new Color(255, 255, 255));
-		btnNewButton_8.setBackground(new Color(0, 128, 192));
+		btnNewButton_8.setBackground(new Color(128, 128, 128));
 		GridBagConstraints gbc_btnNewButton_8 = new GridBagConstraints();
 		gbc_btnNewButton_8.insets = new Insets(0, 0, 5, 5);
 		gbc_btnNewButton_8.gridx = 2;
@@ -179,7 +180,7 @@ public class GUI_dashboard {
 		
 		JButton btnNewButton_9 = new JButton("Bestellstatus einsehen");
 		btnNewButton_9.setForeground(new Color(255, 255, 255));
-		btnNewButton_9.setBackground(new Color(0, 128, 192));
+		btnNewButton_9.setBackground(new Color(128, 128, 128));
 		GridBagConstraints gbc_btnNewButton_9 = new GridBagConstraints();
 		gbc_btnNewButton_9.insets = new Insets(0, 0, 5, 0);
 		gbc_btnNewButton_9.gridx = 5;
@@ -210,7 +211,7 @@ public class GUI_dashboard {
 		
 		JButton btnNewButton_10 = new JButton("Mindestmenge festlegen");
 		btnNewButton_10.setForeground(new Color(255, 255, 255));
-		btnNewButton_10.setBackground(new Color(0, 128, 192));
+		btnNewButton_10.setBackground(new Color(128, 128, 128));
 		GridBagConstraints gbc_btnNewButton_10 = new GridBagConstraints();
 		gbc_btnNewButton_10.insets = new Insets(0, 0, 0, 5);
 		gbc_btnNewButton_10.gridx = 0;
@@ -227,7 +228,7 @@ public class GUI_dashboard {
 		
 		JButton btnNewButton_11 = new JButton("Bestellung erstellen");
 		btnNewButton_11.setForeground(new Color(255, 255, 255));
-		btnNewButton_11.setBackground(new Color(0, 128, 64));
+		btnNewButton_11.setBackground(new Color(128, 128, 128));
 		GridBagConstraints gbc_btnNewButton_11 = new GridBagConstraints();
 		gbc_btnNewButton_11.insets = new Insets(0, 0, 0, 5);
 		gbc_btnNewButton_11.gridx = 2;
@@ -244,7 +245,7 @@ public class GUI_dashboard {
 		
 		JButton btnNewButton_12 = new JButton("Automatische Bestellung");
 		btnNewButton_12.setForeground(new Color(255, 255, 255));
-		btnNewButton_12.setBackground(new Color(0, 128, 64));
+		btnNewButton_12.setBackground(new Color(128, 128, 128));
 		GridBagConstraints gbc_btnNewButton_12 = new GridBagConstraints();
 		gbc_btnNewButton_12.gridx = 5;
 		gbc_btnNewButton_12.gridy = 6;
