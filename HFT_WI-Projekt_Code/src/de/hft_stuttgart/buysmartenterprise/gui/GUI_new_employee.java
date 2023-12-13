@@ -77,7 +77,7 @@ public class GUI_new_employee {
 		JLabel lblNewLabel_1 = new JLabel("                                                                            ");
 		panel.add(lblNewLabel_1);
 		
-		JButton btnNewButton = new JButton("Shop");
+		JButton btnNewButton = new JButton("Home");
 		btnNewButton.setForeground(Color.WHITE);
 		btnNewButton.setBackground(Color.BLACK);
 		panel.add(btnNewButton);

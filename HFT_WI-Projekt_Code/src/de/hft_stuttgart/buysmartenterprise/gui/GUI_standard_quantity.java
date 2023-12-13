@@ -146,7 +146,7 @@ public class GUI_standard_quantity {
 		lblNewLabel_1.setBackground(new Color(0, 128, 128));
 		panel.add(lblNewLabel_1);
 		
-		btnNewButton = new JButton("Shop");
+		btnNewButton = new JButton("Home");
 		btnNewButton.setForeground(Color.WHITE);
 		btnNewButton.setBackground(Color.BLACK);
 		panel.add(btnNewButton);

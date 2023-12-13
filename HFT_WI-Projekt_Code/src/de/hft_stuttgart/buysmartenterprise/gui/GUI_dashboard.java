@@ -264,7 +264,7 @@ public class GUI_dashboard {
 		lblNewLabel_1.setForeground(new Color(192, 192, 192));
 		panel.add(lblNewLabel_1);
 		
-		JButton btnNewButton_3 = new JButton("Shop");
+		JButton btnNewButton_3 = new JButton("Home");
 		btnNewButton_3.setForeground(new Color(255, 255, 255));
 		btnNewButton_3.setBackground(new Color(0, 0, 0));
 		

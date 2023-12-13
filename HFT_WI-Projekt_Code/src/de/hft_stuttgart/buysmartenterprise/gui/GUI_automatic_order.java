@@ -186,7 +186,7 @@ public class GUI_automatic_order {
 		JLabel lblNewLabel_1 = new JLabel("                                                                            ");
 		panel.add(lblNewLabel_1);
 		
-		JButton btnNewButton = new JButton("Shop");
+		JButton btnNewButton = new JButton("Home");
 		btnNewButton.setForeground(new Color(255, 255, 255));
 		btnNewButton.setBackground(new Color(0, 0, 0));
 		panel.add(btnNewButton);
