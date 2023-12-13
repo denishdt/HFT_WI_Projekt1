@@ -86,7 +86,7 @@ public class GUI_new_supplier {
 	private void initialize() {
 		frm = new JFrame();
 		frm.setTitle("HighSpeed Procurement");
-		frm.setBounds(100, 100, 700, 394);
+		frm.setBounds(100, 100, 700, 414);
 		frm.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		JPanel panel = new JPanel();
@@ -214,7 +214,7 @@ public class GUI_new_supplier {
 		tfPreis = new JTextField();
 		tfPreis.setColumns(10);
 		
-		JButton btnNewButton_4 = new JButton("Hinzufügen");
+		JButton btnNewButton_4 = new JButton("Speichern");
 		btnNewButton_4.addActionListener(new ActionListener() {
 			
 			@Override
@@ -232,7 +232,7 @@ public class GUI_new_supplier {
 					String newSuplier = "INSERT INTO db5.lieferanten(name, adress, email, phone, fax, iban, zahlungsfrist, preis, lieferantenart) VALUES('" + name + "', '" + adress + "', '" + email + "', '" + phone + "', '" + fax + "', '" + iban + "', '" + zahlungsfrist + "', '" + preis + "', '" + lieferantenart + "')";
 					
 					if (name.isEmpty() || adress.isEmpty() || email.isEmpty() || phone.isEmpty() || fax.isEmpty() || iban.isEmpty() || zahlungsfrist.isEmpty() || preis.isEmpty() || lieferantenart.isEmpty()) {
-						JOptionPane.showMessageDialog(frm, "Bitte fülle alle Felder aus!");
+						JOptionPane.showMessageDialog(frm, "Bitte fülle alle Felder aus!", "Fehler", JOptionPane.ERROR_MESSAGE);
 						return;
 					}
 					Connection con = dbAccess.getConnection();
@@ -240,6 +240,7 @@ public class GUI_new_supplier {
 					stm.execute(newSuplier);
 				} catch (Exception e1) {
 					System.out.println("Unbekannter Fehler: " + e1.getMessage());
+					return;
 				}
 				tfName.setText("");
 				tfAdresse.setText("");
@@ -249,7 +250,7 @@ public class GUI_new_supplier {
 				tfIban.setText("");
 				tfZahlungsfrist.setText("");
 				tfPreis.setText("");
-				JOptionPane.showMessageDialog(frm, "Neuer Lieferant hinzugefügt!");
+				JOptionPane.showMessageDialog(frm, "Neuer Lieferant hinzugefügt!", "Neuer Lieferant", JOptionPane.INFORMATION_MESSAGE);
 			}
 		});
 		
@@ -331,28 +332,24 @@ public class GUI_new_supplier {
 							.addComponent(lblFax, GroupLayout.DEFAULT_SIZE, 88, Short.MAX_VALUE)
 							.addGap(169)))
 					.addGap(142))
-				.addGroup(groupLayout.createSequentialGroup()
+				.addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()
 					.addContainerGap()
-					.addComponent(tfZahlungsfrist, GroupLayout.DEFAULT_SIZE, 258, Short.MAX_VALUE)
-					.addGap(18)
-					.addComponent(tfPreis, GroupLayout.DEFAULT_SIZE, 257, Short.MAX_VALUE)
-					.addGap(28)
-					.addComponent(btnNewButton_4)
-					.addGap(25))
-				.addGroup(groupLayout.createSequentialGroup()
-					.addContainerGap()
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addComponent(tfIban, GroupLayout.DEFAULT_SIZE, 257, Short.MAX_VALUE)
-						.addGroup(groupLayout.createSequentialGroup()
+					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
+						.addComponent(tfZahlungsfrist, GroupLayout.DEFAULT_SIZE, 257, Short.MAX_VALUE)
+						.addComponent(tfIban, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 257, Short.MAX_VALUE)
+						.addGroup(Alignment.LEADING, groupLayout.createSequentialGroup()
 							.addComponent(lblZahlungsfrist, GroupLayout.DEFAULT_SIZE, 98, Short.MAX_VALUE)
 							.addGap(159)))
 					.addGap(18)
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addGroup(groupLayout.createSequentialGroup()
+					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
+						.addComponent(tfPreis, GroupLayout.DEFAULT_SIZE, 258, Short.MAX_VALUE)
+						.addGroup(Alignment.LEADING, groupLayout.createSequentialGroup()
 							.addComponent(lblPreis, GroupLayout.DEFAULT_SIZE, 49, Short.MAX_VALUE)
 							.addGap(209))
-						.addComponent(tfFax, GroupLayout.DEFAULT_SIZE, 258, Short.MAX_VALUE))
-					.addGap(142))
+						.addComponent(tfFax, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 258, Short.MAX_VALUE))
+					.addGap(38)
+					.addComponent(btnNewButton_4)
+					.addGap(25))
 		);
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)

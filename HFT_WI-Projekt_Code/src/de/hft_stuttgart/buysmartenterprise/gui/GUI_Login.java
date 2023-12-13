@@ -117,7 +117,7 @@ public class GUI_Login {
 						frame.setVisible(false);
 						GUI_dashboard openDashboard = new GUI_dashboard();
 					} else {
-						JOptionPane.showMessageDialog(frame, "Benutzername oder Passwort falsch!");
+						JOptionPane.showMessageDialog(frame, "Benutzername oder Passwort falsch!", "Fehler", JOptionPane.ERROR_MESSAGE, null);
 						textField.setText("");
 						textField_1.setText("");
 					}

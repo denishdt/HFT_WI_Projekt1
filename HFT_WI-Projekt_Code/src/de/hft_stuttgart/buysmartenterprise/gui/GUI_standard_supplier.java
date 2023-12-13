@@ -12,6 +12,10 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.awt.event.ActionEvent;
 import javax.swing.BoxLayout;
 import javax.swing.JTable;
@@ -24,6 +28,7 @@ import javax.swing.SwingConstants;
 import java.awt.Color;
 import java.awt.Font;
 import javax.swing.JMenuBar;
+import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JCheckBox;
 import javax.swing.JSplitPane;
@@ -76,9 +81,24 @@ public class GUI_standard_supplier {
 	 * Create the application.
 	 */
 	public GUI_standard_supplier() {
-		initialize();
 		dbAccess.connect();
+		initialize();
 	}
+	
+	public static String getLieferantenart(JCheckBox...checkBoxes) {
+		StringBuilder selectedItem = new StringBuilder();
+		for (JCheckBox checkBox : checkBoxes) {
+            if (checkBox.isSelected()) {
+                if (selectedItem.length() > 0) {
+                    selectedItem.append(", ");
+                }
+                selectedItem.append(checkBox.getText());
+            }
+        }
+
+        return selectedItem.toString();
+	}
+	
 
 	/**
 	 * Initialize the contents of the frame.
@@ -168,6 +188,22 @@ public class GUI_standard_supplier {
 		springLayout.putConstraint(SpringLayout.WEST, comboBox, 20, SpringLayout.WEST, frm.getContentPane());
 		springLayout.putConstraint(SpringLayout.EAST, comboBox, -89, SpringLayout.WEST, chckbxNewCheckBox);
 		frm.getContentPane().add(comboBox);
+		try {
+			Connection con = dbAccess.getConnection();
+			Statement stm = con.createStatement();
+			String sql = "SELECT name from db5.lieferanten";
+			ResultSet rs = stm.executeQuery(sql);
+			
+			while(rs.next()) {
+				String data = rs.getString("name");
+				comboBox.addItem(data);
+			}
+			frm.getContentPane().revalidate();
+			frm.getContentPane().repaint();
+			
+		} catch (Exception e1) {
+			System.out.println("Unbekannter Fehler: " + e1.getMessage());
+		}
 		
 		chckbxNewCheckBox_1 = new JCheckBox("Netzteil");
 		springLayout.putConstraint(SpringLayout.SOUTH, chckbxNewCheckBox, -6, SpringLayout.NORTH, chckbxNewCheckBox_1);
@@ -214,6 +250,49 @@ public class GUI_standard_supplier {
 		springLayout.putConstraint(SpringLayout.NORTH, chckbxNewCheckBox_9, 7, SpringLayout.SOUTH, chckbxNewCheckBox_2);
 		springLayout.putConstraint(SpringLayout.WEST, chckbxNewCheckBox_9, 0, SpringLayout.WEST, lblNewLabel_4);
 		frm.getContentPane().add(chckbxNewCheckBox_9);
+		
+		JButton btnSave = new JButton("Speichern");
+		springLayout.putConstraint(SpringLayout.SOUTH, btnSave, -26, SpringLayout.SOUTH, frm.getContentPane());
+		springLayout.putConstraint(SpringLayout.EAST, btnSave, -28, SpringLayout.EAST, frm.getContentPane());
+		frm.getContentPane().add(btnSave);
+		btnSave.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				String stdSupplierSelected = (String) comboBox.getSelectedItem();
+				String checkStdSupplier = "SELECT * FROM db5.standardlieferant WHERE lieferant = '" + stdSupplierSelected + "'";
+				
+				String stdSupplierTypeSelected = getLieferantenart(chckbxNewCheckBox, chckbxNewCheckBox_1, chckbxNewCheckBox_2, chckbxNewCheckBox_3, chckbxNewCheckBox_4, chckbxNewCheckBox_5, chckbxNewCheckBox_6, chckbxNewCheckBox_7, chckbxNewCheckBox_8, chckbxNewCheckBox_9);
+				try {
+					Connection con = dbAccess.getConnection();
+					Statement stm = con.createStatement();
+					ResultSet rs = stm.executeQuery(checkStdSupplier);
+					
+					if (stdSupplierSelected.isEmpty() || stdSupplierTypeSelected.isEmpty()) {
+						JOptionPane.showMessageDialog(frm, "Bitte fülle alle Felder aus!", "Fehler", JOptionPane.ERROR_MESSAGE);
+						return;
+					}
+					
+					if (rs.next()) {
+					    // Der Standardlieferant existiert bereits
+					    int option = JOptionPane.showConfirmDialog(frm, "Der Standardlieferant existiert bereits. Möchtest du ihn überschreiben?", "Standardlieferant existiert", JOptionPane.YES_NO_OPTION);
+
+					    if (option == JOptionPane.YES_OPTION) {
+					        String sql = "UPDATE db5.standardlieferant SET lieferantenart = '" + stdSupplierTypeSelected + "' WHERE lieferant = '" + stdSupplierSelected + "'";
+					        stm.execute(sql);
+					        JOptionPane.showMessageDialog(frm, "Der Standardlieferant wurde erfolgreich überschrieben.", "Standardlieferanten", JOptionPane.INFORMATION_MESSAGE);
+					    } else {
+					        return;
+					    }
+					} else {
+					    String sql = "INSERT INTO db5.standardlieferant(lieferant, lieferantenart) VALUES('" + stdSupplierSelected + "', '" + stdSupplierTypeSelected + "')";
+					    stm.execute(sql);
+					    JOptionPane.showMessageDialog(frm, "Der Standardlieferant wurde erfolgreich hinzugefügt.", "Standardlieferant", JOptionPane.INFORMATION_MESSAGE);
+					}
+				} catch (Exception e1) {
+					System.out.println("Unbekannter Fehler: " + e1.getMessage());
+				}
+			}
+		});
 		
 		frm.addWindowListener(new WindowAdapter() {
 			@Override
