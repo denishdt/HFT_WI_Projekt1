@@ -274,19 +274,19 @@ public class GUI_standard_supplier {
 					
 					if (rs.next()) {
 					    // Der Standardlieferant existiert bereits
-					    int option = JOptionPane.showConfirmDialog(frm, "Der Standardlieferant existiert bereits. Möchtest du ihn überschreiben?", "Standardlieferant existiert", JOptionPane.YES_NO_OPTION);
+					    int option = JOptionPane.showConfirmDialog(frm, "Der Standardlieferant existiert bereits. Möchtest du ihn überschreiben?", "Warnung", JOptionPane.YES_NO_OPTION);
 
 					    if (option == JOptionPane.YES_OPTION) {
 					        String sql = "UPDATE db5.standardlieferant SET lieferantenart = '" + stdSupplierTypeSelected + "' WHERE lieferant = '" + stdSupplierSelected + "'";
 					        stm.execute(sql);
-					        JOptionPane.showMessageDialog(frm, "Der Standardlieferant wurde erfolgreich überschrieben.", "Standardlieferanten", JOptionPane.INFORMATION_MESSAGE);
+					        JOptionPane.showMessageDialog(frm, "Der Standardlieferant wurde erfolgreich überschrieben.", "Neuer Standardlieferant", JOptionPane.INFORMATION_MESSAGE);
 					    } else {
 					        return;
 					    }
 					} else {
 					    String sql = "INSERT INTO db5.standardlieferant(lieferant, lieferantenart) VALUES('" + stdSupplierSelected + "', '" + stdSupplierTypeSelected + "')";
 					    stm.execute(sql);
-					    JOptionPane.showMessageDialog(frm, "Der Standardlieferant wurde erfolgreich hinzugefügt.", "Standardlieferant", JOptionPane.INFORMATION_MESSAGE);
+					    JOptionPane.showMessageDialog(frm, "Der Standardlieferant wurde erfolgreich hinzugefügt.", "Neuer Standardlieferant", JOptionPane.INFORMATION_MESSAGE);
 					}
 				} catch (Exception e1) {
 					System.out.println("Unbekannter Fehler: " + e1.getMessage());
