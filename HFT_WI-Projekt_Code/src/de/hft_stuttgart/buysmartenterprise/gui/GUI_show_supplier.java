@@ -13,7 +13,7 @@ import javax.swing.SwingConstants;
 import javax.swing.JComboBox;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
-public class GUI_Lieferantenanzeigen {
+public class GUI_show_supplier {
 
 	private JFrame frmHighspeedProcurement;
 
@@ -24,7 +24,7 @@ public class GUI_Lieferantenanzeigen {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					GUI_Lieferantenanzeigen window = new GUI_Lieferantenanzeigen();
+					GUI_show_supplier window = new GUI_show_supplier();
 					window.frmHighspeedProcurement.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -36,7 +36,7 @@ public class GUI_Lieferantenanzeigen {
 	/**
 	 * Create the application.
 	 */
-	public GUI_Lieferantenanzeigen() {
+	public GUI_show_supplier() {
 		initialize();
 	}
 
