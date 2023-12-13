@@ -11,7 +11,6 @@ import de.hft_stuttgart.buysmartenterprise.gui.GUI_login;
 public class Main {
 	
 	private static String user = "";
-	private static String password = "";
 	DBAccess dbAccess = new DBAccess();
 	
 	public static void main(String [] args) {
