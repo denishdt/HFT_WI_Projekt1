@@ -29,7 +29,8 @@ import java.awt.GridBagConstraints;
 import java.awt.Insets;
 
 public class GUI_dashboard {
-
+ //yarrak
+	
 	private JFrame frmBuysmartEnterprises;
 	DBAccess dbAccess = new DBAccess();
 
