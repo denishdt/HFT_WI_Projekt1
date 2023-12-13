@@ -32,7 +32,7 @@ public class Main {
 			dbAccess.connect();
 			Connection con = dbAccess.getConnection();
 			Statement stm = con.createStatement();
-			String sql = "select password from login where binary username='"+ user + "'";
+			String sql = "SELECT password FROM login WHERE binary username='"+ user + "'";
 			ResultSet rs = stm.executeQuery(sql);
 			if(rs.next()) {
 				pw = rs.getString("password");
