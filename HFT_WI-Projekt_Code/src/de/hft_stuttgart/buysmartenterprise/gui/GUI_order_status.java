@@ -77,95 +77,28 @@ public class GUI_order_status {
 			new Object[][] {
 			},
 			new String[] {
-				"Bestellungsnummer:", "Lieferant:"
+				"Bestellungsnummer:", "Lieferant:", "Status:"
 			}
 		));
 		
-		JCheckBox cbVersendet = new JCheckBox("versendet");
-		cbVersendet.setEnabled(false);
-		
-		JCheckBox cbEingetroffen = new JCheckBox("eingetroffen");
-		
 		JPanel panel = new JPanel();
 		panel.setBackground(new Color(0, 0, 0));
-		
-		JCheckBox cbVersendet_1 = new JCheckBox("versendet");
-		cbVersendet_1.setEnabled(false);
-		
-		JCheckBox cbVersendet_2 = new JCheckBox("versendet");
-		cbVersendet_2.setEnabled(false);
-		
-		JCheckBox cbVersendet_3 = new JCheckBox("versendet");
-		cbVersendet_3.setEnabled(false);
-		
-		JCheckBox cbVersendet_4 = new JCheckBox("versendet");
-		cbVersendet_4.setEnabled(false);
-		
-		JCheckBox cbEingetroffen_1 = new JCheckBox("eingetroffen");
-		
-		JCheckBox cbEingetroffen_2 = new JCheckBox("eingetroffen");
-		
-		JCheckBox cbEingetroffen_3 = new JCheckBox("eingetroffen");
-		
-		JCheckBox cbEingetroffen_4 = new JCheckBox("eingetroffen");
 		GroupLayout groupLayout = new GroupLayout(frmBuysmartEnterprise.getContentPane());
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
+				.addComponent(panel, GroupLayout.DEFAULT_SIZE, 686, Short.MAX_VALUE)
 				.addGroup(groupLayout.createSequentialGroup()
 					.addGap(10)
-					.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 328, Short.MAX_VALUE)
-					.addGap(78)
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addGroup(groupLayout.createSequentialGroup()
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(cbVersendet, GroupLayout.DEFAULT_SIZE, 113, Short.MAX_VALUE))
-						.addComponent(cbVersendet_1, GroupLayout.DEFAULT_SIZE, 113, Short.MAX_VALUE)
-						.addComponent(cbVersendet_2, GroupLayout.DEFAULT_SIZE, 113, Short.MAX_VALUE)
-						.addComponent(cbVersendet_3, GroupLayout.DEFAULT_SIZE, 113, Short.MAX_VALUE)
-						.addComponent(cbVersendet_4, GroupLayout.DEFAULT_SIZE, 113, Short.MAX_VALUE))
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addComponent(cbEingetroffen, GroupLayout.DEFAULT_SIZE, 143, Short.MAX_VALUE)
-						.addComponent(cbEingetroffen_1, GroupLayout.DEFAULT_SIZE, 143, Short.MAX_VALUE)
-						.addComponent(cbEingetroffen_2, GroupLayout.DEFAULT_SIZE, 143, Short.MAX_VALUE)
-						.addComponent(cbEingetroffen_3, GroupLayout.DEFAULT_SIZE, 143, Short.MAX_VALUE)
-						.addComponent(cbEingetroffen_4, GroupLayout.DEFAULT_SIZE, 143, Short.MAX_VALUE))
-					.addGap(14))
-				.addComponent(panel, GroupLayout.DEFAULT_SIZE, 686, Short.MAX_VALUE)
+					.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 614, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap())
 		);
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
 					.addComponent(panel, GroupLayout.PREFERRED_SIZE, 33, GroupLayout.PREFERRED_SIZE)
 					.addPreferredGap(ComponentPlacement.UNRELATED)
-					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
-						.addGroup(groupLayout.createSequentialGroup()
-							.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 174, Short.MAX_VALUE)
-							.addGap(12))
-						.addGroup(groupLayout.createSequentialGroup()
-							.addGap(23)
-							.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
-								.addGroup(groupLayout.createSequentialGroup()
-									.addComponent(cbEingetroffen, GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE)
-									.addGap(4)
-									.addComponent(cbEingetroffen_1, GroupLayout.DEFAULT_SIZE, 24, Short.MAX_VALUE)
-									.addPreferredGap(ComponentPlacement.UNRELATED)
-									.addComponent(cbEingetroffen_2, GroupLayout.DEFAULT_SIZE, 24, Short.MAX_VALUE)
-									.addPreferredGap(ComponentPlacement.UNRELATED)
-									.addComponent(cbEingetroffen_3, GroupLayout.DEFAULT_SIZE, 24, Short.MAX_VALUE)
-									.addPreferredGap(ComponentPlacement.UNRELATED)
-									.addComponent(cbEingetroffen_4, GroupLayout.DEFAULT_SIZE, 24, Short.MAX_VALUE))
-								.addGroup(groupLayout.createSequentialGroup()
-									.addComponent(cbVersendet, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-									.addGap(5)
-									.addComponent(cbVersendet_1, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-									.addGap(4)
-									.addComponent(cbVersendet_2, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-									.addGap(4)
-									.addComponent(cbVersendet_3, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-									.addGap(4)
-									.addComponent(cbVersendet_4, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-							.addGap(31))))
+					.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 174, Short.MAX_VALUE)
+					.addGap(12))
 		);
 		
 		JLabel lblNewLabel = new JLabel("BuySmart Enterprise  ");
