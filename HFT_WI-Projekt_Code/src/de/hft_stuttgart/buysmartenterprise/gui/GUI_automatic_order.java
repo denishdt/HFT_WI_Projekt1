@@ -199,19 +199,17 @@ public class GUI_automatic_order {
 			}
 		});
 		
-		JButton btnNewButton_1 = new JButton("Settings");
-		btnNewButton_1.setForeground(new Color(255, 255, 255));
-		btnNewButton_1.setBackground(new Color(0, 0, 0));
-		btnNewButton_1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		panel.add(btnNewButton_1);
-		
 		JButton btnNewButton_2 = new JButton("Profile");
 		btnNewButton_2.setBackground(new Color(0, 0, 0));
 		btnNewButton_2.setForeground(new Color(255, 255, 255));
 		panel.add(btnNewButton_2);
+		btnNewButton_2.addActionListener(new ActionListener() {		
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				frmBuysmartEnterprise.setVisible(false);
+				GUI_profile openProfile = new GUI_profile();
+			}
+		});
 		
 		JButton btnNewButton_3 = new JButton("Log Out");
 		btnNewButton_3.setBackground(new Color(0, 0, 0));
@@ -224,7 +222,7 @@ public class GUI_automatic_order {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				frmBuysmartEnterprise.setVisible(false);
-				GUI_Login openLogin = new GUI_Login();			
+				GUI_login openLogin = new GUI_login();			
 			}
 		});
 		

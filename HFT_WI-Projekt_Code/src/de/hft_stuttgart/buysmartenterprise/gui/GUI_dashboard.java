@@ -271,19 +271,17 @@ public class GUI_dashboard {
 		panel.add(lblNewLabel);
 		panel.add(btnNewButton_3);
 		
-		JButton btnNewButton = new JButton("Settings");
-		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		btnNewButton.setForeground(new Color(255, 255, 255));
-		btnNewButton.setBackground(new Color(0, 0, 0));
-		panel.add(btnNewButton);
-		
 		JButton btnNewButton_1 = new JButton("Profile");
 		btnNewButton_1.setForeground(new Color(255, 255, 255));
 		btnNewButton_1.setBackground(new Color(0, 0, 0));
 		panel.add(btnNewButton_1);
+		btnNewButton_1.addActionListener(new ActionListener() {		
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				frmBuysmartEnterprises.setVisible(false);
+				GUI_profile openProfile = new GUI_profile();
+			}
+		});
 		
 		JButton btnNewButton_2 = new JButton("Log Out");
 		btnNewButton_2.setForeground(new Color(255, 255, 255));
@@ -296,7 +294,7 @@ public class GUI_dashboard {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				frmBuysmartEnterprises.setVisible(false);
-				GUI_Login openLogin = new GUI_Login();
+				GUI_login openLogin = new GUI_login();
 				
 			}
 		});

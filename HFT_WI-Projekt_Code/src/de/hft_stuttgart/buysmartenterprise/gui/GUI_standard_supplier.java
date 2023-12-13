@@ -44,7 +44,6 @@ public class GUI_standard_supplier {
 	private JLabel lblNewLabel;
 	private JLabel lblNewLabel_1;
 	private JButton btnNewButton;
-	private JButton btnNewButton_1;
 	private JButton btnNewButton_2;
 	private JButton btnNewButton_3;
 	private JLabel lblNewLabel_3;
@@ -146,15 +145,17 @@ public class GUI_standard_supplier {
 			}
 		});
 		
-		btnNewButton_1 = new JButton("Settings");
-		btnNewButton_1.setForeground(Color.WHITE);
-		btnNewButton_1.setBackground(Color.BLACK);
-		panel.add(btnNewButton_1);
-		
 		btnNewButton_2 = new JButton("Profile");
 		btnNewButton_2.setForeground(Color.WHITE);
 		btnNewButton_2.setBackground(Color.BLACK);
 		panel.add(btnNewButton_2);
+		btnNewButton_2.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				frm.setVisible(false);
+				GUI_profile openProfile = new GUI_profile();
+			}
+		});
 		
 		btnNewButton_3 = new JButton("Log Out");
 		btnNewButton_3.setForeground(Color.WHITE);
@@ -168,7 +169,7 @@ public class GUI_standard_supplier {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				frm.setVisible(false);
-				GUI_Login openLogin = new GUI_Login();
+				GUI_login openLogin = new GUI_login();
 						
 			}
 		});

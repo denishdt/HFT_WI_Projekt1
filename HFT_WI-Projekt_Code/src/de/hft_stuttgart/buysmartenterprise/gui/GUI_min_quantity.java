@@ -39,7 +39,6 @@ public class GUI_min_quantity {
 	private JLabel lblNewLabel;
 	private JLabel lblNewLabel_1;
 	private JButton btnNewButton;
-	private JButton btnNewButton_1;
 	private JButton btnNewButton_2;
 	private JButton btnNewButton_3;
 	private JLabel lblNewLabel_3;
@@ -76,7 +75,7 @@ public class GUI_min_quantity {
 	private void initialize() {
 		frm = new JFrame();
 		frm.setTitle("HighSpeed Procurement");
-		frm.setBounds(100, 100, 700, 300);
+		frm.setBounds(100, 100, 652, 300);
 		frm.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		panel = new JPanel();
@@ -160,15 +159,17 @@ public class GUI_min_quantity {
 			}
 		});
 		
-		btnNewButton_1 = new JButton("Settings");
-		btnNewButton_1.setForeground(Color.WHITE);
-		btnNewButton_1.setBackground(Color.BLACK);
-		panel.add(btnNewButton_1);
-		
 		btnNewButton_2 = new JButton("Profile");
 		btnNewButton_2.setForeground(Color.WHITE);
 		btnNewButton_2.setBackground(Color.BLACK);
 		panel.add(btnNewButton_2);
+		btnNewButton_2.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				frm.setVisible(false);
+				GUI_profile openProfile = new GUI_profile();
+			}
+		});
 		
 		btnNewButton_3 = new JButton("Log Out");
 		btnNewButton_3.setForeground(Color.WHITE);
@@ -181,7 +182,7 @@ public class GUI_min_quantity {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				frm.setVisible(false);
-				GUI_Login openLogin = new GUI_Login();				
+				GUI_login openLogin = new GUI_login();				
 			}
 		});
 		

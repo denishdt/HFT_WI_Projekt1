@@ -32,7 +32,7 @@ import javax.swing.GroupLayout.Alignment;
 
 
 
-public class GUI_Login {
+public class GUI_login {
 
 	private JFrame frame;
 	private JTextField textField;
@@ -49,7 +49,7 @@ public class GUI_Login {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					GUI_Login window = new GUI_Login();
+					GUI_login window = new GUI_login();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -62,7 +62,7 @@ public class GUI_Login {
 	/**
 	 * Create the application.
 	 */
-	public GUI_Login() {
+	public GUI_login() {
 		dbAccess.firstConnect();
 		initialize();
 	}
