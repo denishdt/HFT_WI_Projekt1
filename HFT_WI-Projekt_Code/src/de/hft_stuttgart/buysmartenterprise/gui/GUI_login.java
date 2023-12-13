@@ -38,6 +38,7 @@ public class GUI_login {
 	private JTextField textField;
 	private JTextField textField_1;
 	DBAccess dbAccess = new DBAccess();
+	Main main = new Main();
 	/**
 	 */
 
@@ -114,6 +115,7 @@ public class GUI_login {
 					String sql = "select * from login where binary username='"+ username + "' and binary password='"+ password + "'";
 					ResultSet rs = stm.executeQuery(sql);
 					if(rs.next()) {
+						main.setUser(username);
 						frame.setVisible(false);
 						GUI_dashboard openDashboard = new GUI_dashboard();
 					} else {

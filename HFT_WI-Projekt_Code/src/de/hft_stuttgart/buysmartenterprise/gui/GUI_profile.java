@@ -6,9 +6,14 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import java.awt.Color;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.Statement;
 
 import javax.swing.JButton;
 import javax.swing.GroupLayout;
@@ -16,6 +21,7 @@ import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
 import de.hft_stuttgart.buysmartenterprise.dbaccess.DBAccess;
+import de.hft_stuttgart.buysmartenterprise.main.Main;
 
 import javax.swing.JTextField;
 
@@ -24,9 +30,10 @@ public class GUI_profile {
 	private JFrame frame;
 	private JTextField fieldChangeUsernameOld;
 	private JTextField fieldChangeUsernameNew;
+	DBAccess dbAccess = new DBAccess();
 	private JTextField fieldChangePasswordOld;
 	private JTextField fieldChangePasswordNew;
-	DBAccess dbAccess = new DBAccess();
+	Main main = new Main();
 
 	/**
 	 * Launch the application.
@@ -57,7 +64,7 @@ public class GUI_profile {
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		frame.setBounds(100, 100, 647, 255);
+		frame.setBounds(100, 100, 647, 325);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		JPanel panel = new JPanel();
@@ -99,52 +106,146 @@ public class GUI_profile {
 		});
 		
 		JLabel lblChangeUsername = new JLabel("Benutzername ändern");
-		lblChangeUsername.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lblChangeUsername.setFont(new Font("Tahoma", Font.BOLD, 13));
 		
 		JLabel lblChangePassword = new JLabel("Passwort ändern");
-		lblChangePassword.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lblChangePassword.setFont(new Font("Tahoma", Font.BOLD, 13));
 		
 		fieldChangeUsernameOld = new JTextField();
-		fieldChangeUsernameOld.setText("Alter Benutzername");
 		fieldChangeUsernameOld.setColumns(10);
 		
 		fieldChangeUsernameNew = new JTextField();
-		fieldChangeUsernameNew.setText("Neuer Benutzername");
 		fieldChangeUsernameNew.setColumns(10);
 		
+		JLabel lblNewLabel_2 = new JLabel("Alter Benutzername:");
+		
+		JLabel lblNewLabel_2_1 = new JLabel("NeuerBenutzername:");
+		
+		JLabel lblNewLabel_2_2 = new JLabel("Altes Passwort:");
+		
 		fieldChangePasswordOld = new JTextField();
-		fieldChangePasswordOld.setText("Altes Passwort");
 		fieldChangePasswordOld.setColumns(10);
 		
+		JLabel lblNewLabel_2_1_1 = new JLabel("Neues Passwort:");
+		
 		fieldChangePasswordNew = new JTextField();
-		fieldChangePasswordNew.setText("Neues Passwort");
 		fieldChangePasswordNew.setColumns(10);
 		
 		JButton btnSave = new JButton("Speichern");
+		btnSave.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					String oldUsername = fieldChangeUsernameOld.getText();
+					String newUsername = fieldChangeUsernameNew.getText();
+					String oldPassword = fieldChangePasswordOld.getText();
+					String newPassword = fieldChangePasswordNew.getText();
+					Connection con = dbAccess.getConnection();
+					Statement stm = con.createStatement();
+					if(fieldChangeUsernameOld.getText().isEmpty() && fieldChangeUsernameNew.getText().isEmpty() && fieldChangePasswordOld.getText().isEmpty() && fieldChangePasswordNew.getText().isEmpty()) {
+						JOptionPane.showMessageDialog(frame, "Bitte fülle alle nötigen Felder aus", "Fehler", JOptionPane.ERROR_MESSAGE);
+						return;
+						
+					} else if(fieldChangeUsernameOld.getText().isEmpty() && fieldChangeUsernameNew.getText().isEmpty() && !fieldChangePasswordOld.getText().isEmpty() && !fieldChangePasswordNew.getText().isEmpty()) {
+						if(oldPassword.equals(main.getPassword())) {
+							String sql = "UPDATE db5.login SET password = '" + newPassword + "' WHERE binary password = '" + oldPassword + "' AND binary username = '" + main.getUser() + "'";
+							stm.execute(sql);
+							JOptionPane.showMessageDialog(frame, "Passwort wurde aktualisiert", "Profil", JOptionPane.INFORMATION_MESSAGE);
+							fieldChangePasswordOld.setText("");
+							fieldChangePasswordNew.setText("");
+						} else {
+							JOptionPane.showMessageDialog(frame, "Altes Passwort stimmt nicht überein", "Fehler", JOptionPane.ERROR_MESSAGE);
+							fieldChangePasswordOld.setText("");
+							fieldChangePasswordNew.setText("");
+						}
+						
+					} else if(!fieldChangeUsernameOld.getText().isEmpty() && !fieldChangeUsernameNew.getText().isEmpty() && fieldChangePasswordOld.getText().isEmpty() && fieldChangePasswordNew.getText().isEmpty()){
+						if(oldUsername.equals(main.getUser())) {
+							String sql = "UPDATE db5.login SET username = '" + newUsername + "' WHERE binary username = '" + oldUsername + "'";
+							stm.execute(sql);
+							JOptionPane.showMessageDialog(frame, "Benutzername wurde aktualisiert", "Profil", JOptionPane.INFORMATION_MESSAGE);
+							fieldChangeUsernameOld.setText("");
+							fieldChangeUsernameNew.setText("");
+						} else {
+							JOptionPane.showMessageDialog(frame, "Benutzername konnte nicht gefunden werden", "Fehler", JOptionPane.ERROR_MESSAGE);
+							fieldChangeUsernameOld.setText("");
+							fieldChangeUsernameNew.setText("");
+						}
+						
+					} else if(!fieldChangeUsernameOld.getText().isEmpty() && !fieldChangeUsernameNew.getText().isEmpty() && !fieldChangePasswordOld.getText().isEmpty() && !fieldChangePasswordNew.getText().isEmpty()){
+						String sql1 = "UPDATE db5.login SET username = '" + newUsername + "' WHERE username = '" + oldUsername + "'";
+						String sql2 = "UPDATE db5.login SET password = '" + newPassword + "' WHERE password = '" + oldPassword + "'";
+						stm.execute(sql1);
+						stm.execute(sql2);
+						fieldChangePasswordOld.setText("");
+						fieldChangePasswordNew.setText("");
+						fieldChangeUsernameOld.setText("");
+						fieldChangeUsernameNew.setText("");
+						JOptionPane.showMessageDialog(frame, "Benutzername und Passwort wurden aktualisiert", "Profil", JOptionPane.INFORMATION_MESSAGE);
+						
+					} else {
+						JOptionPane.showMessageDialog(frame, "Bitte fülle alle nötigen Felder aus", "Fehler", JOptionPane.ERROR_MESSAGE);
+					}
+				} catch (Exception ex) {
+					System.out.println("Unbekannter Fehler: " + ex.getMessage());
+				}
+			}
+		});
+		
+		JButton btnNewUser = new JButton("Neuer Benutzer");
+		btnNewUser.addActionListener(new ActionListener() {	
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				String user = main.getUser();
+				System.out.println(user);
+				try {
+					Connection con = dbAccess.getConnection();
+					Statement stm = con.createStatement();
+					String sql = "SELECT username FROM db5.login WHERE username = '" + main.getUser() + "' AND role = 'manager'";
+					ResultSet rs = stm.executeQuery(sql);
+					if(rs.next()) {
+						frame.setVisible(false);
+						GUI_new_employee openNewEmployee = new GUI_new_employee();
+					} else {
+						JOptionPane.showMessageDialog(frame, "Keine Berechtigung für diesen Bereich", "Fehler", JOptionPane.ERROR_MESSAGE);
+						return;
+					}
+				} catch (Exception e2) {
+					System.out.println("Unbekannter Fehler: " + e2.getMessage());
+				}
+				
+			}
+		});
+		
 		GroupLayout groupLayout = new GroupLayout(frame.getContentPane());
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.TRAILING)
 				.addComponent(panel, GroupLayout.DEFAULT_SIZE, 631, Short.MAX_VALUE)
 				.addGroup(groupLayout.createSequentialGroup()
-					.addGap(98)
+					.addGap(86)
 					.addComponent(lblChangeUsername)
-					.addPreferredGap(ComponentPlacement.RELATED, 181, Short.MAX_VALUE)
+					.addPreferredGap(ComponentPlacement.RELATED, 175, Short.MAX_VALUE)
 					.addComponent(lblChangePassword, GroupLayout.PREFERRED_SIZE, 126, GroupLayout.PREFERRED_SIZE)
 					.addGap(100))
 				.addGroup(groupLayout.createSequentialGroup()
-					.addGap(74)
+					.addGap(36)
+					.addComponent(btnNewUser)
+					.addPreferredGap(ComponentPlacement.RELATED, 371, Short.MAX_VALUE)
+					.addComponent(btnSave)
+					.addGap(38))
+				.addGroup(Alignment.LEADING, groupLayout.createSequentialGroup()
+					.addGap(71)
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 						.addComponent(fieldChangeUsernameNew, GroupLayout.PREFERRED_SIZE, 176, GroupLayout.PREFERRED_SIZE)
-						.addComponent(fieldChangeUsernameOld, GroupLayout.PREFERRED_SIZE, 176, GroupLayout.PREFERRED_SIZE))
-					.addPreferredGap(ComponentPlacement.RELATED, 121, Short.MAX_VALUE)
+						.addComponent(lblNewLabel_2_1, GroupLayout.PREFERRED_SIZE, 112, GroupLayout.PREFERRED_SIZE)
+						.addComponent(fieldChangeUsernameOld, GroupLayout.PREFERRED_SIZE, 176, GroupLayout.PREFERRED_SIZE)
+						.addComponent(lblNewLabel_2))
+					.addPreferredGap(ComponentPlacement.RELATED, 133, Short.MAX_VALUE)
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+						.addComponent(lblNewLabel_2_2, GroupLayout.PREFERRED_SIZE, 95, GroupLayout.PREFERRED_SIZE)
 						.addComponent(fieldChangePasswordOld, GroupLayout.PREFERRED_SIZE, 176, GroupLayout.PREFERRED_SIZE)
+						.addComponent(lblNewLabel_2_1_1, GroupLayout.PREFERRED_SIZE, 112, GroupLayout.PREFERRED_SIZE)
 						.addComponent(fieldChangePasswordNew, GroupLayout.PREFERRED_SIZE, 176, GroupLayout.PREFERRED_SIZE))
-					.addGap(84))
-				.addGroup(groupLayout.createSequentialGroup()
-					.addContainerGap(526, Short.MAX_VALUE)
-					.addComponent(btnSave)
-					.addGap(26))
+					.addGap(75))
 		);
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
@@ -154,20 +255,31 @@ public class GUI_profile {
 					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
 						.addComponent(lblChangePassword)
 						.addComponent(lblChangeUsername))
-					.addPreferredGap(ComponentPlacement.RELATED)
+					.addGap(24)
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 						.addGroup(groupLayout.createSequentialGroup()
+							.addComponent(lblNewLabel_2)
+							.addPreferredGap(ComponentPlacement.RELATED)
 							.addComponent(fieldChangeUsernameOld, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-							.addPreferredGap(ComponentPlacement.UNRELATED)
+							.addGap(18)
+							.addComponent(lblNewLabel_2_1)
+							.addPreferredGap(ComponentPlacement.RELATED)
 							.addComponent(fieldChangeUsernameNew, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 						.addGroup(groupLayout.createSequentialGroup()
+							.addComponent(lblNewLabel_2_2)
+							.addGap(6)
 							.addComponent(fieldChangePasswordOld, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-							.addGap(11)
+							.addGap(18)
+							.addComponent(lblNewLabel_2_1_1)
+							.addGap(6)
 							.addComponent(fieldChangePasswordNew, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
-					.addPreferredGap(ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
-					.addComponent(btnSave)
-					.addGap(22))
+					.addGap(37)
+					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+						.addComponent(btnSave)
+						.addComponent(btnNewUser))
+					.addGap(25))
 		);
 		frame.getContentPane().setLayout(groupLayout);
+		frame.setVisible(true);
 	}
 }
