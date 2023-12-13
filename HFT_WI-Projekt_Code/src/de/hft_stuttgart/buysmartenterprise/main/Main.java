@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
+import javax.swing.JOptionPane;
+
 import de.hft_stuttgart.buysmartenterprise.dbaccess.DBAccess;
 import de.hft_stuttgart.buysmartenterprise.gui.GUI_login;
 
@@ -32,7 +34,7 @@ public class Main {
 			dbAccess.connect();
 			Connection con = dbAccess.getConnection();
 			Statement stm = con.createStatement();
-			String sql = "SELECT password FROM login WHERE binary username='"+ user + "'";
+			String sql = "SELECT password FROM login WHERE binary username='" + user + "'";
 			ResultSet rs = stm.executeQuery(sql);
 			if(rs.next()) {
 				pw = rs.getString("password");
@@ -43,6 +45,5 @@ public class Main {
 			System.out.println("Unbekannter Fehler: " + e.getMessage());
 			return "";
 		}
-	}
 	
-}
+	}}

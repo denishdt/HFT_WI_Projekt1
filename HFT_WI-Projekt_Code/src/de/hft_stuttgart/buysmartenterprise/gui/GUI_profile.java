@@ -166,6 +166,15 @@ public class GUI_profile {
 							fieldChangeUsernameNew.setText("");
 						}
 						
+					} else if(!oldPassword.equals(main.getPassword()) || !oldUsername.equals(main.getUser())) {
+						JOptionPane.showMessageDialog(frame, "Benutzername oder Passwort falsch", "Fehler", JOptionPane.ERROR_MESSAGE);
+						
+					} else if(!oldPassword.equals(main.getPassword()) || !oldUsername.equals(main.getUser()) && newUsername.isEmpty() || newPassword.isEmpty()) {
+						JOptionPane.showMessageDialog(frame, "Bitte fülle alle nötigen Felder aus", "Fehler", JOptionPane.ERROR_MESSAGE);
+						
+					} else if(!oldPassword.equals(main.getPassword()) || !oldUsername.equals(main.getUser()) && !newUsername.isEmpty() || !newPassword.isEmpty()) {
+						JOptionPane.showMessageDialog(frame, "Benutzername oder Passwort falsch", "Fehler", JOptionPane.ERROR_MESSAGE);
+						
 					} else if(!fieldChangeUsernameOld.getText().isEmpty() && !fieldChangeUsernameNew.getText().isEmpty() && !fieldChangePasswordOld.getText().isEmpty() && !fieldChangePasswordNew.getText().isEmpty()){
 						String sql1 = "UPDATE db5.login SET username = '" + newUsername + "' WHERE username = '" + oldUsername + "'";
 						String sql2 = "UPDATE db5.login SET password = '" + newPassword + "' WHERE password = '" + oldPassword + "'";
@@ -176,7 +185,7 @@ public class GUI_profile {
 						fieldChangeUsernameOld.setText("");
 						fieldChangeUsernameNew.setText("");
 						JOptionPane.showMessageDialog(frame, "Benutzername und Passwort wurden aktualisiert", "Profil", JOptionPane.INFORMATION_MESSAGE);
-						
+					
 					} else {
 						JOptionPane.showMessageDialog(frame, "Bitte fülle alle nötigen Felder aus", "Fehler", JOptionPane.ERROR_MESSAGE);
 					}
