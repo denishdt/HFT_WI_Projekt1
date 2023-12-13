@@ -63,8 +63,8 @@ public class GUI_Login {
 	 * Create the application.
 	 */
 	public GUI_Login() {
-		initialize();
 		dbAccess.firstConnect();
+		initialize();
 	}
 
 	/**
@@ -117,7 +117,7 @@ public class GUI_Login {
 						frame.setVisible(false);
 						GUI_dashboard openDashboard = new GUI_dashboard();
 					} else {
-						JOptionPane.showMessageDialog(frame, "Benutzername oder Passwort falsch!", "Fehler", JOptionPane.ERROR_MESSAGE, null);
+						JOptionPane.showMessageDialog(frame, "Benutzername oder Passwort falsch!", "Fehler", JOptionPane.ERROR_MESSAGE);
 						textField.setText("");
 						textField_1.setText("");
 					}

@@ -53,8 +53,8 @@ public class GUI_dashboard {
 	 * Create the application.
 	 */
 	public GUI_dashboard() {
-		initialize();
 		dbAccess.connect();
+		initialize();
 	}
 
 	/**

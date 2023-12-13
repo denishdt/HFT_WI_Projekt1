@@ -57,8 +57,8 @@ public class GUI_automatic_order {
 	 * Create the application.
 	 */
 	public GUI_automatic_order() {
-		initialize();
 		dbAccess.connect();
+		initialize();
 	}
 
 	/**

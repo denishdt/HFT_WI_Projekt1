@@ -56,8 +56,8 @@ public class GUI_order_status {
 	 * Create the application.
 	 */
 	public GUI_order_status() {
-		initialize();
 		dbAccess.connect();
+		initialize();
 	}
 
 	/**

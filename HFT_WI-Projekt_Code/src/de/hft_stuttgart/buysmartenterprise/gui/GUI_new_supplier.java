@@ -62,8 +62,8 @@ public class GUI_new_supplier {
 	 * Create the application.
 	 */
 	public GUI_new_supplier() {
-		initialize();
 		dbAccess.connect();
+		initialize();
 	}
 
 	/**

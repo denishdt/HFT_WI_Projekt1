@@ -47,8 +47,8 @@ public class GUI_new_order {
 	 * Create the application.
 	 */
 	public GUI_new_order() {
-		initialize();
 		dbAccess.connect();
+		initialize();
 	}
 
 	/**
