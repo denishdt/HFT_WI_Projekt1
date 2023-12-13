@@ -152,7 +152,7 @@ public class GUI_new_employee {
 					Connection con = dbAccess.getConnection();
 					Statement stm = con.createStatement();
 					if(username.isEmpty() || password.isEmpty()) {
-						JOptionPane.showMessageDialog(frame, "Bitte fülle alle Felder aus", "Fehler", JOptionPane.ERROR_MESSAGE);
+						JOptionPane.showMessageDialog(frame, "Bitte fülle alle nötigen Felder aus", "Fehler", JOptionPane.ERROR_MESSAGE);
 					} else {
 						String sql = "INSERT INTO db5.login(username, password, role) VALUES('" + username + "', '" + password + "', '" + role + "')";
 						stm.execute(sql);
