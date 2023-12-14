@@ -207,5 +207,7 @@ public class GUI_show_stock {
 		tfAnzahl3.setColumns(10);
 		tfAnzahl3.setBounds(608, 193, 31, 27);
 		frame.getContentPane().add(tfAnzahl3);
+		frame.setVisible(true);
 	}
+	
 }
