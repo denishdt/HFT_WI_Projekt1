@@ -66,6 +66,7 @@ public class GUI_profile {
 	private void initialize() {
 		frame = new JFrame();
 		frame.setBounds(100, 100, 647, 325);
+		frame.setResizable(false);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		JPanel panel = new JPanel();
