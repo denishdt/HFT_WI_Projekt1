@@ -47,6 +47,7 @@ public class GUI_show_supplier {
 		frmHighspeedProcurement = new JFrame();
 		frmHighspeedProcurement.setTitle("HighSpeed Procurement");
 		frmHighspeedProcurement.setBounds(100, 100, 700, 300);
+		frmHighspeedProcurement.setResizable(false);
 		frmHighspeedProcurement.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		JPanel panel = new JPanel();
