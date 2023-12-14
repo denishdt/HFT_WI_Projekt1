@@ -155,6 +155,14 @@ public class GUI_dashboard {
 		panel_1.add(lblNewLabel_3, gbc_lblNewLabel_3);
 		
 		JButton btnNewButton_7 = new JButton("Bestand der Einzelteile anzeigen");
+			btnNewButton_7.addActionListener(new ActionListener() {
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					frmBuysmartEnterprises.setVisible(false);
+					GUI_show_stock openShowStock = new GUI_show_stock();
+							
+				}
+			});
 		btnNewButton_7.setForeground(new Color(255, 255, 255));
 		btnNewButton_7.setBackground(new Color(128, 128, 128));
 		GridBagConstraints gbc_btnNewButton_7 = new GridBagConstraints();
