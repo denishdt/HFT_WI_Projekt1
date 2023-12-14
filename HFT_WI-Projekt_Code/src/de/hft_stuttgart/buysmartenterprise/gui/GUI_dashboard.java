@@ -27,6 +27,9 @@ import java.awt.GridLayout;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
+import com.jgoodies.forms.layout.FormLayout;
+import com.jgoodies.forms.layout.ColumnSpec;
+import com.jgoodies.forms.layout.RowSpec;
 
 public class GUI_dashboard {
 	
@@ -63,7 +66,7 @@ public class GUI_dashboard {
 	private void initialize() {
 		frmBuysmartEnterprises = new JFrame();
 		frmBuysmartEnterprises.setTitle("HighSpeed Procurement");
-		frmBuysmartEnterprises.setBounds(100, 100, 712, 300);
+		frmBuysmartEnterprises.setBounds(100, 100, 830, 380);
 		frmBuysmartEnterprises.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmBuysmartEnterprises.setResizable(false);
 		
@@ -73,23 +76,21 @@ public class GUI_dashboard {
 		JPanel panel_1 = new JPanel();
 		GroupLayout groupLayout = new GroupLayout(frmBuysmartEnterprises.getContentPane());
 		groupLayout.setHorizontalGroup(
-			groupLayout.createParallelGroup(Alignment.LEADING)
-				.addComponent(panel, GroupLayout.DEFAULT_SIZE, 685, Short.MAX_VALUE)
-				.addComponent(panel_1, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+			groupLayout.createParallelGroup(Alignment.TRAILING)
+				.addComponent(panel, GroupLayout.DEFAULT_SIZE, 814, Short.MAX_VALUE)
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGap(27)
+					.addComponent(panel_1, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+					.addGap(21))
 		);
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
 					.addComponent(panel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
-					.addComponent(panel_1, GroupLayout.PREFERRED_SIZE, 201, GroupLayout.PREFERRED_SIZE))
+					.addGap(35)
+					.addComponent(panel_1, GroupLayout.DEFAULT_SIZE, 262, Short.MAX_VALUE)
+					.addContainerGap())
 		);
-		GridBagLayout gbl_panel_1 = new GridBagLayout();
-		gbl_panel_1.columnWidths = new int[]{0, 0, 0, 0, 0, 0, 0};
-		gbl_panel_1.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0, 0};
-		gbl_panel_1.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
-		gbl_panel_1.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
-		panel_1.setLayout(gbl_panel_1);
 		
 		JButton btnNewButton_4 = new JButton("Alle Lieferanten anzeigen");
 		btnNewButton_4.setForeground(new Color(255, 255, 255));
@@ -100,20 +101,10 @@ public class GUI_dashboard {
 				GUI_show_supplier openShowSupplier = new GUI_show_supplier();
 			}
 		});
-		GridBagConstraints gbc_btnNewButton_4 = new GridBagConstraints();
-		gbc_btnNewButton_4.insets = new Insets(0, 0, 5, 5);
-		gbc_btnNewButton_4.gridx = 0;
-		gbc_btnNewButton_4.gridy = 0;
-		panel_1.add(btnNewButton_4, gbc_btnNewButton_4);
 		
 		JButton btnNewButton_5 = new JButton("Neuen Lieferanten hinzufügen");
 		btnNewButton_5.setForeground(new Color(255, 255, 255));
 		btnNewButton_5.setBackground(new Color(128, 128, 128));
-		GridBagConstraints gbc_btnNewButton_5 = new GridBagConstraints();
-		gbc_btnNewButton_5.insets = new Insets(0, 0, 5, 5);
-		gbc_btnNewButton_5.gridx = 2;
-		gbc_btnNewButton_5.gridy = 0;
-		panel_1.add(btnNewButton_5, gbc_btnNewButton_5);
 		btnNewButton_5.addActionListener(new ActionListener() {
 			
 			@Override
@@ -126,11 +117,6 @@ public class GUI_dashboard {
 		JButton btnNewButton_6 = new JButton("Standartlieferanten festlegen");
 		btnNewButton_6.setForeground(new Color(255, 255, 255));
 		btnNewButton_6.setBackground(new Color(128, 128, 128));
-		GridBagConstraints gbc_btnNewButton_6 = new GridBagConstraints();
-		gbc_btnNewButton_6.insets = new Insets(0, 0, 5, 0);
-		gbc_btnNewButton_6.gridx = 5;
-		gbc_btnNewButton_6.gridy = 0;
-		panel_1.add(btnNewButton_6, gbc_btnNewButton_6);
 		btnNewButton_6.addActionListener(new ActionListener() {
 			
 			@Override
@@ -139,20 +125,6 @@ public class GUI_dashboard {
 				GUI_standard_supplier openStandardSupplier = new GUI_standard_supplier();
 			}
 		});
-		
-		JLabel lblNewLabel_2 = new JLabel("                       ");
-		GridBagConstraints gbc_lblNewLabel_2 = new GridBagConstraints();
-		gbc_lblNewLabel_2.insets = new Insets(0, 0, 5, 5);
-		gbc_lblNewLabel_2.gridx = 0;
-		gbc_lblNewLabel_2.gridy = 1;
-		panel_1.add(lblNewLabel_2, gbc_lblNewLabel_2);
-		
-		JLabel lblNewLabel_3 = new JLabel("                                ");
-		GridBagConstraints gbc_lblNewLabel_3 = new GridBagConstraints();
-		gbc_lblNewLabel_3.insets = new Insets(0, 0, 5, 5);
-		gbc_lblNewLabel_3.gridx = 0;
-		gbc_lblNewLabel_3.gridy = 2;
-		panel_1.add(lblNewLabel_3, gbc_lblNewLabel_3);
 		
 		JButton btnNewButton_7 = new JButton("Bestand der Einzelteile anzeigen");
 			btnNewButton_7.addActionListener(new ActionListener() {
@@ -165,20 +137,10 @@ public class GUI_dashboard {
 			});
 		btnNewButton_7.setForeground(new Color(255, 255, 255));
 		btnNewButton_7.setBackground(new Color(128, 128, 128));
-		GridBagConstraints gbc_btnNewButton_7 = new GridBagConstraints();
-		gbc_btnNewButton_7.insets = new Insets(0, 0, 5, 5);
-		gbc_btnNewButton_7.gridx = 0;
-		gbc_btnNewButton_7.gridy = 3;
-		panel_1.add(btnNewButton_7, gbc_btnNewButton_7);
 		
-		JButton btnNewButton_8 = new JButton("Standardmenge für Einzelteile festlegen");
+		JButton btnNewButton_8 = new JButton("Standardmenge für Teile festlegen");
 		btnNewButton_8.setForeground(new Color(255, 255, 255));
 		btnNewButton_8.setBackground(new Color(128, 128, 128));
-		GridBagConstraints gbc_btnNewButton_8 = new GridBagConstraints();
-		gbc_btnNewButton_8.insets = new Insets(0, 0, 5, 5);
-		gbc_btnNewButton_8.gridx = 2;
-		gbc_btnNewButton_8.gridy = 3;
-		panel_1.add(btnNewButton_8, gbc_btnNewButton_8);
 		btnNewButton_8.addActionListener(new ActionListener() {
 			
 			@Override
@@ -191,11 +153,6 @@ public class GUI_dashboard {
 		JButton btnNewButton_9 = new JButton("Bestellstatus einsehen");
 		btnNewButton_9.setForeground(new Color(255, 255, 255));
 		btnNewButton_9.setBackground(new Color(128, 128, 128));
-		GridBagConstraints gbc_btnNewButton_9 = new GridBagConstraints();
-		gbc_btnNewButton_9.insets = new Insets(0, 0, 5, 0);
-		gbc_btnNewButton_9.gridx = 5;
-		gbc_btnNewButton_9.gridy = 3;
-		panel_1.add(btnNewButton_9, gbc_btnNewButton_9);
 		btnNewButton_9.addActionListener(new ActionListener() {
 			
 			@Override
@@ -205,28 +162,9 @@ public class GUI_dashboard {
 			}
 		});
 		
-		JLabel lblNewLabel_4 = new JLabel("                    ");
-		GridBagConstraints gbc_lblNewLabel_4 = new GridBagConstraints();
-		gbc_lblNewLabel_4.insets = new Insets(0, 0, 5, 5);
-		gbc_lblNewLabel_4.gridx = 0;
-		gbc_lblNewLabel_4.gridy = 4;
-		panel_1.add(lblNewLabel_4, gbc_lblNewLabel_4);
-		
-		JLabel lblNewLabel_5 = new JLabel("                          ");
-		GridBagConstraints gbc_lblNewLabel_5 = new GridBagConstraints();
-		gbc_lblNewLabel_5.insets = new Insets(0, 0, 5, 5);
-		gbc_lblNewLabel_5.gridx = 0;
-		gbc_lblNewLabel_5.gridy = 5;
-		panel_1.add(lblNewLabel_5, gbc_lblNewLabel_5);
-		
 		JButton btnNewButton_10 = new JButton("Mindestmenge festlegen");
 		btnNewButton_10.setForeground(new Color(255, 255, 255));
 		btnNewButton_10.setBackground(new Color(128, 128, 128));
-		GridBagConstraints gbc_btnNewButton_10 = new GridBagConstraints();
-		gbc_btnNewButton_10.insets = new Insets(0, 0, 0, 5);
-		gbc_btnNewButton_10.gridx = 0;
-		gbc_btnNewButton_10.gridy = 6;
-		panel_1.add(btnNewButton_10, gbc_btnNewButton_10);
 		btnNewButton_10.addActionListener(new ActionListener() {
 			
 			@Override
@@ -239,11 +177,6 @@ public class GUI_dashboard {
 		JButton btnNewButton_11 = new JButton("Bestellung erstellen");
 		btnNewButton_11.setForeground(new Color(255, 255, 255));
 		btnNewButton_11.setBackground(new Color(128, 128, 128));
-		GridBagConstraints gbc_btnNewButton_11 = new GridBagConstraints();
-		gbc_btnNewButton_11.insets = new Insets(0, 0, 0, 5);
-		gbc_btnNewButton_11.gridx = 2;
-		gbc_btnNewButton_11.gridy = 6;
-		panel_1.add(btnNewButton_11, gbc_btnNewButton_11);
 		btnNewButton_11.addActionListener(new ActionListener() {
 			
 			@Override
@@ -256,10 +189,44 @@ public class GUI_dashboard {
 		JButton btnNewButton_12 = new JButton("Automatische Bestellung");
 		btnNewButton_12.setForeground(new Color(255, 255, 255));
 		btnNewButton_12.setBackground(new Color(128, 128, 128));
-		GridBagConstraints gbc_btnNewButton_12 = new GridBagConstraints();
-		gbc_btnNewButton_12.gridx = 5;
-		gbc_btnNewButton_12.gridy = 6;
-		panel_1.add(btnNewButton_12, gbc_btnNewButton_12);
+		GroupLayout gl_panel_1 = new GroupLayout(panel_1);
+		gl_panel_1.setHorizontalGroup(
+			gl_panel_1.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_panel_1.createSequentialGroup()
+					.addGroup(gl_panel_1.createParallelGroup(Alignment.TRAILING, false)
+						.addComponent(btnNewButton_10, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+						.addComponent(btnNewButton_7, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+						.addComponent(btnNewButton_4, GroupLayout.DEFAULT_SIZE, 201, Short.MAX_VALUE))
+					.addGap(44)
+					.addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING, false)
+						.addComponent(btnNewButton_11, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+						.addComponent(btnNewButton_8, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+						.addComponent(btnNewButton_5, GroupLayout.PREFERRED_SIZE, 236, GroupLayout.PREFERRED_SIZE))
+					.addPreferredGap(ComponentPlacement.RELATED, 69, Short.MAX_VALUE)
+					.addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING, false)
+						.addComponent(btnNewButton_9, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+						.addComponent(btnNewButton_12, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+						.addComponent(btnNewButton_6, Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, 216, GroupLayout.PREFERRED_SIZE)))
+		);
+		gl_panel_1.setVerticalGroup(
+			gl_panel_1.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_panel_1.createSequentialGroup()
+					.addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING)
+						.addComponent(btnNewButton_4)
+						.addComponent(btnNewButton_5)
+						.addComponent(btnNewButton_6))
+					.addGap(65)
+					.addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING)
+						.addComponent(btnNewButton_7)
+						.addComponent(btnNewButton_9)
+						.addComponent(btnNewButton_8))
+					.addGap(65)
+					.addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING)
+						.addComponent(btnNewButton_11)
+						.addComponent(btnNewButton_12)
+						.addComponent(btnNewButton_10)))
+		);
+		panel_1.setLayout(gl_panel_1);
 		btnNewButton_12.addActionListener(new ActionListener() {
 			
 			@Override
