@@ -86,8 +86,9 @@ public class GUI_new_supplier {
 	private void initialize() {
 		frm = new JFrame();
 		frm.setTitle("HighSpeed Procurement");
-		frm.setBounds(100, 100, 700, 416);
+		frm.setBounds(100, 100, 702, 416);
 		frm.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frm.setResizable(false);
 		
 		JPanel panel = new JPanel();
 		panel.setBackground(Color.BLACK);

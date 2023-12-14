@@ -63,6 +63,7 @@ public class GUI_new_order {
 		frame.setBounds(100, 100, 700, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
+		frame.setResizable(false);
 		
 		JPanel panel = new JPanel();
 		panel.setBackground(new Color(255, 255, 255));
