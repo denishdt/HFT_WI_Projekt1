@@ -105,7 +105,7 @@ public class GUI_new_supplier {
 		lblNewLabel_1.setBackground(new Color(128, 128, 128));
 		panel.add(lblNewLabel_1);
 		
-		JLabel lblNewLabel_2 = new JLabel("   ");
+		JLabel lblNewLabel_2 = new JLabel("                    ");
 		panel.add(lblNewLabel_2);
 		
 		JButton btnNewButton = new JButton("Home");
