@@ -69,6 +69,7 @@ public class GUI_automatic_order {
 		frmBuysmartEnterprise.setTitle("HighSpeed Procurement");
 		frmBuysmartEnterprise.setBounds(100, 100, 700, 300);
 		frmBuysmartEnterprise.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frmBuysmartEnterprise.setResizable(false);
 		
 		JPanel panel = new JPanel();
 		panel.setBackground(new Color(0, 0, 0));
