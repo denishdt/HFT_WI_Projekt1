@@ -63,8 +63,9 @@ public class GUI_dashboard {
 	private void initialize() {
 		frmBuysmartEnterprises = new JFrame();
 		frmBuysmartEnterprises.setTitle("HighSpeed Procurement");
-		frmBuysmartEnterprises.setBounds(100, 100, 700, 300);
+		frmBuysmartEnterprises.setBounds(100, 100, 712, 300);
 		frmBuysmartEnterprises.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frmBuysmartEnterprises.setResizable(false);
 		
 		JPanel panel = new JPanel();
 		panel.setBackground(new Color(0, 0, 0));
