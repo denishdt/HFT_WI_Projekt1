@@ -6,6 +6,8 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import java.awt.Color;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import javax.swing.SwingConstants;
 
@@ -27,8 +29,10 @@ public class GUI_new_order {
 
 	//Pipi Kacka Land
 	private JFrame frame;
-	private JTextField textField;
-	private JTextField textField_1;
+	private JTextField mengeField;
+	private JTextField preisField;
+	private JComboBox<String> lieferantComboBox;
+	private JComboBox<String> teilecomboBox;
 	DBAccess dbAccess = new DBAccess();
 
 	/**
@@ -111,17 +115,48 @@ public class GUI_new_order {
 		lblNewLabel_6.setForeground(new Color(0, 0, 0));
 		lblNewLabel_6.setBackground(new Color(255, 255, 255));
 		
-		textField = new JTextField();
-		textField.setBounds(334, 108, 48, 32);
-		panel.add(textField);
-		textField.setColumns(10);
+		mengeField = new JTextField();
+		mengeField.setBounds(334, 108, 48, 32);
+		panel.add(mengeField);
+		mengeField.setColumns(10);
 		
 		JButton btnNewButton = new JButton("Zur Bestellung hinzufügen");
 		btnNewButton.setBackground(new Color(0, 0, 128));
 		btnNewButton.setForeground(new Color(255, 255, 255));
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-			}
+				String teile = (String) teilecomboBox.getSelectedItem();
+				String menge = mengeField.getText().replaceAll("[^\\d.]", "");
+		        String lieferant = (String) lieferantComboBox.getSelectedItem();
+		        //String name = "Lieferando"; 
+		        //double preis = 400.00; 
+		        
+		        if (teile.isEmpty() || menge.isEmpty() || lieferant.isEmpty()) {
+		            JOptionPane.showMessageDialog(frame, "Bitte fülle alle Felder aus!", "Fehler", JOptionPane.ERROR_MESSAGE);
+		            return;
+		        }
+		        
+		        try {
+		        	
+				Connection con = dbAccess.getConnection();
+				Statement stm = con.createStatement();
+				String sql = "SELECT preis,lieferantenart FROM db5.lieferanten WHERE name = '" + lieferant + "' AND lieferantenart LIKE '%" + teile + "%'";//+ "' AND preis = '" + preis + "'";
+				ResultSet rs = stm.executeQuery(sql);
+				
+				if(rs.next()) {
+					String preis =rs.getString("preis");
+					preis = preis.replaceAll("[^\\d.]", "");
+					double gesamtPreis= Double.parseDouble(preis) * Double.parseDouble(menge);
+					preisField.setText(String.valueOf(gesamtPreis));
+				}else {
+					JOptionPane.showMessageDialog(frame, "Der ausgewählte Lieferant hat nicht die ausgewählten Teile, versuche es bei einem anderen Lieferanten.", "Fehler", JOptionPane.ERROR_MESSAGE);
+                    preisField.setText("");
+				}
+			}catch (Exception ex) {
+	            System.out.println("Fehler beim Abrufen des Preises: " + ex.getMessage());
+	        }
+		        
+	      }
 		});
 		btnNewButton.setBounds(448, 187, 96, 32);
 		panel.add(btnNewButton);
@@ -132,13 +167,13 @@ public class GUI_new_order {
 		btnNewButton_1.setBounds(559, 187, 96, 32);
 		panel.add(btnNewButton_1);
 		
-		textField_1 = new JTextField();
-		textField_1.setEditable(false);
-		textField_1.setBounds(599, 101, 56, 32);
-		panel.add(textField_1);
-		textField_1.setColumns(10);
+		preisField = new JTextField();
+		preisField.setEditable(false);
+		preisField.setBounds(599, 101, 56, 32);
+		panel.add(preisField);
+		preisField.setColumns(10);
 		
-		JComboBox<String> teilecomboBox = new JComboBox<>();
+		teilecomboBox = new JComboBox<>();
 		teilecomboBox.setBounds(10, 107, 221, 21);
 		panel.add(teilecomboBox);
 		teilecomboBox.setMaximumRowCount(8);
@@ -156,7 +191,7 @@ public class GUI_new_order {
 		teilecomboBox.addItem("Sonstiges");
 		
 		
-		JComboBox<String> lieferantComboBox = new JComboBox<>();
+		lieferantComboBox = new JComboBox<>();
 		lieferantComboBox.setBounds(427, 109, 162, 20);
 		panel.add(lieferantComboBox);
 		try {
