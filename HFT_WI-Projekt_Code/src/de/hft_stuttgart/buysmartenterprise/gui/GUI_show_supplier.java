@@ -8,6 +8,9 @@ import javax.swing.JPanel;
 import java.awt.Color;
 import javax.swing.JLabel;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.JButton;
 import javax.swing.SwingConstants;
 import javax.swing.JComboBox;
@@ -73,16 +76,37 @@ public class GUI_show_supplier {
 		btnNewButton.setForeground(Color.WHITE);
 		btnNewButton.setBackground(Color.BLACK);
 		panel.add(btnNewButton);
+		btnNewButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				frmHighspeedProcurement.setVisible(false);
+				GUI_dashboard openDashboard = new GUI_dashboard();
+			}
+		});
 		
 		JButton btnNewButton_2 = new JButton("Profile");
 		btnNewButton_2.setForeground(Color.WHITE);
 		btnNewButton_2.setBackground(Color.BLACK);
 		panel.add(btnNewButton_2);
+		btnNewButton_2.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				frmHighspeedProcurement.setVisible(false);
+				GUI_profile openProfile = new GUI_profile();
+			}
+		});
 		
 		JButton btnNewButton_3 = new JButton("Log Out");
 		btnNewButton_3.setForeground(Color.WHITE);
 		btnNewButton_3.setBackground(Color.BLACK);
 		panel.add(btnNewButton_3);
+		btnNewButton_3.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				frmHighspeedProcurement.setVisible(false);
+				GUI_login openLogin = new GUI_login();
+			}
+		});
 		
 		JLabel lblNewLabel_3 = new JLabel("Lieferanten Anzeigen:");
 		lblNewLabel_3.setFont(new Font("Tahoma", Font.BOLD, 13));
