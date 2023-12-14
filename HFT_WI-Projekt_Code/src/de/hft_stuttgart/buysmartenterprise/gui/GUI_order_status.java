@@ -66,6 +66,7 @@ public class GUI_order_status {
 	private void initialize() {
 		frmBuysmartEnterprise = new JFrame();
 		frmBuysmartEnterprise.setTitle("HighSpeed Procurement");
+		frmBuysmartEnterprise.setResizable(false);
 		frmBuysmartEnterprise.setBounds(100, 100, 700, 267);
 		frmBuysmartEnterprise.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
