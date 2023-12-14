@@ -65,6 +65,7 @@ public class GUI_new_employee {
 		frame = new JFrame("Benutzer");
 		frame.setBounds(100, 100, 620, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setResizable(false);
 		
 		JPanel panel = new JPanel();
 		panel.setBackground(Color.BLACK);
