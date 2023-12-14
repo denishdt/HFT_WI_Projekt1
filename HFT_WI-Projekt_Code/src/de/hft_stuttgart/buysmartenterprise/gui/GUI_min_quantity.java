@@ -75,8 +75,9 @@ public class GUI_min_quantity {
 	private void initialize() {
 		frm = new JFrame();
 		frm.setTitle("HighSpeed Procurement");
-		frm.setBounds(100, 100, 652, 300);
+		frm.setBounds(100, 100, 674, 300);
 		frm.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frm.setResizable(false);
 		
 		panel = new JPanel();
 		panel.setBackground(new Color(0, 0, 0));
