@@ -27,7 +27,7 @@ import javax.swing.JComboBox;
 
 public class GUI_new_order {
 
-	//Pipi Kacka Land
+	
 	private JFrame frame;
 	private JTextField mengeField;
 	private JTextField preisField;
@@ -192,6 +192,12 @@ public class GUI_new_order {
 		
 		
 		lieferantComboBox = new JComboBox<>();
+		lieferantComboBox.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String ausgewaehlterLieferant = (String) lieferantComboBox.getSelectedItem();
+				verfuegbareTeil(ausgewaehlterLieferant);
+			}
+		});
 		lieferantComboBox.setBounds(427, 109, 162, 20);
 		panel.add(lieferantComboBox);
 		try {
@@ -208,7 +214,7 @@ public class GUI_new_order {
 			frame.getContentPane().repaint();
 			
 		} catch (Exception e1) {
-			System.out.println("Unbekannter Fehler: " + e1.getMessage());
+			System.out.println("Unbekannter Fehler: " + e1.getMessage());	
 		}
 		
 		
@@ -289,4 +295,23 @@ public class GUI_new_order {
 		frame.setVisible(true);
 		
 		}
+	private void verfuegbareTeil(String ausgewaehlterLieferant) {
+        teilecomboBox.removeAllItems(); // Vorhandene Elemente löschen
+
+        try {
+            Connection con = dbAccess.getConnection();
+            Statement stm = con.createStatement();
+            String sql = "SELECT lieferantenart FROM db5.lieferanten WHERE name = '" + ausgewaehlterLieferant + "'";
+            ResultSet rs = stm.executeQuery(sql);
+
+            while (rs.next()) {
+                String data = rs.getString("lieferantenart");
+                teilecomboBox.addItem(data);
+            }
+        } catch (Exception e) {
+            System.out.println("Fehler beim Abrufen der Teile: " + e.getMessage());
+        }
+
+    }
+
 }
