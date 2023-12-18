@@ -263,9 +263,11 @@ public class GUI_show_supplier {
 		});
 		
 		txtSupplierFor = new JTextField();
+		txtSupplierFor.setEditable(false);
 		txtSupplierFor.setColumns(10);
 		
 		txtStandardSupplier = new JTextField();
+		txtStandardSupplier.setEditable(false);
 		txtStandardSupplier.setColumns(10);
 		
 		GroupLayout groupLayout = new GroupLayout(frmHighspeedProcurement.getContentPane());
