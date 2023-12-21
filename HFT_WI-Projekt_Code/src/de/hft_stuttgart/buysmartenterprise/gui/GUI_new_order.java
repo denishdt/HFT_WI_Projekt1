@@ -296,7 +296,7 @@ public class GUI_new_order {
 		
 		}
 	private void verfuegbareTeil(String ausgewaehlterLieferant) {
-        teilecomboBox.removeAllItems(); // Vorhandene Elemente löschen
+        teilecomboBox.removeAllItems(); // Vorhandene Elemente löschen oke
 
         try {
             Connection con = dbAccess.getConnection();
