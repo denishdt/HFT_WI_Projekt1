@@ -296,22 +296,33 @@ public class GUI_new_order {
 		
 		}
 	private void verfuegbareTeil(String ausgewaehlterLieferant) {
-        teilecomboBox.removeAllItems(); // Vorhandene Elemente löschen
+	    teilecomboBox.removeAllItems(); // Vorhandene Elemente löschen
 
-        try {
-            Connection con = dbAccess.getConnection();
-            Statement stm = con.createStatement();
-            String sql = "SELECT lieferantenart FROM db5.lieferanten WHERE name = '" + ausgewaehlterLieferant + "'";
-            ResultSet rs = stm.executeQuery(sql);
+	    try {
+	        Connection con = dbAccess.getConnection();
+	        Statement stm = con.createStatement();
+	        String sql = "SELECT DISTINCT lieferantenart FROM db5.lieferanten WHERE name = '" + ausgewaehlterLieferant + "'";
+	        ResultSet rs = stm.executeQuery(sql);
 
-            while (rs.next()) {
-                String data = rs.getString("lieferantenart");
-                teilecomboBox.addItem(data);
-            }
-        } catch (Exception e) {
-            System.out.println("Fehler beim Abrufen der Teile: " + e.getMessage());
-        }
+	        if (rs.next()) {
+	            // Der ausgewählte Lieferant hat mindestens ein Teil
+	            do {
+	                String data = rs.getString("lieferantenart");
+	                String[] teile = data.split(", "); // Annahme: Teile sind durch ", " getrennt
+	                for (String teil : teile) {
+	                    teilecomboBox.addItem(teil);
+	                }
+	            } while (rs.next());
+	        } else {
+	            // Der ausgewählte Lieferant hat keine Teile
+	            teilecomboBox.addItem("Keine Teile verfügbar");
+	        }
 
-    }
-
+	        // Aktualisieren Sie das ComboBox-Modell
+	        teilecomboBox.revalidate();
+	        teilecomboBox.repaint();
+	    } catch (Exception e) {
+	        System.out.println("Fehler beim Abrufen der Teile: " + e.getMessage());
+	    }
+	}
 }
