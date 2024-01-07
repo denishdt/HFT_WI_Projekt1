@@ -33,7 +33,6 @@ import javax.swing.GroupLayout.Alignment;
 
 
 public class GUI_login {
-//yarak
 	private JFrame frame;
 	private JTextField textField;
 	private JTextField textField_1;
