@@ -44,6 +44,8 @@ public class GUI_standard_quantity {
 	private JLabel lblNewLabel_3;
 	private JTextField textField;
 	DBAccess dbAccess = new DBAccess();
+	private JLabel lblNewLabel_7;
+	private JTextField textField_1;
 
 	/**
 	 * Launch the application.
@@ -84,55 +86,84 @@ public class GUI_standard_quantity {
 		
 		lblNewLabel_3 = new JLabel("Komponente ausw\u00E4hlen:");
 		
-		JComboBox comboBox = new JComboBox();
+		JComboBox<String> comboBox = new JComboBox<>();
+		comboBox.addItem("Grafikkarte");
+        comboBox.addItem("RAM");
+        comboBox.addItem("Akku");
+        comboBox.addItem("Motherboard");
+        comboBox.addItem("SSD");
+        comboBox.addItem("Netzteil");
+        comboBox.addItem("CPU");
+        comboBox.addItem("Netzwerkkarte");
 		
 		JLabel lblNewLabel_4 = new JLabel("Einzelteil ausw\u00E4hlen:");
 		
-		JComboBox comboBox_1 = new JComboBox();
+		JComboBox<String> comboBox_1 = new JComboBox<>();
 		
 		JLabel lblNewLabel_5 = new JLabel("Standardmenge eingeben:");
 		
 		textField = new JTextField();
 		textField.setColumns(10);
+		
+		lblNewLabel_7 = new JLabel("Mindestmenge eingeben:");
+		
+		textField_1 = new JTextField();
+		textField_1.setColumns(10);
+		
+		JButton btnNewButton_1 = new JButton("Speichern");
 		GroupLayout groupLayout = new GroupLayout(frm.getContentPane());
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 						.addComponent(panel, GroupLayout.PREFERRED_SIZE, 683, GroupLayout.PREFERRED_SIZE)
-						.addGroup(groupLayout.createSequentialGroup()
-							.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING, false)
-								.addGroup(Alignment.LEADING, groupLayout.createSequentialGroup()
-									.addContainerGap()
-									.addComponent(comboBox, 0, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-								.addGroup(Alignment.LEADING, groupLayout.createSequentialGroup()
-									.addGap(10)
-									.addComponent(lblNewLabel_3, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-							.addGap(118)
+						.addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()
+							.addContainerGap()
+							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+								.addComponent(lblNewLabel_3, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+								.addComponent(comboBox, GroupLayout.PREFERRED_SIZE, 211, GroupLayout.PREFERRED_SIZE))
+							.addPreferredGap(ComponentPlacement.RELATED)
 							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
-								.addComponent(comboBox_1, 0, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-								.addComponent(lblNewLabel_4, GroupLayout.DEFAULT_SIZE, 105, Short.MAX_VALUE))
-							.addGap(119)
-							.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
-								.addComponent(lblNewLabel_5)
-								.addComponent(textField, GroupLayout.PREFERRED_SIZE, 31, GroupLayout.PREFERRED_SIZE))))
-					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+								.addGroup(groupLayout.createSequentialGroup()
+									.addComponent(comboBox_1, 0, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+									.addGap(255))
+								.addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()
+									.addComponent(lblNewLabel_4, GroupLayout.PREFERRED_SIZE, 105, GroupLayout.PREFERRED_SIZE)
+									.addGap(140)
+									.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+										.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
+											.addComponent(lblNewLabel_5)
+											.addComponent(textField, GroupLayout.PREFERRED_SIZE, 31, GroupLayout.PREFERRED_SIZE))
+										.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
+											.addComponent(textField_1, GroupLayout.PREFERRED_SIZE, 29, GroupLayout.PREFERRED_SIZE)
+											.addComponent(lblNewLabel_7)
+											.addComponent(btnNewButton_1, GroupLayout.PREFERRED_SIZE, 133, GroupLayout.PREFERRED_SIZE)))))))
+					.addContainerGap(17, Short.MAX_VALUE))
 		);
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
 					.addComponent(panel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 					.addGap(18)
+					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
+						.addGroup(groupLayout.createSequentialGroup()
+							.addComponent(lblNewLabel_5)
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(textField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+						.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+							.addComponent(lblNewLabel_4)
+							.addComponent(lblNewLabel_3)))
+					.addPreferredGap(ComponentPlacement.UNRELATED)
 					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-						.addComponent(lblNewLabel_3)
-						.addComponent(lblNewLabel_4)
-						.addComponent(lblNewLabel_5))
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-						.addComponent(comboBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 						.addComponent(comboBox_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(textField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addContainerGap(174, Short.MAX_VALUE))
+						.addComponent(comboBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addGap(9)
+					.addComponent(lblNewLabel_7)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(textField_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+					.addGap(18)
+					.addComponent(btnNewButton_1, GroupLayout.PREFERRED_SIZE, 38, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(21, Short.MAX_VALUE))
 		);
 		
 		lblNewLabel = new JLabel("BuySmart Enterprise   ");
@@ -140,7 +171,7 @@ public class GUI_standard_quantity {
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		panel.add(lblNewLabel);
 		
-		lblNewLabel_1 = new JLabel("Standardmenge festlegen");
+		lblNewLabel_1 = new JLabel("Standard & Mindestmenge festlegen");
 		lblNewLabel_1.setOpaque(true);
 		lblNewLabel_1.setForeground(Color.WHITE);
 		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 13));
