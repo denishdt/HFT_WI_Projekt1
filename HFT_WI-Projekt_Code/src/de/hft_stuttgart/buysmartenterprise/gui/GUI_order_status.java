@@ -11,6 +11,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.Statement;
 
 import javax.swing.JCheckBox;
 import java.awt.FlowLayout;
@@ -25,6 +28,8 @@ import javax.swing.JScrollPane;
 import javax.swing.JButton;
 import javax.swing.SwingConstants;
 import javax.swing.ImageIcon;
+import javax.swing.ComboBoxEditor;
+import javax.swing.DefaultCellEditor;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JPanel;
@@ -58,6 +63,7 @@ public class GUI_order_status {
 	public GUI_order_status() {
 		dbAccess.connect();
 		initialize();
+		getOrders();
 	}
 
 	/**
@@ -83,6 +89,8 @@ public class GUI_order_status {
 		));
 		
 		JPanel panel = new JPanel();
+		
+		
 		panel.setBackground(new Color(0, 0, 0));
 		GroupLayout groupLayout = new GroupLayout(frmBuysmartEnterprise.getContentPane());
 		groupLayout.setHorizontalGroup(
@@ -168,4 +176,28 @@ public class GUI_order_status {
 		
 		frmBuysmartEnterprise.setVisible(true);
 	}
+	
+	private void getOrders() {
+		try {
+			Connection con = dbAccess.getConnection();
+			Statement stm = con.createStatement();
+			String sql = "SELECT * from db5.order";
+			ResultSet rs = stm.executeQuery(sql);
+			
+			DefaultTableModel model = (DefaultTableModel) table.getModel();
+
+			
+			while(rs.next()) {
+				Object [] data = {
+						rs.getString("orderid"),
+						rs.getString("lieferant"),
+						rs.getString("status")
+				};
+				model.addRow(data);
+			}
+		} catch (Exception e) {
+			System.out.println("Unbekannter Fehler: " + e.getMessage());
+		}
+	}
+	
 }
