@@ -12,6 +12,9 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import java.awt.event.ActionEvent;
 import javax.swing.BoxLayout;
 import javax.swing.JTable;
@@ -24,6 +27,7 @@ import javax.swing.SwingConstants;
 import java.awt.Color;
 import java.awt.Font;
 import javax.swing.JMenuBar;
+import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JCheckBox;
 import javax.swing.JSplitPane;
@@ -46,6 +50,7 @@ public class GUI_standard_quantity {
 	DBAccess dbAccess = new DBAccess();
 	private JLabel lblNewLabel_7;
 	private JTextField textField_1;
+	private JComboBox<String> comboBox_1 = new JComboBox<>();
 
 	/**
 	 * Launch the application.
@@ -95,10 +100,15 @@ public class GUI_standard_quantity {
         comboBox.addItem("Netzteil");
         comboBox.addItem("CPU");
         comboBox.addItem("Netzwerkkarte");
+        comboBox.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				loadTeil((String)comboBox.getSelectedItem());
+			}
+		});
 		
 		JLabel lblNewLabel_4 = new JLabel("Einzelteil ausw\u00E4hlen:");
-		
-		JComboBox<String> comboBox_1 = new JComboBox<>();
 		
 		JLabel lblNewLabel_5 = new JLabel("Standardmenge eingeben:");
 		
@@ -111,24 +121,45 @@ public class GUI_standard_quantity {
 		textField_1.setColumns(10);
 		
 		JButton btnNewButton_1 = new JButton("Speichern");
+		btnNewButton_1.addActionListener(new ActionListener() {
+			
+			public void actionPerformed(ActionEvent e) {
+				String min = textField.getText();
+				String std = textField_1.getText();
+				String teil = (String) comboBox_1.getSelectedItem();
+				
+				if(min.isEmpty() && std.isEmpty()) {
+					JOptionPane.showMessageDialog(frm, "Bitte fülle alle Felder aus!", "Fehler", JOptionPane.ERROR_MESSAGE);
+				} else {
+					try {
+						Connection con = dbAccess.getConnection();
+						Statement stm = con.createStatement();
+						String sql = "INSERT INTO db5.teilmengen (teil, standardmenge, mindestmenge) VALUES ('" + teil + "', '" + std + "', '" + min + "')";
+						stm.execute(sql);
+						JOptionPane.showMessageDialog(frm, "Mengen wurden erfolgreich aktualisiert", "",JOptionPane.INFORMATION_MESSAGE);
+					} catch (Exception e2) {
+						System.out.println("Fehler beim Speichern der Daten: " + e2.getMessage());
+					}
+				}
+				
+			}
+		});
+		
 		GroupLayout groupLayout = new GroupLayout(frm.getContentPane());
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
 						.addComponent(panel, GroupLayout.PREFERRED_SIZE, 683, GroupLayout.PREFERRED_SIZE)
-						.addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()
+						.addGroup(groupLayout.createSequentialGroup()
 							.addContainerGap()
 							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-								.addComponent(lblNewLabel_3, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-								.addComponent(comboBox, GroupLayout.PREFERRED_SIZE, 211, GroupLayout.PREFERRED_SIZE))
+								.addComponent(lblNewLabel_3, GroupLayout.DEFAULT_SIZE, 245, Short.MAX_VALUE)
+								.addComponent(comboBox, GroupLayout.PREFERRED_SIZE, 189, GroupLayout.PREFERRED_SIZE))
 							.addPreferredGap(ComponentPlacement.RELATED)
-							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
+							.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
 								.addGroup(groupLayout.createSequentialGroup()
-									.addComponent(comboBox_1, 0, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-									.addGap(255))
-								.addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()
-									.addComponent(lblNewLabel_4, GroupLayout.PREFERRED_SIZE, 105, GroupLayout.PREFERRED_SIZE)
+									.addComponent(lblNewLabel_4, GroupLayout.PREFERRED_SIZE, 149, GroupLayout.PREFERRED_SIZE)
 									.addGap(140)
 									.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 										.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
@@ -137,8 +168,11 @@ public class GUI_standard_quantity {
 										.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
 											.addComponent(textField_1, GroupLayout.PREFERRED_SIZE, 29, GroupLayout.PREFERRED_SIZE)
 											.addComponent(lblNewLabel_7)
-											.addComponent(btnNewButton_1, GroupLayout.PREFERRED_SIZE, 133, GroupLayout.PREFERRED_SIZE)))))))
-					.addContainerGap(17, Short.MAX_VALUE))
+											.addComponent(btnNewButton_1, GroupLayout.PREFERRED_SIZE, 133, GroupLayout.PREFERRED_SIZE))))
+								.addGroup(groupLayout.createSequentialGroup()
+									.addComponent(comboBox_1, GroupLayout.PREFERRED_SIZE, 169, GroupLayout.PREFERRED_SIZE)
+									.addGap(255)))))
+					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
 		);
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
@@ -163,7 +197,7 @@ public class GUI_standard_quantity {
 					.addComponent(textField_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 					.addGap(18)
 					.addComponent(btnNewButton_1, GroupLayout.PREFERRED_SIZE, 38, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(21, Short.MAX_VALUE))
+					.addContainerGap(32, Short.MAX_VALUE))
 		);
 		
 		lblNewLabel = new JLabel("BuySmart Enterprise   ");
@@ -226,4 +260,27 @@ public class GUI_standard_quantity {
 		
 		frm.setVisible(true);
 	}
+	
+	private void loadTeil(String komponente) {
+    	try {
+			Connection con = dbAccess.getConnection();
+			Statement stm = con.createStatement();
+			String sql = "SELECT " + komponente + " from db5.teilebestand WHERE " + komponente + " IS NOT NULL";
+			ResultSet rs = stm.executeQuery(sql);
+			
+			comboBox_1.removeAllItems();
+			
+			while(rs.next()) {
+				String data = rs.getString(komponente);
+				comboBox_1.addItem(data);
+			}
+			
+			frm.getContentPane().revalidate();
+			frm.getContentPane().repaint();
+		} 
+    	
+    	catch (Exception e) {
+			System.out.println("Unbekannter Fehler: " + e.getMessage());
+		}
+    }
 }
