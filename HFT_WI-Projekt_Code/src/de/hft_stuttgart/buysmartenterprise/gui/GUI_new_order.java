@@ -436,7 +436,7 @@ public class GUI_new_order {
                 JOptionPane.WARNING_MESSAGE);
 
         if (option == JOptionPane.YES_OPTION) {
-            // Benutzer hat auf "Ja" geklickt, führe die Bestellaktion aus
+            // Benutzer hat auf "Ja" geklickt, führe die Bestellaktion aus.
             String teile = (String) teilecomboBox_1.getSelectedItem();
             String menge = mengeField.getText().replaceAll("[^\\d.]", "");
             String lieferant = (String) lieferantComboBox.getSelectedItem();
