@@ -190,6 +190,7 @@ public class GUI_show_stock {
 		frame.getContentPane().add(comboBox);
 		
 		textField_1 = new JTextField();
+		textField_1.setEditable(false);
 		textField_1.setBounds(589, 99, 68, 24);
 		frame.getContentPane().add(textField_1);
 		textField_1.setColumns(10);
