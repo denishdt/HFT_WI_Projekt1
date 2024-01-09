@@ -125,6 +125,13 @@ public class GUI_new_order {
                 }
 
                 calculatePrice(komponente, teile, menge);
+                
+             // Hier füge den Aufruf der Methode ein, um die Bestellung in die Datenbank einzufügen
+                insertOrderIntoDatabase(teile, Integer.parseInt(menge), lieferant, Double.parseDouble(preisField.getText()), "Pending");
+
+                // Hier kannst du die Erfolgsmeldung anzeigen
+                JOptionPane.showMessageDialog(frame, "Bestellung erfolgreich abgeschlossen!", "Erfolg",
+                        JOptionPane.INFORMATION_MESSAGE);
                 }
 
             
@@ -374,6 +381,32 @@ public class GUI_new_order {
             }
         } catch (Exception ex) {
             System.out.println("Fehler beim Abrufen des Preises: " + ex.getMessage());
+        }
+    }
+    private void insertOrderIntoDatabase(String teile, int menge, String lieferant, double preis, String status) {
+        try {
+            Connection con = dbAccess.getConnection();
+            String insertSql = "INSERT INTO db5.order (teile, menge, lieferant, preis, status) VALUES (?, ?, ?, ?, ?)";
+            
+            try (PreparedStatement pst = con.prepareStatement(insertSql)) {
+                pst.setString(1, teile);
+                pst.setInt(2, menge);
+                pst.setString(3, lieferant);
+                pst.setDouble(4, preis);
+                pst.setString(5, status);
+                
+                int affectedRows = pst.executeUpdate();
+
+                if (affectedRows > 0) {
+                    JOptionPane.showMessageDialog(frame, "Bestellung erfolgreich abgeschlossen!", "Erfolg",
+                            JOptionPane.INFORMATION_MESSAGE);
+                } else {
+                    JOptionPane.showMessageDialog(frame, "Fehler beim Abschließen der Bestellung.", "Fehler",
+                            JOptionPane.ERROR_MESSAGE);
+                }
+            }
+        } catch (Exception ex) {
+            System.out.println("Fehler beim Einfügen der Bestellung in die Datenbank: " + ex.getMessage());
         }
     }
 
