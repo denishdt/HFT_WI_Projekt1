@@ -11,6 +11,7 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
@@ -43,6 +44,7 @@ public class GUI_show_stock {
 	private JTextField tfAnzahl3;
 	private JComboBox<String> comboBox;
 	DBAccess dbAccess = new DBAccess();
+	private JTextField textField_1;
 
 	/**
 	 * Launch the application.
@@ -187,6 +189,19 @@ public class GUI_show_stock {
 		comboBox.setBounds(359, 101, 233, 22);
 		frame.getContentPane().add(comboBox);
 		
+		textField_1 = new JTextField();
+		textField_1.setBounds(589, 99, 68, 24);
+		frame.getContentPane().add(textField_1);
+		textField_1.setColumns(10);
+		comboBox.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				loadBestand((String) list.getSelectedValue(), (String) comboBox.getSelectedItem());
+				
+			}
+		});
+		
 		frame.setVisible(true);
 	}
 	
@@ -209,4 +224,25 @@ public class GUI_show_stock {
 			System.out.println("Unbekannter Fehler: " + e.getMessage());
 		}
     }
+	
+	private void loadBestand(String komponente, String teil) {
+		try {
+			Connection con = dbAccess.getConnection();
+			String preisSql = "SELECT bestand FROM db5.teilebestand WHERE " + komponente + " = ?";
+			try (PreparedStatement pst = con.prepareStatement(preisSql)){
+				pst.setString(1, teil);
+                ResultSet rs = pst.executeQuery();
+                
+                if(rs.next()) {
+                	int data = rs.getInt("bestand");
+                	textField_1.setText(Integer.toString(data));
+                }
+                
+			} catch (Exception e) {
+				System.out.println("Unbekannter Fehler: " + e.getMessage());
+			}
+		} catch (Exception e) {
+			System.out.println("Unbekannter Fehler: " + e.getMessage());
+		}
+	}
 }
