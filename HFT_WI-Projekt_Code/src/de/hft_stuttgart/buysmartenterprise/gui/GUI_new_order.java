@@ -212,7 +212,7 @@ public class GUI_new_order {
         teilecomboBox_1 = new JComboBox<String>();
         teilecomboBox_1.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
-        		// Leere die Menge und das Preisfeld
+        		// Leere die Menge und das Preisfeld.
 		        mengeField.setText("");
 		        preisField.setText("");
         	}
