@@ -30,6 +30,7 @@ public class GUI_new_order {
     private JTextField preisField;
     private JComboBox<String> lieferantComboBox;
     private JComboBox<String> teilecomboBox;
+    private JComboBox<String> teilecomboBox_1;
     DBAccess dbAccess = new DBAccess();
     private JTextField mengeField;
 
@@ -158,7 +159,6 @@ public class GUI_new_order {
         teilecomboBox.setMaximumRowCount(8);
         teilecomboBox.setForeground(new Color(0, 0, 0));
         teilecomboBox.setBackground(new Color(255, 255, 255));
-        teilecomboBox.addItem("Cache");
         teilecomboBox.addItem("RAM");
         teilecomboBox.addItem("SSD");
         teilecomboBox.addItem("CPU");
@@ -168,6 +168,13 @@ public class GUI_new_order {
         teilecomboBox.addItem("Grafikkarte");
         teilecomboBox.addItem("Netzwerkkarte");
         teilecomboBox.addItem("Sonstiges");
+        teilecomboBox.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String ausgewaehltesTeil = (String) teilecomboBox.getSelectedItem();
+				loadTeil(ausgewaehltesTeil);
+				
+			}
+		});
 
         lieferantComboBox = new JComboBox<>();
         lieferantComboBox.addActionListener(new ActionListener() {
@@ -215,7 +222,7 @@ public class GUI_new_order {
         lblNewLabel_7_1.setBounds(0, 0, 162, 32);
         panel_8.add(lblNewLabel_7_1);
         
-        JComboBox<String> teilecomboBox_1 = new JComboBox<String>();
+        teilecomboBox_1 = new JComboBox<String>();
         teilecomboBox_1.setMaximumRowCount(8);
         teilecomboBox_1.setForeground(Color.BLACK);
         teilecomboBox_1.setBackground(Color.WHITE);
@@ -323,5 +330,25 @@ public class GUI_new_order {
         } catch (Exception e) {
             System.out.println("Fehler beim Abrufen der Teile: " + e.getMessage());
         }
+    }
+    
+    private void loadTeil(String komponente) {
+    	try {
+			Connection con = dbAccess.getConnection();
+			Statement stm = con.createStatement();
+			String sql = "SELECT " + komponente + " from db5.teilebestand WHERE " + komponente + " IS NOT NULL";
+			ResultSet rs = stm.executeQuery(sql);
+			
+			teilecomboBox_1.removeAllItems();
+			
+			while(rs.next()) {
+				String data = rs.getString(komponente);
+				teilecomboBox_1.addItem(data);
+			}
+			frame.getContentPane().revalidate();
+			frame.getContentPane().repaint();
+		} catch (Exception e) {
+			System.out.println("Unbekannter Fehler: " + e.getMessage());
+		}
     }
 }
