@@ -19,6 +19,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.awt.event.ActionEvent;
@@ -110,39 +111,23 @@ public class GUI_new_order {
         btnNewButton.setForeground(new Color(255, 255, 255));
         btnNewButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                String teile = (String) teilecomboBox.getSelectedItem();
+            	
+                String teile = (String) teilecomboBox_1.getSelectedItem();
                 String menge = mengeField.getText().replaceAll("[^\\d.]", "");
                 String lieferant = (String) lieferantComboBox.getSelectedItem();
-
+                String komponente = (String) teilecomboBox.getSelectedItem();
+                
+                
                 if (teile.isEmpty() || menge.isEmpty() || lieferant.isEmpty()) {
                     JOptionPane.showMessageDialog(frame, "Bitte fülle alle Felder aus!", "Fehler",
                             JOptionPane.ERROR_MESSAGE);
                     return;
                 }
 
-                try {
-                    Connection con = dbAccess.getConnection();
-                    Statement stm = con.createStatement();
-                    String sql = "SELECT preis,lieferantenart FROM db5.lieferanten WHERE name = '" + lieferant
-                            + "' AND lieferantenart LIKE '%" + teile + "%'";
-                    ResultSet rs = stm.executeQuery(sql);
-
-                    if (rs.next()) {
-                        String preis = rs.getString("preis");
-                        preis = preis.replaceAll("[^\\d.]", "");
-                        double gesamtPreis = Double.parseDouble(preis) * Double.parseDouble(menge);
-                        preisField.setText(String.valueOf(gesamtPreis));
-                    } else {
-                        JOptionPane.showMessageDialog(frame,
-                                "Der ausgewählte Lieferant hat nicht die ausgewählten Teile, versuche es bei einem anderen Lieferanten.",
-                                "Fehler", JOptionPane.ERROR_MESSAGE);
-                        preisField.setText("");
-                    }
-                } catch (Exception ex) {
-                    System.out.println("Fehler beim Abrufen des Preises: " + ex.getMessage());
+                calculatePrice(komponente, teile, menge);
                 }
 
-            }
+            
         });
         btnNewButton.setBounds(478, 187, 177, 33);
         panel.add(btnNewButton);
@@ -170,8 +155,10 @@ public class GUI_new_order {
         teilecomboBox.addItem("Sonstiges");
         teilecomboBox.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
 				String ausgewaehltesTeil = (String) teilecomboBox.getSelectedItem();
 				loadTeil(ausgewaehltesTeil);
+				
 				
 			}
 		});
@@ -351,4 +338,30 @@ public class GUI_new_order {
 			System.out.println("Unbekannter Fehler: " + e.getMessage());
 		}
     }
+    
+    private void calculatePrice(String komponente, String teile, String menge) {
+        try {
+            Connection con = dbAccess.getConnection();
+            
+            // Use prepared statement to avoid SQL injection
+            String preisSql = "SELECT preis FROM db5.teilebestand WHERE " + komponente + " = ?";
+            try (PreparedStatement pst = con.prepareStatement(preisSql)) {
+                pst.setString(1, teile);
+                ResultSet rs = pst.executeQuery();
+
+                if (rs.next()) {
+                    double preis = rs.getDouble("preis");
+                    double gesamtPreis = preis * Double.parseDouble(menge);
+                    preisField.setText(String.valueOf(gesamtPreis));
+                } else {
+                    JOptionPane.showMessageDialog(frame, "Das ausgewählte Teil hat keinen Preis in der Datenbank.", "Fehler",
+                            JOptionPane.ERROR_MESSAGE);
+                    preisField.setText("");
+                }
+            }
+        } catch (Exception ex) {
+            System.out.println("Fehler beim Abrufen des Preises: " + ex.getMessage());
+        }
+    }
+
 }
