@@ -50,7 +50,7 @@ public class GUI_new_order {
 
     public GUI_new_order() {
         dbAccess.connect();
-        initialize(); //.
+        initialize(); 
     }
 
     private void initialize() {
