@@ -162,18 +162,6 @@ public class GUI_dashboard {
 			}
 		});
 		
-		JButton btnNewButton_10 = new JButton("Mindestmenge festlegen");
-		btnNewButton_10.setForeground(new Color(255, 255, 255));
-		btnNewButton_10.setBackground(new Color(128, 128, 128));
-		btnNewButton_10.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				frmBuysmartEnterprises.setVisible(false);
-				GUI_min_quantity openMinQuantity = new GUI_min_quantity();
-			}
-		});
-		
 		JButton btnNewButton_11 = new JButton("Bestellung erstellen");
 		btnNewButton_11.setForeground(new Color(255, 255, 255));
 		btnNewButton_11.setBackground(new Color(128, 128, 128));
@@ -193,19 +181,18 @@ public class GUI_dashboard {
 		gl_panel_1.setHorizontalGroup(
 			gl_panel_1.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_panel_1.createSequentialGroup()
-					.addGroup(gl_panel_1.createParallelGroup(Alignment.TRAILING, false)
-						.addComponent(btnNewButton_10, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-						.addComponent(btnNewButton_7, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-						.addComponent(btnNewButton_4, GroupLayout.DEFAULT_SIZE, 201, Short.MAX_VALUE))
-					.addGap(44)
 					.addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING, false)
 						.addComponent(btnNewButton_11, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+						.addComponent(btnNewButton_7, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+						.addComponent(btnNewButton_4, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 201, Short.MAX_VALUE))
+					.addGap(44)
+					.addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING, false)
+						.addComponent(btnNewButton_12, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
 						.addComponent(btnNewButton_8, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-						.addComponent(btnNewButton_5, GroupLayout.PREFERRED_SIZE, 236, GroupLayout.PREFERRED_SIZE))
+						.addComponent(btnNewButton_5, GroupLayout.DEFAULT_SIZE, 236, Short.MAX_VALUE))
 					.addPreferredGap(ComponentPlacement.RELATED, 69, Short.MAX_VALUE)
 					.addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING, false)
 						.addComponent(btnNewButton_9, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-						.addComponent(btnNewButton_12, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
 						.addComponent(btnNewButton_6, Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, 216, GroupLayout.PREFERRED_SIZE)))
 		);
 		gl_panel_1.setVerticalGroup(
@@ -221,10 +208,9 @@ public class GUI_dashboard {
 						.addComponent(btnNewButton_9)
 						.addComponent(btnNewButton_8))
 					.addGap(65)
-					.addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING)
+					.addGroup(gl_panel_1.createParallelGroup(Alignment.BASELINE)
 						.addComponent(btnNewButton_11)
-						.addComponent(btnNewButton_12)
-						.addComponent(btnNewButton_10)))
+						.addComponent(btnNewButton_12)))
 		);
 		panel_1.setLayout(gl_panel_1);
 		btnNewButton_12.addActionListener(new ActionListener() {
