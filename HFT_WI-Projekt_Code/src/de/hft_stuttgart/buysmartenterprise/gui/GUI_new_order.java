@@ -27,11 +27,11 @@ import javax.swing.JComboBox;
 
 public class GUI_new_order {
     private JFrame frame;
-    private JTextField mengeField;
     private JTextField preisField;
     private JComboBox<String> lieferantComboBox;
     private JComboBox<String> teilecomboBox;
     DBAccess dbAccess = new DBAccess();
+    private JTextField mengeField;
 
     public static void main(String[] args) {
         EventQueue.invokeLater(new Runnable() {
@@ -71,7 +71,7 @@ public class GUI_new_order {
         panel.add(panel_4);
         panel_4.setLayout(null);
 
-        JLabel lblNewLabel_9 = new JLabel("Lieferanten auswählen");
+        JLabel lblNewLabel_9 = new JLabel("Lieferanten auswählen:");
         lblNewLabel_9.setHorizontalAlignment(SwingConstants.CENTER);
         lblNewLabel_9.setFont(new Font("Tahoma", Font.PLAIN, 17));
         lblNewLabel_9.setBounds(0, 0, 221, 32);
@@ -79,11 +79,11 @@ public class GUI_new_order {
 
         JPanel panel_6 = new JPanel();
         panel_6.setBackground(new Color(255, 255, 255));
-        panel_6.setBounds(427, 66, 162, 32);
+        panel_6.setBounds(262, 6, 162, 32);
         panel.add(panel_6);
         panel_6.setLayout(null);
 
-        JLabel lblNewLabel_7 = new JLabel("Teile auswählen");
+        JLabel lblNewLabel_7 = new JLabel("Teile auswählen:");
         lblNewLabel_7.setBounds(0, 0, 162, 32);
         panel_6.add(lblNewLabel_7);
         lblNewLabel_7.setBackground(new Color(255, 255, 255));
@@ -104,12 +104,7 @@ public class GUI_new_order {
         lblNewLabel_6.setForeground(new Color(0, 0, 0));
         lblNewLabel_6.setBackground(new Color(255, 255, 255));
 
-        mengeField = new JTextField();
-        mengeField.setBounds(334, 108, 48, 32);
-        panel.add(mengeField);
-        mengeField.setColumns(10);
-
-        JButton btnNewButton = new JButton("Zur Bestellung hinzufügen");
+        JButton btnNewButton = new JButton("Bestellung abschließen");
         btnNewButton.setBackground(new Color(0, 0, 128));
         btnNewButton.setForeground(new Color(255, 255, 255));
         btnNewButton.addActionListener(new ActionListener() {
@@ -148,14 +143,8 @@ public class GUI_new_order {
 
             }
         });
-        btnNewButton.setBounds(448, 187, 96, 32);
+        btnNewButton.setBounds(478, 187, 177, 33);
         panel.add(btnNewButton);
-
-        JButton btnNewButton_1 = new JButton("Bestellung abschließen");
-        btnNewButton_1.setBackground(new Color(0, 0, 128));
-        btnNewButton_1.setForeground(new Color(255, 255, 255));
-        btnNewButton_1.setBounds(559, 187, 96, 32);
-        panel.add(btnNewButton_1);
 
         preisField = new JTextField();
         preisField.setEditable(false);
@@ -164,7 +153,7 @@ public class GUI_new_order {
         preisField.setColumns(10);
 
         teilecomboBox = new JComboBox<>();
-        teilecomboBox.setBounds(427, 109, 162, 20);
+        teilecomboBox.setBounds(262, 50, 162, 20);
         panel.add(teilecomboBox);
         teilecomboBox.setMaximumRowCount(8);
         teilecomboBox.setForeground(new Color(0, 0, 0));
@@ -206,12 +195,37 @@ public class GUI_new_order {
             System.out.println("Unbekannter Fehler: " + e1.getMessage());
         }
 
-        JLabel lblNewLabel_8 = new JLabel("Menge festlegen");
-        lblNewLabel_8.setBounds(248, 66, 143, 32);
+        JLabel lblNewLabel_8 = new JLabel("Menge festlegen:");
+        lblNewLabel_8.setBounds(436, 66, 143, 32);
         panel.add(lblNewLabel_8);
         lblNewLabel_8.setBackground(new Color(255, 255, 255));
         lblNewLabel_8.setFont(new Font("Tahoma", Font.PLAIN, 16));
         lblNewLabel_8.setHorizontalAlignment(SwingConstants.CENTER);
+        
+        JPanel panel_8 = new JPanel();
+        panel_8.setLayout(null);
+        panel_8.setBackground(Color.WHITE);
+        panel_8.setBounds(262, 120, 162, 32);
+        panel.add(panel_8);
+        
+        JLabel lblNewLabel_7_1 = new JLabel("Einzelteile auswählen:");
+        lblNewLabel_7_1.setHorizontalAlignment(SwingConstants.CENTER);
+        lblNewLabel_7_1.setFont(new Font("Tahoma", Font.PLAIN, 14));
+        lblNewLabel_7_1.setBackground(Color.WHITE);
+        lblNewLabel_7_1.setBounds(0, 0, 162, 32);
+        panel_8.add(lblNewLabel_7_1);
+        
+        JComboBox<String> teilecomboBox_1 = new JComboBox<String>();
+        teilecomboBox_1.setMaximumRowCount(8);
+        teilecomboBox_1.setForeground(Color.BLACK);
+        teilecomboBox_1.setBackground(Color.WHITE);
+        teilecomboBox_1.setBounds(262, 164, 162, 20);
+        panel.add(teilecomboBox_1);
+        
+        mengeField = new JTextField();
+        mengeField.setBounds(488, 103, 56, 29);
+        panel.add(mengeField);
+        mengeField.setColumns(10);
 
         JPanel panel_1 = new JPanel();
         panel_1.setBackground(Color.BLACK);
