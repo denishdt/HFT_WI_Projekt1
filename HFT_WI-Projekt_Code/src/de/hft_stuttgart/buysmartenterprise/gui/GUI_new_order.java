@@ -35,6 +35,7 @@ public class GUI_new_order {
     DBAccess dbAccess = new DBAccess();
     private JTextField mengeField;
 
+    
     public static void main(String[] args) {
         EventQueue.invokeLater(new Runnable() {
             public void run() {
