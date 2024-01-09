@@ -16,11 +16,15 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 
 import javax.swing.JCheckBox;
+import javax.swing.JComboBox;
+
 import java.awt.FlowLayout;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.SpringLayout;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumn;
 
 import de.hft_stuttgart.buysmartenterprise.dbaccess.DBAccess;
 
@@ -63,7 +67,7 @@ public class GUI_order_status {
 	public GUI_order_status() {
 		dbAccess.connect();
 		initialize();
-		getOrders();
+		updateStatusColumn();
 	}
 
 	/**
@@ -73,7 +77,7 @@ public class GUI_order_status {
 		frmBuysmartEnterprise = new JFrame();
 		frmBuysmartEnterprise.setTitle("HighSpeed Procurement");
 		frmBuysmartEnterprise.setResizable(false);
-		frmBuysmartEnterprise.setBounds(100, 100, 700, 267);
+		frmBuysmartEnterprise.setBounds(100, 100, 700, 360);
 		frmBuysmartEnterprise.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		JScrollPane scrollPane = new JScrollPane();
@@ -87,6 +91,7 @@ public class GUI_order_status {
 				"Bestellungsnummer:", "Lieferant:", "Status:"
 			}
 		));
+		//setUpStatusColumn(table, table.getColumnModel().getColumn(2));
 		
 		JPanel panel = new JPanel();
 		
@@ -177,27 +182,65 @@ public class GUI_order_status {
 		frmBuysmartEnterprise.setVisible(true);
 	}
 	
-	private void getOrders() {
-		try {
-			Connection con = dbAccess.getConnection();
-			Statement stm = con.createStatement();
-			String sql = "SELECT * from db5.order";
-			ResultSet rs = stm.executeQuery(sql);
-			
-			DefaultTableModel model = (DefaultTableModel) table.getModel();
+	 private void updateStatusColumn() {
+	        try {
+	            Connection con = dbAccess.getConnection();
+	            Statement stm = con.createStatement();
+	            String sql = "SELECT * from db5.order";
+	            ResultSet rs = stm.executeQuery(sql);
 
-			
-			while(rs.next()) {
-				Object [] data = {
-						rs.getString("orderid"),
-						rs.getString("lieferant"),
-						rs.getString("status")
-				};
-				model.addRow(data);
-			}
-		} catch (Exception e) {
-			System.out.println("Unbekannter Fehler: " + e.getMessage());
-		}
-	}
+	            DefaultTableModel model = new DefaultTableModel(
+	                    new Object[][]{},
+	                    new String[]{"Bestellungsnummer:", "Lieferant:", "Status:"}
+	            );
+
+	            while (rs.next()) {
+	                Object[] data = {
+	                        rs.getString("orderid"),
+	                        rs.getString("lieferant"),
+	                        getStatusLabel(rs.getString("status"))
+	                };
+	                model.addRow(data);
+	            }
+
+	            table.setModel(model);
+	            setUpStatusComboBoxEditor(table.getColumnModel().getColumn(2));
+
+	        } catch (Exception e) {
+	            System.out.println("Unbekannter Fehler: " + e.getMessage());
+	        }
+	    }
+
+	    private void setUpStatusComboBoxEditor(TableColumn statusColumn) {
+	        JComboBox<String> comboBox = new JComboBox<>(new String[]{"Versendet", "Eingetroffen"});
+	        statusColumn.setCellEditor(new DefaultCellEditor(comboBox));
+	        
+	        comboBox.addActionListener(new ActionListener() {
+				
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					updateStatus(table.getSelectedRow(), comboBox.getSelectedItem().toString());
+					
+				}
+			});
+	    }
+	    
+	    private void updateStatus(int selectedRow, String selectedStatus) {
+	    	if(selectedRow != -1) {
+	    		try {
+					Connection con = dbAccess.getConnection();
+					Statement stm = con.createStatement();
+					String orderid = table.getValueAt(selectedRow, 0).toString();
+					String sql = "UPDATE db5.order SET status = '" + selectedStatus + "' WHERE orderid = '" + orderid + "'";
+					stm.executeUpdate(sql);
+				} catch (Exception e) {
+					System.out.println("Unbekannter Fehler: " + e.getMessage());
+				}
+	    	}
+	    }
+
+	    private String getStatusLabel(String status) {
+	        return status.equals("Pending") ? "Versendet" : "Eingetroffen";
+	    }
 	
 }
