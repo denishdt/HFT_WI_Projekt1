@@ -124,14 +124,7 @@ public class GUI_new_order {
                     return;
                 }
 
-                calculatePrice(komponente, teile, menge);
-                
-             // Hier füge den Aufruf der Methode ein, um die Bestellung in die Datenbank einzufügen
-                insertOrderIntoDatabase(teile, Integer.parseInt(menge), lieferant, Double.parseDouble(preisField.getText()), "Pending");
-
-                // Hier kannst du die Erfolgsmeldung anzeigen
-                JOptionPane.showMessageDialog(frame, "Bestellung erfolgreich abgeschlossen!", "Erfolg",
-                        JOptionPane.INFORMATION_MESSAGE);
+                showConfirmationDialog();
                 }
 
             
@@ -410,5 +403,68 @@ public class GUI_new_order {
             System.out.println("JUSTIN IST STEIL");
         }
     }
+    private void showConfirmationDialog() {
+        int option = JOptionPane.showConfirmDialog(frame,
+                "Möchten Sie die Bestellung abschließen? Diese Aktion kann nicht storniert werden.",
+                "Warnung",
+                JOptionPane.YES_NO_OPTION,
+                JOptionPane.WARNING_MESSAGE);
 
+        if (option == JOptionPane.YES_OPTION) {
+            // Benutzer hat auf "Ja" geklickt, führe die Bestellaktion aus
+            String teile = (String) teilecomboBox_1.getSelectedItem();
+            String menge = mengeField.getText().replaceAll("[^\\d.]", "");
+            String lieferant = (String) lieferantComboBox.getSelectedItem();
+            String komponente = (String) teilecomboBox.getSelectedItem();
+
+            if (teile.isEmpty() || menge.isEmpty() || lieferant.isEmpty()) {
+                JOptionPane.showMessageDialog(frame, "Bitte fülle alle Felder aus!", "Fehler",
+                        JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+
+            calculatePrice(komponente, teile, menge);
+
+            // Hier füge den Aufruf der Methode ein, um die Bestellung in die Datenbank einzufügen
+            insertOrderIntoDatabase(teile, Integer.parseInt(menge), lieferant, Double.parseDouble(preisField.getText()), "Pending");
+
+            // Hier kannst du die Erfolgsmeldung anzeigen
+            JOptionPane.showMessageDialog(frame, "Bestellung erfolgreich abgeschlossen!", "Erfolg",
+                    JOptionPane.INFORMATION_MESSAGE);
+
+            // Setze das Menge-Feld zurück
+            mengeField.setText("");
+        } else {
+            // Benutzer hat auf "Nein" oder das Schließen des Dialogs geklickt
+            // Führe hier Aktionen aus, wenn der Benutzer die Bestellung nicht abschließen möchte
+
+            //Leere die Menge und das Preisfeld
+            mengeField.setText("");
+            preisField.setText("");
+
+           
+        }
+    }
+    private void updateBestandInDatabase(String teile, int bestellteMenge) {
+        try {
+            Connection con = dbAccess.getConnection();
+            String updateSql = "UPDATE db5.teilebestand SET bestand = bestand - ? WHERE " + teile + " = ?";
+
+            try (PreparedStatement pst = con.prepareStatement(updateSql)) {
+                pst.setInt(1, bestellteMenge);
+                pst.setString(2, teile);
+
+                int affectedRows = pst.executeUpdate();
+
+                if (affectedRows > 0) {
+                    System.out.println("Bestand erfolgreich aktualisiert.");
+                } else {
+                    System.out.println("Fehler beim Aktualisieren des Bestands.");
+                }
+            }
+        } catch (Exception ex) {
+            System.out.println("Fehler beim Aktualisieren des Bestands in der Datenbank: " + ex.getMessage());
+        }
+    }
 }
+
