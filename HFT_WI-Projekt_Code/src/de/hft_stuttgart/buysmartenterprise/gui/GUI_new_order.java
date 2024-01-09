@@ -445,26 +445,5 @@ public class GUI_new_order {
            
         }
     }
-    private void updateBestandInDatabase(String teile, int bestellteMenge) {
-        try {
-            Connection con = dbAccess.getConnection();
-            String updateSql = "UPDATE db5.teilebestand SET bestand = bestand - ? WHERE " + teile + " = ?";
-
-            try (PreparedStatement pst = con.prepareStatement(updateSql)) {
-                pst.setInt(1, bestellteMenge);
-                pst.setString(2, teile);
-
-                int affectedRows = pst.executeUpdate();
-
-                if (affectedRows > 0) {
-                    System.out.println("Bestand erfolgreich aktualisiert.");
-                } else {
-                    System.out.println("Fehler beim Aktualisieren des Bestands.");
-                }
-            }
-        } catch (Exception ex) {
-            System.out.println("Fehler beim Aktualisieren des Bestands in der Datenbank: " + ex.getMessage());
-        }
-    }
 }
 
