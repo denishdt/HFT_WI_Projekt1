@@ -407,6 +407,7 @@ public class GUI_new_order {
             }
         } catch (Exception ex) {
             System.out.println("Fehler beim Einfügen der Bestellung in die Datenbank: " + ex.getMessage());
+            System.out.println("JUSTIN IST STEIL");
         }
     }
 
