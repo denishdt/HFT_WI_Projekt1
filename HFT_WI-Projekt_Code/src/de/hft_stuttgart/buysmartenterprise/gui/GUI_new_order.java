@@ -210,6 +210,13 @@ public class GUI_new_order {
         panel_8.add(lblNewLabel_7_1);
         
         teilecomboBox_1 = new JComboBox<String>();
+        teilecomboBox_1.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		// Leere die Menge und das Preisfeld
+		        mengeField.setText("");
+		        preisField.setText("");
+        	}
+        });
         teilecomboBox_1.setMaximumRowCount(8);
         teilecomboBox_1.setForeground(Color.BLACK);
         teilecomboBox_1.setBackground(Color.WHITE);
@@ -332,9 +339,15 @@ public class GUI_new_order {
 				String data = rs.getString(komponente);
 				teilecomboBox_1.addItem(data);
 			}
+			//Menge und Preisfeld leeren wenn neues Teil ausgewaehlt
+			mengeField.setText("");
+	        preisField.setText("");
+			
 			frame.getContentPane().revalidate();
 			frame.getContentPane().repaint();
-		} catch (Exception e) {
+		} 
+    	
+    	catch (Exception e) {
 			System.out.println("Unbekannter Fehler: " + e.getMessage());
 		}
     }
