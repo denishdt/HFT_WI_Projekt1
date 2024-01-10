@@ -168,6 +168,7 @@ public class GUI_show_stock {
 		frame.getContentPane().add(list);
 		
 		txtBestandDerEinzelteile = new JTextField();
+		txtBestandDerEinzelteile.setEditable(false);
 		txtBestandDerEinzelteile.setForeground(new Color(0, 124, 128));
 		txtBestandDerEinzelteile.setFont(new Font("Tahoma", Font.BOLD, 12));
 		txtBestandDerEinzelteile.setHorizontalAlignment(SwingConstants.CENTER);
@@ -177,6 +178,7 @@ public class GUI_show_stock {
 		txtBestandDerEinzelteile.setColumns(10);
 		
 		textField = new JTextField();
+		textField.setEditable(false);
 		textField.setText("Bestand");
 		textField.setHorizontalAlignment(SwingConstants.CENTER);
 		textField.setForeground(new Color(0, 124, 128));
