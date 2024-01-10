@@ -473,7 +473,7 @@ public class GUI_new_order {
     private void updateTeilebestand(String komponente, String teile, int menge) {
         try {
             Connection con = dbAccess.getConnection();
-            String updateSql = "UPDATE db5.teilebestand SET bestand = bestand - ? WHERE " + komponente + " = ? ";
+            String updateSql = "UPDATE db5.teilebestand SET bestand = bestand + ? WHERE " + komponente + " = ? ";
 
             try (PreparedStatement pst = con.prepareStatement(updateSql)) {
                 pst.setInt(1, menge);
