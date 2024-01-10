@@ -39,7 +39,6 @@ public class GUI_new_supplier {
 	private JTextField tfIban;
 	private JTextField tfFax;
 	private JTextField tfZahlungsfrist;
-	private JTextField tfPreis;
 	DBAccess dbAccess = new DBAccess();
 
 	/**
@@ -208,11 +207,6 @@ public class GUI_new_supplier {
 		tfZahlungsfrist = new JTextField();
 		tfZahlungsfrist.setColumns(10);
 		
-		JLabel lblPreis = new JLabel("Preis:");
-		
-		tfPreis = new JTextField();
-		tfPreis.setColumns(10);
-		
 		JButton btnNewButton_4 = new JButton("Speichern");
 		btnNewButton_4.addActionListener(new ActionListener() {
 			
@@ -226,11 +220,10 @@ public class GUI_new_supplier {
 					String fax = tfFax.getText();
 					String iban = tfIban.getText();
 					String zahlungsfrist = tfZahlungsfrist.getText();
-					String preis = tfPreis.getText();
 					String lieferantenart = getLieferantenart(cbRam, cbSsd, cbCpu, cbNetzteil, cbAkku, cbMotherboard, cbGrafikkarte, cbNetzwerkkarte);
-					String newSuplier = "INSERT INTO db5.lieferanten(name, adress, email, phone, fax, iban, zahlungsfrist, preis, lieferantenart) VALUES('" + name + "', '" + adress + "', '" + email + "', '" + phone + "', '" + fax + "', '" + iban + "', '" + zahlungsfrist + "', '" + preis + "', '" + lieferantenart + "')";
+					String newSuplier = "INSERT INTO db5.lieferanten(name, adress, email, phone, fax, iban, zahlungsfrist, lieferantenart) VALUES('" + name + "', '" + adress + "', '" + email + "', '" + phone + "', '" + fax + "', '" + iban + "', '" + zahlungsfrist + "', '" + lieferantenart + "')";
 					
-					if (name.isEmpty() || adress.isEmpty() || email.isEmpty() || phone.isEmpty() || fax.isEmpty() || iban.isEmpty() || zahlungsfrist.isEmpty() || preis.isEmpty() || lieferantenart.isEmpty()) {
+					if (name.isEmpty() || adress.isEmpty() || email.isEmpty() || phone.isEmpty() || fax.isEmpty() || iban.isEmpty() || zahlungsfrist.isEmpty() || lieferantenart.isEmpty()) {
 						JOptionPane.showMessageDialog(frm, "Bitte fülle alle Felder aus!", "Fehler", JOptionPane.ERROR_MESSAGE);
 						return;
 					}
@@ -248,7 +241,6 @@ public class GUI_new_supplier {
 				tfFax.setText("");
 				tfIban.setText("");
 				tfZahlungsfrist.setText("");
-				tfPreis.setText("");
 				JOptionPane.showMessageDialog(frm, "Neuer Lieferant hinzugefügt!", "Neuer Lieferant", JOptionPane.INFORMATION_MESSAGE);
 			}
 		});
@@ -278,7 +270,7 @@ public class GUI_new_supplier {
 							.addComponent(cbCpu, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
 							.addGap(18))
 						.addGroup(groupLayout.createSequentialGroup()
-							.addComponent(cbAkku, GroupLayout.DEFAULT_SIZE, 75, Short.MAX_VALUE)
+							.addComponent(cbAkku, GroupLayout.DEFAULT_SIZE, 138, Short.MAX_VALUE)
 							.addPreferredGap(ComponentPlacement.RELATED)))
 					.addComponent(cbNetzteil, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
 					.addGap(171))
@@ -311,35 +303,33 @@ public class GUI_new_supplier {
 				.addGroup(groupLayout.createSequentialGroup()
 					.addContainerGap()
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addComponent(tfAdresse, GroupLayout.DEFAULT_SIZE, 279, Short.MAX_VALUE)
 						.addGroup(groupLayout.createSequentialGroup()
-							.addComponent(lblIban, GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
-							.addGap(179)))
-					.addGap(18)
+							.addComponent(lblZahlungsfrist, GroupLayout.DEFAULT_SIZE, 138, Short.MAX_VALUE)
+							.addGap(159))
+						.addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()
+							.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
+								.addComponent(tfZahlungsfrist, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 279, Short.MAX_VALUE)
+								.addComponent(tfIban, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 279, Short.MAX_VALUE)
+								.addComponent(tfAdresse, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 279, Short.MAX_VALUE)
+								.addGroup(Alignment.LEADING, groupLayout.createSequentialGroup()
+									.addComponent(lblIban, GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
+									.addGap(179)))
+							.addGap(18)))
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addComponent(tfTelefon, GroupLayout.DEFAULT_SIZE, 277, Short.MAX_VALUE)
 						.addGroup(groupLayout.createSequentialGroup()
-							.addComponent(lblFax, GroupLayout.DEFAULT_SIZE, 108, Short.MAX_VALUE)
-							.addGap(169)))
-					.addGap(142))
-				.addGroup(groupLayout.createSequentialGroup()
-					.addContainerGap()
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addComponent(tfZahlungsfrist, GroupLayout.DEFAULT_SIZE, 265, Short.MAX_VALUE)
-						.addComponent(tfIban, GroupLayout.DEFAULT_SIZE, 265, Short.MAX_VALUE)
-						.addGroup(groupLayout.createSequentialGroup()
-							.addComponent(lblZahlungsfrist, GroupLayout.DEFAULT_SIZE, 106, Short.MAX_VALUE)
-							.addGap(159)))
-					.addGap(18)
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addComponent(tfPreis, GroupLayout.DEFAULT_SIZE, 265, Short.MAX_VALUE)
-						.addGroup(groupLayout.createSequentialGroup()
-							.addComponent(lblPreis, GroupLayout.DEFAULT_SIZE, 56, Short.MAX_VALUE)
-							.addGap(209))
-						.addComponent(tfFax, GroupLayout.DEFAULT_SIZE, 265, Short.MAX_VALUE))
-					.addGap(38)
-					.addComponent(btnNewButton_4)
-					.addGap(25))
+							.addGap(289)
+							.addComponent(btnNewButton_4)
+							.addGap(25))
+						.addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()
+							.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
+								.addGroup(Alignment.LEADING, groupLayout.createSequentialGroup()
+									.addGap(6)
+									.addComponent(tfFax, GroupLayout.DEFAULT_SIZE, 271, Short.MAX_VALUE))
+								.addComponent(tfTelefon, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 277, Short.MAX_VALUE)
+								.addGroup(Alignment.LEADING, groupLayout.createSequentialGroup()
+									.addComponent(lblFax, GroupLayout.DEFAULT_SIZE, 108, Short.MAX_VALUE)
+									.addGap(169)))
+							.addGap(142))))
 		);
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
@@ -386,13 +376,10 @@ public class GUI_new_supplier {
 						.addComponent(tfIban, GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE)
 						.addComponent(tfFax, GroupLayout.PREFERRED_SIZE, 18, Short.MAX_VALUE))
 					.addPreferredGap(ComponentPlacement.UNRELATED)
-					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-						.addComponent(lblZahlungsfrist)
-						.addComponent(lblPreis))
+					.addComponent(lblZahlungsfrist)
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
 						.addComponent(tfZahlungsfrist, GroupLayout.PREFERRED_SIZE, 18, Short.MAX_VALUE)
-						.addComponent(tfPreis, GroupLayout.PREFERRED_SIZE, 18, Short.MAX_VALUE)
 						.addComponent(btnNewButton_4))
 					.addGap(29))
 		);
