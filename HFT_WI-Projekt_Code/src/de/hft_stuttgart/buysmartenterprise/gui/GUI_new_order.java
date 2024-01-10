@@ -352,10 +352,10 @@ public class GUI_new_order {
 		}
     }
     
-    private void calculatePrice(String komponente, String teile, String menge) {
+    private void calculatePrice(String komponente, String teile, int menge) {
         try {
             Connection con = dbAccess.getConnection();
-            
+
             // Use prepared statement to avoid SQL injection
             String preisSql = "SELECT preis FROM db5.teilebestand WHERE " + komponente + " = ?";
             try (PreparedStatement pst = con.prepareStatement(preisSql)) {
@@ -364,7 +364,7 @@ public class GUI_new_order {
 
                 if (rs.next()) {
                     double preis = rs.getDouble("preis");
-                    double gesamtPreis = preis * Double.parseDouble(menge);
+                    double gesamtPreis = preis * menge;
                     preisField.setText(String.valueOf(gesamtPreis));
                 } else {
                     JOptionPane.showMessageDialog(frame, "Das ausgewählte Teil hat keinen Preis in der Datenbank.", "Fehler",
@@ -436,38 +436,65 @@ public class GUI_new_order {
                 JOptionPane.WARNING_MESSAGE);
 
         if (option == JOptionPane.YES_OPTION) {
-            // Benutzer hat auf "Ja" geklickt, führe die Bestellaktion aus.
             String teile = (String) teilecomboBox_1.getSelectedItem();
-            String menge = mengeField.getText().replaceAll("[^\\d.]", "");
+            String mengeStr = mengeField.getText().replaceAll("[^\\d.]", "");
             String lieferant = (String) lieferantComboBox.getSelectedItem();
             String komponente = (String) teilecomboBox.getSelectedItem();
-            
 
-            if (teile.isEmpty() || menge.isEmpty() || lieferant.isEmpty()) {
+            if (teile.isEmpty() || mengeStr.isEmpty() || lieferant.isEmpty()) {
                 JOptionPane.showMessageDialog(frame, "Bitte fülle alle Felder aus!", "Fehler",
                         JOptionPane.ERROR_MESSAGE);
                 return;
             }
-            
-            calculatePrice(komponente, teile, menge);
-            
-            updateTeilebestand(komponente, teile, Integer.parseInt(menge));
-            
-            // Hier füge den Aufruf der Methode ein, um die Bestellung in die Datenbank einzufügen
-            insertOrderIntoDatabase(teile, Integer.parseInt(menge), lieferant, Double.parseDouble(preisField.getText()), "Pending");
 
+            int menge;
+            try {
+                menge = Integer.parseInt(mengeStr);
+            } catch (NumberFormatException e) {
+                JOptionPane.showMessageDialog(frame, "Ungültige Menge eingegeben.", "Fehler",
+                        JOptionPane.ERROR_MESSAGE);
+                return;
+            }
 
-            // Setze das Menge-Feld zurück
-            mengeField.setText("");
+            // Überprüfen, ob genügend Teile auf Lager sind, bevor die Bestellung eingefügt wird
+            if (isStockAvailable(komponente, teile, menge)) {
+                calculatePrice(komponente, teile, menge);
+                updateTeilebestand(komponente, teile, menge);
+                insertOrderIntoDatabase(teile, menge, lieferant, Double.parseDouble(preisField.getText()), "Pending");
+
+                // Setze das Menge-Feld zurück
+                mengeField.setText("");
+            } else {
+                // Fehlermeldung anzeigen, wenn nicht genügend Teile auf Lager sind
+                JOptionPane.showMessageDialog(frame, "Nicht genügend Teile auf Lager.", "Fehler",
+                        JOptionPane.ERROR_MESSAGE);
+            }
         } else {
             // Benutzer hat auf "Nein" oder das Schließen des Dialogs geklickt
             // Führe hier Aktionen aus, wenn der Benutzer die Bestellung nicht abschließen möchte
 
-            //Leere die Menge und das Preisfeld
+            // Leere die Menge und das Preisfeld
             mengeField.setText("");
             preisField.setText("");
-
-           
         }
+    }
+
+    private boolean isStockAvailable(String komponente, String teile, int menge) {
+        try {
+            Connection con = dbAccess.getConnection();
+            String selectSql = "SELECT bestand FROM db5.teilebestand WHERE " + komponente + " = ?";
+            try (PreparedStatement selectPst = con.prepareStatement(selectSql)) {
+                selectPst.setString(1, teile);
+                ResultSet resultSet = selectPst.executeQuery();
+
+                if (resultSet.next()) {
+                    int aktuellerBestand = resultSet.getInt("bestand");
+                    return aktuellerBestand >= menge;
+                }
+            }
+        } catch (Exception ex) {
+            System.out.println("Fehler beim Überprüfen des Teilebestands: " + ex.getMessage());
+        }
+        return false;
     }
 }
