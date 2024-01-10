@@ -34,6 +34,8 @@ public class GUI_new_order {
     private JComboBox<String> teilecomboBox_1;
     DBAccess dbAccess = new DBAccess();
     private JTextField mengeField;
+    private JTextField verfuegbarMengeField;
+    
 
     
     public static void main(String[] args) {
@@ -64,7 +66,7 @@ public class GUI_new_order {
 
         JPanel panel = new JPanel();
         panel.setBackground(new Color(255, 255, 255));
-        panel.setBounds(10, 35, 664, 226);
+        panel.setBounds(10, 35, 664, 237);
         frame.getContentPane().add(panel);
         panel.setLayout(null);
 
@@ -90,7 +92,7 @@ public class GUI_new_order {
         lblNewLabel_7.setBounds(0, 0, 162, 32);
         panel_6.add(lblNewLabel_7);
         lblNewLabel_7.setBackground(new Color(255, 255, 255));
-        lblNewLabel_7.setFont(new Font("Tahoma", Font.PLAIN, 14));
+        lblNewLabel_7.setFont(new Font("Tahoma", Font.PLAIN, 16));
         lblNewLabel_7.setHorizontalAlignment(SwingConstants.CENTER);
 
         JPanel panel_7 = new JPanel();
@@ -113,23 +115,46 @@ public class GUI_new_order {
         btnNewButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
             	
-                String teile = (String) teilecomboBox_1.getSelectedItem();
-                String menge = mengeField.getText().replaceAll("[^\\d.]", "");
+            	String teile = (String) teilecomboBox_1.getSelectedItem();
+                String mengeStr = mengeField.getText().trim(); // Trimmen Sie den Text, um führende oder nachfolgende Leerzeichen zu entfernen
                 String lieferant = (String) lieferantComboBox.getSelectedItem();
                 String komponente = (String) teilecomboBox.getSelectedItem();
-                
-                
-                if (teile.isEmpty() || menge.isEmpty() || lieferant.isEmpty()) {
+
+                if (teile.isEmpty() || mengeStr.isEmpty() || lieferant.isEmpty()) {
                     JOptionPane.showMessageDialog(frame, "Bitte fülle alle Felder aus!", "Fehler",
                             JOptionPane.ERROR_MESSAGE);
                     return;
                 }
 
-                showConfirmationDialog();
-                }
+                try {
+                    int menge = Integer.parseInt(mengeStr);
 
-            
+                    if (menge < 0) {
+                        JOptionPane.showMessageDialog(frame, "Bitte geben Sie eine positive Menge ein.", "Fehler",
+                                JOptionPane.ERROR_MESSAGE);
+                        return;
+                    }
+
+                    // Überprüfen, ob genügend Teile auf Lager sind, bevor die Bestellung eingefügt wird
+                    if (isStockAvailable(komponente, teile, menge)) {
+                        calculatePrice(komponente, teile, menge);
+                        updateTeilebestand(komponente, teile, menge);
+                        insertOrderIntoDatabase(teile, menge, lieferant, Double.parseDouble(preisField.getText()), "Pending");
+
+                        // Setze das Menge-Feld zurück
+                        mengeField.setText("");
+                    } else {
+                        // Fehlermeldung anzeigen, wenn nicht genügend Teile auf Lager sind
+                        JOptionPane.showMessageDialog(frame, "Nicht genügend Teile auf Lager.", "Fehler",
+                                JOptionPane.ERROR_MESSAGE);
+                    }
+                } catch (NumberFormatException ex) {
+                    JOptionPane.showMessageDialog(frame, "Ungültige Menge eingegeben. Bitte geben Sie eine positive ganze Zahl ein.", "Fehler",
+                            JOptionPane.ERROR_MESSAGE);
+                }
+            }
         });
+
         btnNewButton.setBounds(478, 187, 177, 33);
         panel.add(btnNewButton);
 
@@ -200,12 +225,12 @@ public class GUI_new_order {
         JPanel panel_8 = new JPanel();
         panel_8.setLayout(null);
         panel_8.setBackground(Color.WHITE);
-        panel_8.setBounds(262, 120, 162, 32);
+        panel_8.setBounds(262, 107, 162, 32);
         panel.add(panel_8);
         
         JLabel lblNewLabel_7_1 = new JLabel("Einzelteile auswählen:");
         lblNewLabel_7_1.setHorizontalAlignment(SwingConstants.CENTER);
-        lblNewLabel_7_1.setFont(new Font("Tahoma", Font.PLAIN, 14));
+        lblNewLabel_7_1.setFont(new Font("Tahoma", Font.PLAIN, 16));
         lblNewLabel_7_1.setBackground(Color.WHITE);
         lblNewLabel_7_1.setBounds(0, 0, 162, 32);
         panel_8.add(lblNewLabel_7_1);
@@ -216,18 +241,36 @@ public class GUI_new_order {
         		// Leere die Menge und das Preisfeld.
 		        mengeField.setText("");
 		        preisField.setText("");
+		        
+		     // Aktualisiere die verfügbare Menge, wenn ein neues Teil ausgewählt wird.
+		        String ausgewaehltesTeil = (String) teilecomboBox_1.getSelectedItem();
+		        String ausgewaehlteKomponente = (String) teilecomboBox.getSelectedItem();
+		        int bestand = getBestand(ausgewaehlteKomponente, ausgewaehltesTeil);
+		        verfuegbarMengeField.setText(String.valueOf(bestand));
         	}
         });
         teilecomboBox_1.setMaximumRowCount(8);
         teilecomboBox_1.setForeground(Color.BLACK);
         teilecomboBox_1.setBackground(Color.WHITE);
-        teilecomboBox_1.setBounds(262, 164, 162, 20);
+        teilecomboBox_1.setBounds(262, 151, 162, 20);
         panel.add(teilecomboBox_1);
         
         mengeField = new JTextField();
         mengeField.setBounds(488, 103, 56, 29);
         panel.add(mengeField);
         mengeField.setColumns(10);
+        
+        verfuegbarMengeField = new JTextField();
+        verfuegbarMengeField.setHorizontalAlignment(SwingConstants.CENTER);
+        verfuegbarMengeField.setEditable(false);
+        verfuegbarMengeField.setBounds(311, 208, 46, 29);
+        panel.add(verfuegbarMengeField);
+        verfuegbarMengeField.setColumns(10);
+        
+        JLabel lblNewLabel_3 = new JLabel("Verfügbarer Bestand:");
+        lblNewLabel_3.setFont(new Font("Tahoma", Font.PLAIN, 14));
+        lblNewLabel_3.setBounds(272, 191, 135, 20);
+        panel.add(lblNewLabel_3);
 
         JPanel panel_1 = new JPanel();
         panel_1.setBackground(Color.BLACK);
@@ -328,35 +371,53 @@ public class GUI_new_order {
     }
     
     private void loadTeil(String komponente) {
-    	try {
-			Connection con = dbAccess.getConnection();
-			Statement stm = con.createStatement();
-			String sql = "SELECT " + komponente + " from db5.teilebestand WHERE " + komponente + " IS NOT NULL";
-			ResultSet rs = stm.executeQuery(sql);
-			
-			teilecomboBox_1.removeAllItems();
-			
-			while(rs.next()) {
-				String data = rs.getString(komponente);
-				teilecomboBox_1.addItem(data);
-			}
-			//Menge und Preisfeld leeren wenn neues Teil ausgewaehlt
-			mengeField.setText("");
-	        preisField.setText("");
-			
-			frame.getContentPane().revalidate();
-			frame.getContentPane().repaint();
-		} 
-    	
-    	catch (Exception e) {
-			System.out.println("Unbekannter Fehler: " + e.getMessage());
-		}
-    }
-    
-    private void calculatePrice(String komponente, String teile, String menge) {
         try {
             Connection con = dbAccess.getConnection();
-            
+            Statement stm = con.createStatement();
+            String sql = "SELECT " + komponente + " FROM db5.teilebestand WHERE " + komponente + " IS NOT NULL";
+            ResultSet rs = stm.executeQuery(sql);
+
+            teilecomboBox_1.removeAllItems();
+
+            while (rs.next()) {
+                String teil = rs.getString(komponente);
+                int bestand = getBestand(komponente, teil);
+                teilecomboBox_1.addItem(teil);
+            }
+
+            // Menge und Preisfeld leeren, wenn neues Teil ausgewählt
+            mengeField.setText("");
+            preisField.setText("");
+
+            frame.getContentPane().revalidate();
+            frame.getContentPane().repaint();
+        } catch (Exception e) {
+            System.out.println("Unbekannter Fehler: " + e.getMessage());
+        }
+    }
+
+    private int getBestand(String komponente, String teil) {
+        try {
+            Connection con = dbAccess.getConnection();
+            String selectSql = "SELECT bestand FROM db5.teilebestand WHERE " + komponente + " = ?";
+            try (PreparedStatement selectPst = con.prepareStatement(selectSql)) {
+                selectPst.setString(1, teil);
+                ResultSet resultSet = selectPst.executeQuery();
+
+                if (resultSet.next()) {
+                    return resultSet.getInt("bestand");
+                }
+            }
+        } catch (Exception ex) {
+            System.out.println("Fehler beim Abrufen des Bestands: " + ex.getMessage());
+        }
+        return 0; // Standardwert, wenn etwas schief geht
+    }
+    
+    private void calculatePrice(String komponente, String teile, int menge) {
+        try {
+            Connection con = dbAccess.getConnection();
+
             // Use prepared statement to avoid SQL injection
             String preisSql = "SELECT preis FROM db5.teilebestand WHERE " + komponente + " = ?";
             try (PreparedStatement pst = con.prepareStatement(preisSql)) {
@@ -365,7 +426,7 @@ public class GUI_new_order {
 
                 if (rs.next()) {
                     double preis = rs.getDouble("preis");
-                    double gesamtPreis = preis * Double.parseDouble(menge);
+                    double gesamtPreis = preis * menge;
                     preisField.setText(String.valueOf(gesamtPreis));
                 } else {
                     JOptionPane.showMessageDialog(frame, "Das ausgewählte Teil hat keinen Preis in der Datenbank.", "Fehler",
@@ -413,7 +474,7 @@ public class GUI_new_order {
     private void updateTeilebestand(String komponente, String teile, int menge) {
         try {
             Connection con = dbAccess.getConnection();
-            String updateSql = "UPDATE db5.teilebestand SET bestand = bestand - ? WHERE " + komponente + " = ? ";
+            String updateSql = "UPDATE db5.teilebestand SET bestand = bestand + ? WHERE " + komponente + " = ? ";
 
             try (PreparedStatement pst = con.prepareStatement(updateSql)) {
                 pst.setInt(1, menge);
@@ -437,38 +498,65 @@ public class GUI_new_order {
                 JOptionPane.WARNING_MESSAGE);
 
         if (option == JOptionPane.YES_OPTION) {
-            // Benutzer hat auf "Ja" geklickt, führe die Bestellaktion aus.
             String teile = (String) teilecomboBox_1.getSelectedItem();
-            String menge = mengeField.getText().replaceAll("[^\\d.]", "");
+            String mengeStr = mengeField.getText().replaceAll("[^\\d.]", "");
             String lieferant = (String) lieferantComboBox.getSelectedItem();
             String komponente = (String) teilecomboBox.getSelectedItem();
-            
 
-            if (teile.isEmpty() || menge.isEmpty() || lieferant.isEmpty()) {
+            if (teile.isEmpty() || mengeStr.isEmpty() || lieferant.isEmpty()) {
                 JOptionPane.showMessageDialog(frame, "Bitte fülle alle Felder aus!", "Fehler",
                         JOptionPane.ERROR_MESSAGE);
                 return;
             }
-            
-            calculatePrice(komponente, teile, menge);
-            
-            updateTeilebestand(komponente, teile, Integer.parseInt(menge));
-            
-            // Hier füge den Aufruf der Methode ein, um die Bestellung in die Datenbank einzufügen
-            insertOrderIntoDatabase(teile, Integer.parseInt(menge), lieferant, Double.parseDouble(preisField.getText()), "Pending");
 
+            int menge;
+            try {
+                menge = Integer.parseInt(mengeStr);
+            } catch (NumberFormatException e) {
+                JOptionPane.showMessageDialog(frame, "Ungültige Menge eingegeben.", "Fehler",
+                        JOptionPane.ERROR_MESSAGE);
+                return;
+            }
 
-            // Setze das Menge-Feld zurück
-            mengeField.setText("");
+            // Überprüfen, ob genügend Teile auf Lager sind, bevor die Bestellung eingefügt wird
+            if (isStockAvailable(komponente, teile, menge)) {
+                calculatePrice(komponente, teile, menge);
+                updateTeilebestand(komponente, teile, menge);
+                insertOrderIntoDatabase(teile, menge, lieferant, Double.parseDouble(preisField.getText()), "Pending");
+
+                // Setze das Menge-Feld zurück
+                mengeField.setText("");
+            } else {
+                // Fehlermeldung anzeigen, wenn nicht genügend Teile auf Lager sind
+                JOptionPane.showMessageDialog(frame, "Nicht genügend Teile auf Lager.", "Fehler",
+                        JOptionPane.ERROR_MESSAGE);
+            }
         } else {
             // Benutzer hat auf "Nein" oder das Schließen des Dialogs geklickt
             // Führe hier Aktionen aus, wenn der Benutzer die Bestellung nicht abschließen möchte
 
-            //Leere die Menge und das Preisfeld
+            // Leere die Menge und das Preisfeld
             mengeField.setText("");
             preisField.setText("");
-
-           
         }
+    }
+
+    private boolean isStockAvailable(String komponente, String teile, int menge) {
+        try {
+            Connection con = dbAccess.getConnection();
+            String selectSql = "SELECT bestand FROM db5.teilebestand WHERE " + komponente + " = ?";
+            try (PreparedStatement selectPst = con.prepareStatement(selectSql)) {
+                selectPst.setString(1, teile);
+                ResultSet resultSet = selectPst.executeQuery();
+
+                if (resultSet.next()) {
+                    int aktuellerBestand = resultSet.getInt("bestand");
+                    return aktuellerBestand >= menge;
+                }
+            }
+        } catch (Exception ex) {
+            System.out.println("Fehler beim Überprüfen des Teilebestands: " + ex.getMessage());
+        }
+        return false;
     }
 }

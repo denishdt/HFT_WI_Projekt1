@@ -177,18 +177,19 @@ public class GUI_standard_supplier {
 		
 		
 		lblNewLabel_4 = new JLabel("Als Standardlieferant festlegen f\u00FCr:");
-		springLayout.putConstraint(SpringLayout.NORTH, lblNewLabel_4, 0, SpringLayout.NORTH, lblNewLabel_3);
-		springLayout.putConstraint(SpringLayout.WEST, lblNewLabel_4, 79, SpringLayout.EAST, lblNewLabel_3);
+		springLayout.putConstraint(SpringLayout.NORTH, lblNewLabel_4, 12, SpringLayout.SOUTH, panel);
+		springLayout.putConstraint(SpringLayout.WEST, lblNewLabel_4, 112, SpringLayout.EAST, lblNewLabel_3);
 		frm.getContentPane().add(lblNewLabel_4);
 		
 		chckbxNewCheckBox = new JCheckBox("Cache");
+		springLayout.putConstraint(SpringLayout.NORTH, chckbxNewCheckBox, 50, SpringLayout.SOUTH, panel);
 		springLayout.putConstraint(SpringLayout.WEST, chckbxNewCheckBox, 0, SpringLayout.WEST, lblNewLabel_4);
 		frm.getContentPane().add(chckbxNewCheckBox);
 		
 		comboBox = new JComboBox();
+		springLayout.putConstraint(SpringLayout.WEST, comboBox, 10, SpringLayout.WEST, frm.getContentPane());
+		springLayout.putConstraint(SpringLayout.EAST, comboBox, -27, SpringLayout.WEST, chckbxNewCheckBox);
 		springLayout.putConstraint(SpringLayout.NORTH, comboBox, 6, SpringLayout.SOUTH, lblNewLabel_3);
-		springLayout.putConstraint(SpringLayout.WEST, comboBox, 20, SpringLayout.WEST, frm.getContentPane());
-		springLayout.putConstraint(SpringLayout.EAST, comboBox, -89, SpringLayout.WEST, chckbxNewCheckBox);
 		frm.getContentPane().add(comboBox);
 		try {
 			Connection con = dbAccess.getConnection();
@@ -208,14 +209,15 @@ public class GUI_standard_supplier {
 		}
 		
 		chckbxNewCheckBox_1 = new JCheckBox("Netzteil");
+		springLayout.putConstraint(SpringLayout.NORTH, chckbxNewCheckBox_1, 79, SpringLayout.SOUTH, panel);
 		springLayout.putConstraint(SpringLayout.SOUTH, chckbxNewCheckBox, -6, SpringLayout.NORTH, chckbxNewCheckBox_1);
 		springLayout.putConstraint(SpringLayout.WEST, chckbxNewCheckBox_1, 0, SpringLayout.WEST, lblNewLabel_4);
 		frm.getContentPane().add(chckbxNewCheckBox_1);
 		
 		chckbxNewCheckBox_2 = new JCheckBox("Grafikkarte");
+		springLayout.putConstraint(SpringLayout.NORTH, chckbxNewCheckBox_2, 108, SpringLayout.SOUTH, panel);
 		springLayout.putConstraint(SpringLayout.SOUTH, chckbxNewCheckBox_1, -6, SpringLayout.NORTH, chckbxNewCheckBox_2);
 		springLayout.putConstraint(SpringLayout.WEST, chckbxNewCheckBox_2, 0, SpringLayout.WEST, lblNewLabel_4);
-		springLayout.putConstraint(SpringLayout.SOUTH, chckbxNewCheckBox_2, -110, SpringLayout.SOUTH, frm.getContentPane());
 		frm.getContentPane().add(chckbxNewCheckBox_2);
 		
 		chckbxNewCheckBox_3 = new JCheckBox("Akku");
@@ -255,7 +257,7 @@ public class GUI_standard_supplier {
 		
 		JButton btnSave = new JButton("Speichern");
 		springLayout.putConstraint(SpringLayout.SOUTH, btnSave, -26, SpringLayout.SOUTH, frm.getContentPane());
-		springLayout.putConstraint(SpringLayout.EAST, btnSave, -28, SpringLayout.EAST, frm.getContentPane());
+		springLayout.putConstraint(SpringLayout.EAST, btnSave, 0, SpringLayout.EAST, panel);
 		frm.getContentPane().add(btnSave);
 		btnSave.addActionListener(new ActionListener() {
 			@Override
