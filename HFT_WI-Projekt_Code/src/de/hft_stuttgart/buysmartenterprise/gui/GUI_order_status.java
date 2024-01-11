@@ -193,7 +193,7 @@ public class GUI_order_status {
 	                    new Object[][]{},
 	                    new String[]{"Bestellungsnummer:", "Lieferant:", "Status:"}
 	            );
-
+	            
 	            while (rs.next()) {
 	                Object[] data = {
 	                        rs.getString("orderid"),

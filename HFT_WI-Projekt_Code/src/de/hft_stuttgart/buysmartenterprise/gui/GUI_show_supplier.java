@@ -118,7 +118,7 @@ public class GUI_show_supplier {
 		lblNewLabel_1.setOpaque(true);
 		lblNewLabel_1.setForeground(Color.WHITE);
 		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblNewLabel_1.setBackground(Color.GRAY);
+		lblNewLabel_1.setBackground(new Color(64, 128, 128));
 		panel.add(lblNewLabel_1);
 		
 		JLabel lblNewLabel_2 = new JLabel("                                             ");
