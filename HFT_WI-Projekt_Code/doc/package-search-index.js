@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"de.hft_stuttgart.buysmartenterprise.gui"}];updateSearchResults();

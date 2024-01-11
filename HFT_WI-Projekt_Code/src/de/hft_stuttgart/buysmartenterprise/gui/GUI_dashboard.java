@@ -37,8 +37,9 @@ public class GUI_dashboard {
 	DBAccess dbAccess = new DBAccess();
 
 	/**
-	 * Launch the application.
-	 */
+     * Der Einstiegspunkt für die BuySmart Enterprise-Anwendung.
+     * @param args Die Befehlszeilenargumente.
+     */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
