@@ -30,7 +30,11 @@ import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 
 
-
+/**
+ * Hier kann man sich einloggen.
+ * 
+ *
+ */
 
 public class GUI_login {
 	private JFrame frame;

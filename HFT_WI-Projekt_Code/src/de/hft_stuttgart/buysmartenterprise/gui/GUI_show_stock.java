@@ -30,6 +30,12 @@ import de.hft_stuttgart.buysmartenterprise.dbaccess.DBAccess;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 
+/**
+ * 
+ * Zeigt den Bestand der jeweiligen Teile an.
+ *
+ */
+
 public class GUI_show_stock {
 
 	private JFrame frame;
@@ -209,7 +215,10 @@ public class GUI_show_stock {
 		frame.setVisible(true);
 	}
 	
-	private void loadTeil(String komponente) {
+	/**Zeigt das Teil an.
+	 * @param komponente
+	 */
+	public void loadTeil(String komponente) {
     	try {
 			Connection con = dbAccess.getConnection();
 			Statement stm = con.createStatement();
@@ -229,7 +238,12 @@ public class GUI_show_stock {
 		}
     }
 	
-	private void loadBestand(String komponente, String teil) {
+	
+	/**Zeigt den Bestand an.
+	 * @param komponente
+	 * @param teil
+	 */
+	public void loadBestand(String komponente, String teil) {
 		try {
 			Connection con = dbAccess.getConnection();
 			String preisSql = "SELECT bestand FROM db5.teilebestand WHERE " + komponente + " = ?";
