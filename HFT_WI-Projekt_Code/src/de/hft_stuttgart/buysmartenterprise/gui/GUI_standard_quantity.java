@@ -157,14 +157,14 @@ public class GUI_standard_quantity {
 						.addGroup(groupLayout.createSequentialGroup()
 							.addContainerGap()
 							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-								.addComponent(lblNewLabel_3, GroupLayout.DEFAULT_SIZE, 231, Short.MAX_VALUE)
+								.addComponent(lblNewLabel_3, GroupLayout.DEFAULT_SIZE, 245, Short.MAX_VALUE)
 								.addComponent(comboBox, GroupLayout.PREFERRED_SIZE, 189, GroupLayout.PREFERRED_SIZE))
 							.addPreferredGap(ComponentPlacement.RELATED)
 							.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
 								.addGroup(groupLayout.createSequentialGroup()
 									.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
-										.addComponent(lblNewLabel_4, GroupLayout.PREFERRED_SIZE, 149, GroupLayout.PREFERRED_SIZE)
-										.addComponent(btnNewButton_4, GroupLayout.PREFERRED_SIZE, 160, GroupLayout.PREFERRED_SIZE))
+										.addComponent(btnNewButton_4, GroupLayout.PREFERRED_SIZE, 210, GroupLayout.PREFERRED_SIZE)
+										.addComponent(lblNewLabel_4, GroupLayout.PREFERRED_SIZE, 149, GroupLayout.PREFERRED_SIZE))
 									.addGap(9)
 									.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 										.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
@@ -204,7 +204,7 @@ public class GUI_standard_quantity {
 					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
 						.addComponent(btnNewButton_1, GroupLayout.PREFERRED_SIZE, 38, GroupLayout.PREFERRED_SIZE)
 						.addComponent(btnNewButton_4, GroupLayout.PREFERRED_SIZE, 38, GroupLayout.PREFERRED_SIZE))
-					.addContainerGap(21, Short.MAX_VALUE))
+					.addContainerGap(34, Short.MAX_VALUE))
 		);
 		
 		lblNewLabel = new JLabel("BuySmart Enterprise   ");
