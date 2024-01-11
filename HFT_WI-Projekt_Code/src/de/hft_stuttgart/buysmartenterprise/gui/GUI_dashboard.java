@@ -180,10 +180,6 @@ public class GUI_dashboard {
 				GUI_new_order openNewOrder = new GUI_new_order();
 			}
 		});
-		
-		JButton btnNewButton_12 = new JButton("Automatische Bestellung");
-		btnNewButton_12.setForeground(new Color(255, 255, 255));
-		btnNewButton_12.setBackground(new Color(128, 128, 128));
 		GroupLayout gl_panel_1 = new GroupLayout(panel_1);
 		gl_panel_1.setHorizontalGroup(
 			gl_panel_1.createParallelGroup(Alignment.LEADING)
@@ -194,10 +190,9 @@ public class GUI_dashboard {
 						.addComponent(btnNewButton_4, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 201, Short.MAX_VALUE))
 					.addGap(44)
 					.addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING, false)
-						.addComponent(btnNewButton_12, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
 						.addComponent(btnNewButton_8, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
 						.addComponent(btnNewButton_5, GroupLayout.DEFAULT_SIZE, 236, Short.MAX_VALUE))
-					.addPreferredGap(ComponentPlacement.RELATED, 69, Short.MAX_VALUE)
+					.addPreferredGap(ComponentPlacement.RELATED, 71, Short.MAX_VALUE)
 					.addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING, false)
 						.addComponent(btnNewButton_9, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
 						.addComponent(btnNewButton_6, Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, 216, GroupLayout.PREFERRED_SIZE)))
@@ -215,19 +210,9 @@ public class GUI_dashboard {
 						.addComponent(btnNewButton_9)
 						.addComponent(btnNewButton_8))
 					.addGap(65)
-					.addGroup(gl_panel_1.createParallelGroup(Alignment.BASELINE)
-						.addComponent(btnNewButton_11)
-						.addComponent(btnNewButton_12)))
+					.addComponent(btnNewButton_11))
 		);
 		panel_1.setLayout(gl_panel_1);
-		btnNewButton_12.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				frmBuysmartEnterprises.setVisible(false);
-				GUI_automatic_order openAutomaticOrder = new GUI_automatic_order();
-			}
-		});
 		
 		JLabel lblNewLabel_1 = new JLabel("BuySmart Enterprise");
 		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 14));
