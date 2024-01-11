@@ -31,6 +31,12 @@ import com.jgoodies.forms.layout.FormLayout;
 import com.jgoodies.forms.layout.ColumnSpec;
 import com.jgoodies.forms.layout.RowSpec;
 
+
+/**
+ * Die Klasse GUI_dashboard repräsentiert das Haupt-Dashboard der BuySmart Enterprise-Anwendung.
+ * Sie ermöglicht den Zugriff auf verschiedene Funktionen und Ansichten.
+ */
+
 public class GUI_dashboard {
 	
 	private JFrame frmBuysmartEnterprises;
