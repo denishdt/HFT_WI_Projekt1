@@ -147,6 +147,13 @@ public class GUI_standard_quantity {
 		});
 		
 		btnNewButton_4 = new JButton("Automatische Bestellung");
+		btnNewButton_4.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				JOptionPane.showMessageDialog(frm, "Diese Funktion steht Ihnen im nächsten Update zur Verfügung!", "Automatische Bestellung", JOptionPane.INFORMATION_MESSAGE);
+			}
+		});
 		
 		GroupLayout groupLayout = new GroupLayout(frm.getContentPane());
 		groupLayout.setHorizontalGroup(
