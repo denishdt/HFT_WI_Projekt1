@@ -1,1 +1,1 @@
-packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"de.hft_stuttgart.buysmartenterprise.gui"}];updateSearchResults();
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"de.hft_stuttgart.buysmartenterprise.dbaccess"},{"l":"de.hft_stuttgart.buysmartenterprise.gui"},{"l":"de.hft_stuttgart.buysmartenterprise.main"}];updateSearchResults();
