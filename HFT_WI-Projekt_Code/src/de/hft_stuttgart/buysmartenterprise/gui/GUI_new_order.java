@@ -341,6 +341,9 @@ public class GUI_new_order {
         frame.setVisible(true);
     }
 
+    /** test kek
+     * @param ausgewaehlterLieferant
+     */
     private void verfuegbareTeil(String ausgewaehlterLieferant) {
         teilecomboBox.removeAllItems();
 
