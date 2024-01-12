@@ -27,7 +27,7 @@ import javax.swing.JTextField;
 import javax.swing.JPasswordField;
 
 /**
- * Hier kann man seinen Benutzername und/oder Passwort ändern.
+ * Hier kann man seinen Benutzername und/oder Passwort &auml;ndern.
  * 
  *
  */

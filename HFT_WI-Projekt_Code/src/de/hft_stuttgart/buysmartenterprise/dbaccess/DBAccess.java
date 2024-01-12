@@ -3,7 +3,11 @@ package de.hft_stuttgart.buysmartenterprise.dbaccess;
 import java.sql.Connection;
 import java.sql.DriverManager;
 
-
+/**
+ * 
+ * Er&ouml;glicht die Verbindung sowie das Trennen und das Verwenden der Datenbank.
+ *
+ */
 public class DBAccess {
 
 	private static final String URL = "jdbc:mysql://3.69.96.96:80/";
@@ -14,6 +18,9 @@ public class DBAccess {
 	
 	private Connection connection;
 	
+	/**
+	 * Verbindng zur Datenbank wird aufgebaut
+	 */
 	public void connect() {
 		try {
 			Class.forName(DRIVER);
@@ -24,6 +31,9 @@ public class DBAccess {
 		}
 	}
 	
+	/**
+	 * Einmalige Verbindung zur Datenbank beim LogIn. Gibt ebenfalls bei erfolgreicher Verbindung eine Nachricht aus
+	 */
 	public void firstConnect() {
 		try {
 			Class.forName(DRIVER);
@@ -35,6 +45,9 @@ public class DBAccess {
 		}
 	}
 
+	/**
+	 * Trennt die Verbindung zur Datenbannk
+	 */
 	public void disconnect() {
 		try {
 			connection.close();
@@ -44,6 +57,9 @@ public class DBAccess {
 		}
 	}
 	
+	/**Wenn die Verbindung gebraucht wird, dann wird sie &uuml;ber diese Methode abgerufen.
+	 * @return
+	 */
 	public Connection getConnection() {
 		return connection;
 	}

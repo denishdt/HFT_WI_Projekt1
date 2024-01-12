@@ -1,8 +1,6 @@
 /**
- * Das Paket de.hft_stuttgart.buysmartenterprise.dbaccess enthält eine Klasse für den Aufbau der Verbindung zur Datenbank.
+ * Das Paket de.hft_stuttgart.buysmartenterprise.dbaccess enth&auml;lt eine Klasse für den Aufbau der Verbindung zur Datenbank.
  * 
- * Diese Paket enthält folgende Klassen:
- * - DBAccess: Für die Verbindung zur Datenbank
  */
 
 

@@ -146,7 +146,7 @@ public class GUI_dashboard {
 		btnNewButton_7.setForeground(new Color(255, 255, 255));
 		btnNewButton_7.setBackground(new Color(128, 128, 128));
 		
-		JButton btnNewButton_8 = new JButton("Standardmenge für Teile festlegen");
+		JButton btnNewButton_8 = new JButton("Standard-/Mindestmenge festlegen");
 		btnNewButton_8.setForeground(new Color(255, 255, 255));
 		btnNewButton_8.setBackground(new Color(128, 128, 128));
 		btnNewButton_8.addActionListener(new ActionListener() {

@@ -345,7 +345,7 @@ public class GUI_new_order {
         frame.setVisible(true);
     }
 
-    /** Überprüft bei welchem Lieferant, die jeweiligen Teile zur Verfügng stehen.
+    /** &Uuml;berpr&uuml;ft bei welchem Lieferant, die jeweiligen Teile zur Verf&uuml;gng stehen.
      * @param ausgewaehlterLieferant
      */
     public void verfuegbareTeil(String ausgewaehlterLieferant) {
@@ -406,7 +406,7 @@ public class GUI_new_order {
         }
     }
 
-    /**Zeigt den Bestand des ausgewählten Teils an.
+    /**Zeigt den Bestand des ausgew&auml;hlten Teils an.
      * @param komponente
      * @param teil
      * @return
@@ -528,7 +528,7 @@ public class GUI_new_order {
     
     
     /**
-     * Es erscheint ein Pop-Up Fenster bei dem man sich für 'Ja' oder 'Nein' entscheiden müsse.
+     * Es erscheint ein Pop-Up Fenster bei dem man sich f&uuml;r 'Ja' oder 'Nein' entscheiden m&uuml;sse.
      */
     public void showConfirmationDialog() {
         int option = JOptionPane.showConfirmDialog(frame,
@@ -582,7 +582,7 @@ public class GUI_new_order {
     }
 
     /**
-     * Überprüft ob die Menge besteht.
+     *&Uuml;berpr&uuml;ft ob die Menge besteht.
      * @param komponente
      * @param teile
      * @param menge

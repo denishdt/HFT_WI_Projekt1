@@ -29,7 +29,7 @@ import javax.swing.JComboBox;
 
 /**
  * 
- * Hier kann man neue Mitarbeiter hinzufügen.
+ * Hier kann man neue Mitarbeiter hinzuf&uuml;gen.
  *
  */
 public class GUI_new_employee {

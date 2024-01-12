@@ -11,7 +11,7 @@ import de.hft_stuttgart.buysmartenterprise.gui.GUI_login;
 
 /**
  * 
- * Startet das Programm und öffnet "GUI_login"
+ * Startet das Programm und &ouml;ffnet "GUI_login"
  *
  */
 public class Main {

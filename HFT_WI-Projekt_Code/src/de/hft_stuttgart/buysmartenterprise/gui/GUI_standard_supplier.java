@@ -38,7 +38,7 @@ import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
 /**
  * 
- * Hier wird der Standard lieferant festgelegt für bestimmte Teile.
+ * Hier wird der Standard lieferant festgelegt f&uuml;r bestimmte Teile.
  *
  */
 public class GUI_standard_supplier {

@@ -27,9 +27,9 @@ import javax.swing.JTextField;
 
 /**
  * 
- *Hier können alle Lieferanten samt den von ihnen gelieferten Teilen eingesehen werden, 
- *einschließlich der Standardlieferungen. Zusätzlich werden die relevanten Kontaktdaten 
- *angezeigt und können nach Bedarf bearbeitet oder gelöscht werden.
+ *Hier k&ouml;nnen alle Lieferanten samt den von ihnen gelieferten Teilen eingesehen werden, 
+ *einschliesslich der Standardlieferungen. Zus&auml;tzlich werden die relevanten Kontaktdaten 
+ *angezeigt und k&ouml;nnen nach Bedarf bearbeitet oder gel&ouml;scht werden.
  *
  */
 public class GUI_show_supplier {
@@ -92,7 +92,8 @@ public class GUI_show_supplier {
 		return content;
 	}
 	
-	/**Es wird für den ausgewählten Lieferanten, falls gegeben, die zugeteilten Standardteile angezeigt. (Diese können hier nicht überschrieben werden)
+	/**Es wird f&uuml;r den ausgew&auml;hlten Lieferanten, falls gegeben, die zugeteilten Standardteile angezeigt.
+	 *  (Diese k&ouml;nnen hier nicht &uuml;berschrieben werden)
 	 * @param supplier
 	 * @return
 	 */
