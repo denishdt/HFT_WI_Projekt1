@@ -36,8 +36,12 @@ import javax.swing.SpringLayout;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
-
-public class GUI_stand_min_supplier {
+/**
+ * 
+ * Hier wird der Standard lieferant festgelegt für bestimmte Teile.
+ *
+ */
+public class GUI_standard_supplier {
 
 	private JFrame frm;
 	private JPanel panel;
@@ -65,7 +69,7 @@ public class GUI_stand_min_supplier {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					GUI_stand_min_supplier window = new GUI_stand_min_supplier();
+					GUI_standard_supplier window = new GUI_standard_supplier();
 					window.frm.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -77,12 +81,12 @@ public class GUI_stand_min_supplier {
 	/**
 	 * Create the application.
 	 */
-	public GUI_stand_min_supplier() {
+	public GUI_standard_supplier() {
 		dbAccess.connect();
 		initialize();
 	}
 	
-	/**Die ausgew&auml;hlten Checkboxen werden ausgelesen und weitergeben
+	/**Die ausgew&auml;hlten Checkboxen werden ausgelesen und weitergeben.
 	 * @param checkBoxes
 	 * @return
 	 */

@@ -35,8 +35,12 @@ import javax.swing.SpringLayout;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
-
-public class GUI_standard_quantity {
+/**
+ * 
+ * Hier wird die Standard- und Mindestmenge festgelegt.
+ *
+ */
+public class GUI_stand_min_quantity {
 
 	private JFrame frm;
 	private JPanel panel;
@@ -60,7 +64,7 @@ public class GUI_standard_quantity {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					GUI_standard_quantity window = new GUI_standard_quantity();
+					GUI_stand_min_quantity window = new GUI_stand_min_quantity();
 					window.frm.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -72,7 +76,7 @@ public class GUI_standard_quantity {
 	/**
 	 * Create the application.
 	 */
-	public GUI_standard_quantity() {
+	public GUI_stand_min_quantity() {
 		dbAccess.connect();
 		initialize();
 	}
@@ -274,7 +278,6 @@ public class GUI_standard_quantity {
 		
 		frm.setVisible(true);
 	}
-	
 	
 	/**Lade die Teile der ausgew&auml;hlten Komponente und f&uuml;ge sie in die Checkbox ein
 	 * @param komponente
