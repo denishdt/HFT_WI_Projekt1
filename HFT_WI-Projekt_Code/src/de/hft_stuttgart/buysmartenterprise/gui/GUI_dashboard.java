@@ -32,7 +32,7 @@ import com.jgoodies.forms.layout.ColumnSpec;
 import com.jgoodies.forms.layout.RowSpec;
 
 /**
- * Sie ermöglicht den Zugriff auf verschiedene Funktionen und Ansichten.
+ * Sie erm&ouml;glicht den Zugriff auf verschiedene Funktionen und Ansichten.
  */
 
 public class GUI_dashboard {
