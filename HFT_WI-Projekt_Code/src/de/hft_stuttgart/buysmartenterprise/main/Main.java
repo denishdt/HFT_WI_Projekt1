@@ -31,7 +31,7 @@ public class Main {
 	public String getUser() {
 		return user;
 	}
-	
+	//yaro
 	public String getPassword() {
 		String pw;
 		try {
