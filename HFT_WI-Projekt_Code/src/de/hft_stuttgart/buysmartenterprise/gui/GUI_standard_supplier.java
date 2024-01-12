@@ -36,9 +36,10 @@ import javax.swing.SpringLayout;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
+
 /**
- * 
  * Hier wird der Standard lieferant festgelegt f&uuml;r bestimmte Teile.
+ * 
  *
  */
 public class GUI_standard_supplier {

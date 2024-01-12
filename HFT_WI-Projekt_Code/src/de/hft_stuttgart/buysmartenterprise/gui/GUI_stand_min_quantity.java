@@ -35,9 +35,10 @@ import javax.swing.SpringLayout;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
+
 /**
- * 
  * Hier wird die Standard- und Mindestmenge festgelegt.
+ * 
  *
  */
 public class GUI_stand_min_quantity {
