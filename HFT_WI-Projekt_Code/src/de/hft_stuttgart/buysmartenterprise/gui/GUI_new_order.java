@@ -26,6 +26,10 @@ import java.awt.event.ActionEvent;
 import javax.swing.JSeparator;
 import javax.swing.JComboBox;
 
+/**
+ * Hier stellt man seine neuen Bestellungen auf.
+ *
+ */
 public class GUI_new_order {
     private JFrame frame;
     private JTextField preisField;
@@ -341,10 +345,10 @@ public class GUI_new_order {
         frame.setVisible(true);
     }
 
-    /** test kek
+    /** Überprüft bei welchem Lieferant, die jeweiligen Teile zur Verfügng stehen.
      * @param ausgewaehlterLieferant
      */
-    private void verfuegbareTeil(String ausgewaehlterLieferant) {
+    public void verfuegbareTeil(String ausgewaehlterLieferant) {
         teilecomboBox.removeAllItems();
 
         try {
@@ -373,7 +377,10 @@ public class GUI_new_order {
         }
     }
     
-    private void loadTeil(String komponente) {
+    /**Zeigt die Teile an.
+     * @param komponente
+     */
+    public void loadTeil(String komponente) {
         try {
             Connection con = dbAccess.getConnection();
             Statement stm = con.createStatement();
@@ -399,7 +406,12 @@ public class GUI_new_order {
         }
     }
 
-    private int getBestand(String komponente, String teil) {
+    /**Zeigt den Bestand des ausgewählten Teils an.
+     * @param komponente
+     * @param teil
+     * @return
+     */
+    public int getBestand(String komponente, String teil) {
         try {
             Connection con = dbAccess.getConnection();
             String selectSql = "SELECT bestand FROM db5.teilebestand WHERE " + komponente + " = ?";
@@ -417,7 +429,12 @@ public class GUI_new_order {
         return 0; // Standardwert, wenn etwas schief geht
     }
     
-    private void calculatePrice(String komponente, String teile, int menge) {
+    /**Berechnet den Preis.
+     * @param komponente
+     * @param teile
+     * @param menge
+     */
+    public void calculatePrice(String komponente, String teile, int menge) {
         try {
             Connection con = dbAccess.getConnection();
 
@@ -441,7 +458,16 @@ public class GUI_new_order {
             System.out.println("Fehler beim Abrufen des Preises: " + ex.getMessage());
         }
     }
-    private void insertOrderIntoDatabase(String teile, int menge, String lieferant, double preis, String status) {
+    
+    
+    /**Die Bestellung wird in die Datenbak gespeichert.
+     * @param teile
+     * @param menge
+     * @param lieferant
+     * @param preis
+     * @param status
+     */
+    public void insertOrderIntoDatabase(String teile, int menge, String lieferant, double preis, String status) {
         try {
             Connection con = dbAccess.getConnection();
             String insertSql = "INSERT INTO db5.order (teile, menge, lieferant, preis, status) VALUES (?, ?, ?, ?, ?)";
@@ -474,7 +500,13 @@ public class GUI_new_order {
             System.out.println("Fehler beim Einfügen der Bestellung in die Datenbank: " + ex.getMessage());
         }
     }
-    private void updateTeilebestand(String komponente, String teile, int menge) {
+    
+    /**Der Neue Bestand der Teile wird angezeigt.
+     * @param komponente
+     * @param teile
+     * @param menge
+     */
+    public void updateTeilebestand(String komponente, String teile, int menge) {
         try {
             Connection con = dbAccess.getConnection();
             String updateSql = "UPDATE db5.teilebestand SET bestand = bestand + ? WHERE " + komponente + " = ? ";
@@ -493,7 +525,12 @@ public class GUI_new_order {
             System.out.println("Fehler beim Aktualisieren des Teilebestands: " + ex.getMessage());
         }
     }
-    private void showConfirmationDialog() {
+    
+    
+    /**
+     * Es erscheint ein Pop-Up Fenster bei dem man sich für 'Ja' oder 'Nein' entscheiden müsse.
+     */
+    public void showConfirmationDialog() {
         int option = JOptionPane.showConfirmDialog(frame,
                 "Möchten Sie die Bestellung abschließen? Diese Aktion kann nicht storniert werden.",
                 "Warnung",
@@ -544,7 +581,14 @@ public class GUI_new_order {
         }
     }
 
-    private boolean isStockAvailable(String komponente, String teile, int menge) {
+    /**
+     * Überprüft ob die Menge besteht.
+     * @param komponente
+     * @param teile
+     * @param menge
+     * @return
+     */
+    public boolean isStockAvailable(String komponente, String teile, int menge) {
         try {
             Connection con = dbAccess.getConnection();
             String selectSql = "SELECT bestand FROM db5.teilebestand WHERE " + komponente + " = ?";
