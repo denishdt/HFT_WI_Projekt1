@@ -9,7 +9,11 @@ import javax.swing.JOptionPane;
 import de.hft_stuttgart.buysmartenterprise.dbaccess.DBAccess;
 import de.hft_stuttgart.buysmartenterprise.gui.GUI_login;
 
-
+/**
+ * 
+ * Startet das Programm und öffnet "GUI_login"
+ *
+ */
 public class Main {
 	
 	private static String user = "";

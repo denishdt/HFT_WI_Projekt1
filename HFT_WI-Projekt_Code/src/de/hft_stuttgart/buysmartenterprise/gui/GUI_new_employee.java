@@ -27,6 +27,11 @@ import javax.swing.JPasswordField;
 import javax.swing.JSpinner;
 import javax.swing.JComboBox;
 
+/**
+ * 
+ * Hier kann man neue Mitarbeiter hinzufügen.
+ *
+ */
 public class GUI_new_employee {
 
 	private JFrame frame;

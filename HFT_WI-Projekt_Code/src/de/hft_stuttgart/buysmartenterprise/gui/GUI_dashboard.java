@@ -32,8 +32,6 @@ import com.jgoodies.forms.layout.ColumnSpec;
 import com.jgoodies.forms.layout.RowSpec;
 
 /**
- * @author Justin
- *Die Klasse GUI_dashboard repräsentiert das Haupt-Dashboard der BuySmart Enterprise-Anwendung.
  * Sie ermöglicht den Zugriff auf verschiedene Funktionen und Ansichten.
  */
 
@@ -42,10 +40,7 @@ public class GUI_dashboard {
 	private JFrame frmBuysmartEnterprises;
 	DBAccess dbAccess = new DBAccess();
 
-	/**
-     * Der Einstiegspunkt für die BuySmart Enterprise-Anwendung.
-     * @param args Die Befehlszeilenargumente.
-     */
+	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
