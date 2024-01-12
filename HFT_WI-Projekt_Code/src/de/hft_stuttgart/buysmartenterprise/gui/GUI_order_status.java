@@ -39,6 +39,12 @@ import javax.swing.GroupLayout.Alignment;
 import javax.swing.JPanel;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
+
+/**
+ * Hier werden die Bestellungen inklusive Status aufgelistet.
+ * 
+ *
+ */
 public class GUI_order_status {
 
 	private JFrame frmBuysmartEnterprise;
@@ -182,7 +188,11 @@ public class GUI_order_status {
 		frmBuysmartEnterprise.setVisible(true);
 	}
 	
-	 private void updateStatusColumn() {
+	 /**
+	 * Hier wird auf Basis von der Tabelle order (Datenbank), die Bestellungen erfasst und dementsprechend
+	 * in die Liste hinzugef&uuml;gt (Bestellnr., Lieferant, Status (als ComboBox)).
+	 */
+	public void updateStatusColumn() {
 	        try {
 	            Connection con = dbAccess.getConnection();
 	            Statement stm = con.createStatement();
@@ -211,7 +221,10 @@ public class GUI_order_status {
 	        }
 	    }
 
-	    private void setUpStatusComboBoxEditor(TableColumn statusColumn) {
+	    /**Man kann den Status der jeweiligen Bestellung pflegen (versendet/eingetroffen). 
+	     * @param statusColumn
+	     */
+	    public void setUpStatusComboBoxEditor(TableColumn statusColumn) {
 	        JComboBox<String> comboBox = new JComboBox<>(new String[]{"Versendet", "Eingetroffen"});
 	        statusColumn.setCellEditor(new DefaultCellEditor(comboBox));
 	        
@@ -225,7 +238,11 @@ public class GUI_order_status {
 			});
 	    }
 	    
-	    private void updateStatus(int selectedRow, String selectedStatus) {
+	    /**Das Ergebnis der Methode setUpStatusComboBoxEditor(TableColumn statusColumn) wird in der Datenbank eingespeichert.
+	     * @param selectedRow
+	     * @param selectedStatus
+	     */
+	    public void updateStatus(int selectedRow, String selectedStatus) {
 	    	if(selectedRow != -1) {
 	    		try {
 					Connection con = dbAccess.getConnection();
@@ -239,7 +256,12 @@ public class GUI_order_status {
 	    	}
 	    }
 
-	    private String getStatusLabel(String status) {
+	    /**In der Datenbank wird bei einer neuen Bestellung der Status als 'pending' eingetragen, jedoch wird dies in der Liste 
+	     * als 'Versendet' angezeigt.
+	     * @param status
+	     * @return
+	     */
+	    public String getStatusLabel(String status) {
 	        return status.equals("Pending") ? "Versendet" : "Eingetroffen";
 	    }
 	

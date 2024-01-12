@@ -65,6 +65,12 @@ public class GUI_dashboard {
 	/**
 	 * Initialize the contents of the frame.
 	 */
+	/**
+	 * 
+	 */
+	/**
+	 * 
+	 */
 	private void initialize() {
 		frmBuysmartEnterprises = new JFrame();
 		frmBuysmartEnterprises.setTitle("HighSpeed Procurement");

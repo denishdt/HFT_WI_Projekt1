@@ -29,6 +29,11 @@ import javax.swing.JCheckBox;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JTextField;
 
+/**
+ * Hier kann man einen neuen Lieferanten hinzuf&uuml;gen
+ * 
+ *
+ */
 public class GUI_new_supplier {
 
 	private JFrame frm;
@@ -67,6 +72,11 @@ public class GUI_new_supplier {
 
 	/**
 	 * Initialize the contents of the frame.
+	 */
+	
+	/**Hier werden die Checkboxen ausgelesen und in der Datenbank (tabelle: lieferanten) gespeichert.
+	 * @param checkBoxes
+	 * @return
 	 */
 	public static String getLieferantenart(JCheckBox...checkBoxes) {
 		StringBuilder selectedItem = new StringBuilder();
