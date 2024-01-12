@@ -130,7 +130,7 @@ public class GUI_dashboard {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				frmBuysmartEnterprises.setVisible(false);
-				GUI_standard_supplier openStandardSupplier = new GUI_standard_supplier();
+				GUI_stand_min_supplier openStandardSupplier = new GUI_stand_min_supplier();
 			}
 		});
 		

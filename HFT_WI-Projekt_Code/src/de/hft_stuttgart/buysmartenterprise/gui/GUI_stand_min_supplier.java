@@ -37,7 +37,7 @@ import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
-public class GUI_standard_supplier {
+public class GUI_stand_min_supplier {
 
 	private JFrame frm;
 	private JPanel panel;
@@ -65,7 +65,7 @@ public class GUI_standard_supplier {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					GUI_standard_supplier window = new GUI_standard_supplier();
+					GUI_stand_min_supplier window = new GUI_stand_min_supplier();
 					window.frm.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -77,11 +77,15 @@ public class GUI_standard_supplier {
 	/**
 	 * Create the application.
 	 */
-	public GUI_standard_supplier() {
+	public GUI_stand_min_supplier() {
 		dbAccess.connect();
 		initialize();
 	}
 	
+	/**Die ausgew&auml;hlten Checkboxen werden ausgelesen und weitergeben
+	 * @param checkBoxes
+	 * @return
+	 */
 	public static String getLieferantenart(JCheckBox...checkBoxes) {
 		StringBuilder selectedItem = new StringBuilder();
 		for (JCheckBox checkBox : checkBoxes) {

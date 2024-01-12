@@ -275,7 +275,11 @@ public class GUI_standard_quantity {
 		frm.setVisible(true);
 	}
 	
-	private void loadTeil(String komponente) {
+	
+	/**Lade die Teile der ausgew&auml;hlten Komponente und f&uuml;ge sie in die Checkbox ein
+	 * @param komponente
+	 */
+	public void loadTeil(String komponente) {
     	try {
 			Connection con = dbAccess.getConnection();
 			Statement stm = con.createStatement();
