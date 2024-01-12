@@ -25,6 +25,13 @@ import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
+/**
+ * 
+ *Hier können alle Lieferanten samt den von ihnen gelieferten Teilen eingesehen werden, 
+ *einschließlich der Standardlieferungen. Zusätzlich werden die relevanten Kontaktdaten 
+ *angezeigt und können nach Bedarf bearbeitet oder gelöscht werden.
+ *
+ */
 public class GUI_show_supplier {
 
 	private JFrame frmHighspeedProcurement;
@@ -64,6 +71,11 @@ public class GUI_show_supplier {
 		loadSupplier();
 	}
 	
+	/**Es liest aus der Tabelle: lieferanten (Datenbank), die jeweiligen Kontaktdaten aus und gibt sie in den TextFields aus.
+	 * @param supplier
+	 * @param info
+	 * @return
+	 */
 	public String getSupplierInfo(String supplier, String info) {
 		String content = "";
 		try {
@@ -80,6 +92,10 @@ public class GUI_show_supplier {
 		return content;
 	}
 	
+	/**Es wird für den ausgewählten Lieferanten, falls gegeben, die zugeteilten Standardteile angezeigt. (Diese können hier nicht überschrieben werden)
+	 * @param supplier
+	 * @return
+	 */
 	public String getStandardSupplier(String supplier) {
 		String standardSupplier = "";
 		try {
@@ -361,7 +377,11 @@ public class GUI_show_supplier {
 		frmHighspeedProcurement.setVisible(true);
 	}
 	
-	private void updateSupplierInfo() {
+	
+	/**
+	 * Es aktualisiert die Lieferanteninformationen in den Textfeldern.
+	 */
+	public void updateSupplierInfo() {
 		txtName.setText((String) comboBoxSupplier.getSelectedItem());
 		txtAdresse.setText(getSupplierInfo((String) comboBoxSupplier.getSelectedItem(), "adress"));
 		txtIban.setText(getSupplierInfo((String) comboBoxSupplier.getSelectedItem(), "iban"));
@@ -372,7 +392,10 @@ public class GUI_show_supplier {
 		txtStandardSupplier.setText(getStandardSupplier((String) comboBoxSupplier.getSelectedItem()));
 	}
 	
-	private void loadSupplier() {
+	/**
+	 * Ladet die Lieferanten in die ComboBox.
+	 */
+	public void loadSupplier() {
 		try {
 			Connection con = dbAccess.getConnection();
 			Statement stm = con.createStatement();

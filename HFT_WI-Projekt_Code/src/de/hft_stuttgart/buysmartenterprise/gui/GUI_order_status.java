@@ -198,6 +198,7 @@ public class GUI_order_status {
 	            Statement stm = con.createStatement();
 	            String sql = "SELECT * from db5.order";
 	            ResultSet rs = stm.executeQuery(sql);
+	         // Erstellt ein neues TableModel für die Tabelle mit den Spalten "Bestellungsnummer", "Lieferant" und "Status"
 
 	            DefaultTableModel model = new DefaultTableModel(
 	                    new Object[][]{},

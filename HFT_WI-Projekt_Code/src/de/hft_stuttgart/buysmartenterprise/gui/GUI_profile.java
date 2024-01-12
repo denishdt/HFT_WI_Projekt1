@@ -26,6 +26,11 @@ import de.hft_stuttgart.buysmartenterprise.main.Main;
 import javax.swing.JTextField;
 import javax.swing.JPasswordField;
 
+/**
+ * Hier kann man seinen Benutzername und/oder Passwort ändern.
+ * 
+ *
+ */
 public class GUI_profile {
 
 	private JFrame frame;
